@@ -813,6 +813,13 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 #drpage.still .dr-pill,#drpage.still .dr-bar{opacity:1;transform:none;pointer-events:auto}
 #drpage.still .dr-bar{transform:translateX(-50%)}
 #drpage .dr-link{font:inherit;font-size:.9rem;background:none;border:0;color:var(--ital);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+
+/* portraits: a photo, when present, covers the initials */
+.av,#landing .oav .face,#drpage .portrait,#drpage .dr-why-ph{position:relative;overflow:hidden}
+.av .pic,#landing .oav .face .pic,#drpage .dr-why-ph .pic{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit}
+#drpage .portrait .pic{position:absolute;inset:6px;width:calc(100% - 12px);height:calc(100% - 12px);object-fit:cover;object-position:50% 20%;border-radius:999px 999px 16px 16px}
+#drpage .portrait{overflow:visible}
+#drpage .portrait .ph-badge{z-index:2}
 </style>
 </head>
 <body>
@@ -843,7 +850,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   </div>
   <div class="phone" id="heroPhone" aria-label="Example conversation">
     <span class="orbit" aria-hidden="true">✳</span>
-    <div class="ph"><span class="av" style="background:#d7ef9e">AO</span><div><b>Dr. Amara Okafor</b><div style="font-size:.8rem;color:var(--muted)">Your family doctor · usually within 3 hours</div></div></div>
+    <div class="ph"><span class="av" style="background:#d7ef9e">AO<span data-pic="d1"></span></span><div><b>Dr. Amara Okafor</b><div style="font-size:.8rem;color:var(--muted)">Your family doctor · usually within 3 hours</div></div></div>
     <div class="bub me seq">My blood pressure readings at home averaged 136/86 this week. Should I change anything?</div>
     <div class="bub ai seq"><b>Care Navigator</b>Thanks Maya. Any headaches, chest pain or vision changes? And are you still taking ramipril 5 mg?</div>
     <div class="bub me seq">No symptoms. Yes, every morning.</div>
@@ -1038,6 +1045,11 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 </div>
 <script>
+/* Doctor portraits. Add a file to img/doctors/ and list it here, e.g. d1:"img/doctors/d1.webp". Doctors without one keep their initials. */
+window.NL_PHOTOS={};
+window.nlImg=id=>{const u=window.NL_PHOTOS[id];return u?`<img class="pic" src="${u}" alt="" loading="lazy" decoding="async">`:""};
+</script>
+<script>
 
 (function(){
 const APP="#doctors";
@@ -1071,7 +1083,7 @@ P.forEach(([deg,k],i)=>{const d=D[i];if(!d)return;const r=deg*Math.PI/180,[rx,ry
   const b=document.createElement("button");b.type="button";b.className="oav";b.dataset.i=i;
   b.style.cssText=`left:${x}%;top:${y}%;--h:${hues[i]};animation-delay:${-(i*.7)}s`;
   b.setAttribute("aria-label",`${d[0]}, ${d[1]}`);
-  b.innerHTML=`<span class="face">${ini(d[0])}</span><span class="tip"><b>${esc(d[0])}</b>${esc(d[1])} · ${esc(d[2])}</span>`;
+  b.innerHTML=`<span class="face">${ini(d[0])}${nlImg("d"+(i+1))}</span><span class="tip"><b>${esc(d[0])}</b>${esc(d[1])} · ${esc(d[2])}</span>`;
   orbit.appendChild(b)});
 orbit.addEventListener("click",e=>{const b=e.target.closest(".oav");if(!b)return;fS.value=D[b.dataset.i][1];fL.value="";draw();document.getElementById("docs").scrollIntoView({behavior:"smooth",block:"nearest"})});
 function draw(){
@@ -1079,7 +1091,7 @@ function draw(){
   const list=D.map((d,i)=>[d,i]).filter(([d])=>(!sp||d[1]===sp)&&(!lg||d[3].split(", ").includes(lg)));
   orbit.querySelectorAll(".oav").forEach(b=>b.classList.toggle("dim",!list.some(([,i])=>i==+b.dataset.i)));
   document.getElementById("oCount").textContent=`${list.length} clinician${list.length===1?"":"s"}.`;
-  document.getElementById("docs").innerHTML=list.length?list.map(([d,i])=>`<article class="dcard"><div class="dtop"><span class="av" style="background:${hues[i]}">${ini(d[0])}</span><div><h3>${esc(d[0])}</h3><div class="meta">${esc(d[1])} · ${esc(d[2])}</div></div></div><div class="meta">Speaks ${esc(d[3])}</div><div>${d[4].map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div><div class="dfoot"><span class="acc ${d[5]?"":"w"}">${d[5]?"Accepting patients":"Waitlist open"}</span><a class="btn ${d[5]?"primary":"ghost"} sm" href="#dr/d${i+1}">View profile</a></div></article>`).join(""):`<p class="empty">No clinicians match yet. Try another language or any doctor.</p>`;
+  document.getElementById("docs").innerHTML=list.length?list.map(([d,i])=>`<article class="dcard"><div class="dtop"><span class="av" style="background:${hues[i]}">${ini(d[0])}${nlImg("d"+(i+1))}</span><div><h3>${esc(d[0])}</h3><div class="meta">${esc(d[1])} · ${esc(d[2])}</div></div></div><div class="meta">Speaks ${esc(d[3])}</div><div>${d[4].map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div><div class="dfoot"><span class="acc ${d[5]?"":"w"}">${d[5]?"Accepting patients":"Waitlist open"}</span><a class="btn ${d[5]?"primary":"ghost"} sm" href="#dr/d${i+1}">View profile</a></div></article>`).join(""):`<p class="empty">No clinicians match yet. Try another language or any doctor.</p>`;
 }
 fS.addEventListener("change",draw);fL.addEventListener("change",draw);
 draw();
@@ -1103,6 +1115,7 @@ if(ph&&!reduce){
     t.push(setTimeout(run,at+5200))}
   run();
 }
+document.querySelectorAll("#landing [data-pic]").forEach(el=>{el.outerHTML=nlImg(el.dataset.pic)});
 /* clinician wall */
 const W=[["Dr. Amara Okafor","Family medicine"],["Dr. Luc Tremblay","Family medicine"],["Dr. Priya Sandhu","Dermatology"],["Dr. Wei Zhang","Endocrinology"],["Dr. Hannah Cohen","Mental health"],["Dr. Joseph Reyes","Sexual health"],["Dr. Nadia Haddad","Women's health"],["Dr. Marcus Bell","Sports medicine"],["Dr. Elena Ruiz","Pediatrics"],["NP Kiran Patel","Family medicine"]];
 const H=["#d7ef9e","#f2d6a2","#c9e2ef","#f1c7bd","#dcd3f0","#cfe8d4","#f3e3a6","#e6cfe6","#bfe0d6","#f0d9c4"];
@@ -1145,7 +1158,7 @@ const $=s=>document.querySelector(s);
 const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const hues=["#d7ef9e","#f2d6a2","#c9e2ef","#f1c7bd","#dcd3f0","#cfe8d4","#f3e3a6","#e6cfe6","#bfe0d6","#f0d9c4"];
 const initials=n=>n.replace(/^(Dr\.|NP)\s+/,"").split(" ").map(x=>x[0]).slice(0,2).join("");
-const avatar=(n,i,cls="")=>`<span class="av ${cls}" style="background:${hues[i%hues.length]}" aria-hidden="true">${esc(initials(n))}</span>`;
+const avatar=(n,i,cls="")=>{const dd=typeof doctors!=="undefined"&&doctors.find(x=>x.name===n);return `<span class="av ${cls}" style="background:${hues[i%hues.length]}" aria-hidden="true">${esc(initials(n))}${dd?nlImg(dd.id):""}</span>`};
 const now=()=>new Date().toLocaleTimeString("en-CA",{hour:"numeric",minute:"2-digit"});
 
 /* ---------------- data ---------------- */
@@ -1825,7 +1838,7 @@ function showDr(id){
      ${Array.from({length:7},(_,k)=>`<span class="ghost" style="--gx:${[12,78,22,66,84,8,48][k]}%;--gy:${[22,30,62,70,52,44,14][k]}%;--gw:${[120,90,140,100,80,110,70][k]}px"></span>`).join("")}</div>
     <div class="dr-hero">
      <a class="logo" href="#top">northline<span>✳</span>care</a>
-     <div class="portrait"><span class="ph-ini">${ini}</span><span class="ph-badge">${d.accepting?"Accepting patients":"Waitlist open"}</span></div>
+     <div class="portrait"><span class="ph-ini">${ini}</span>${nlImg(id)}<span class="ph-badge">${d.accepting?"Accepting patients":"Waitlist open"}</span></div>
      <h1 class="dr-name">${esc(titled(d))}</h1>
      <div class="dr-role">${esc(d.role)} · ${esc(d.spec)} · ${esc(d.city)}</div>
      <div class="dr-ctas"><button class="glass" data-dr="start">${d.accepting?"Send a message":"Join the waitlist"}</button><a class="glass" href="#dr-about">About ${esc(cn)}</a></div>
@@ -1869,7 +1882,7 @@ function showDr(id){
     <div class="dr-why">
      <div><h2>What is a <em>personal doctor?</em></h2><p>One clinician who handles your everyday care: questions, prescriptions, results and follow up. You wouldn't book a day off to ask about a rash or a renewal. You'd just message your doctor.</p>
       <ul><li><b>Care when you need it</b>${esc(d.resp)}, not weeks from now.</li><li><b>Follow up included</b>One ongoing conversation, not a new stranger each time.</li><li><b>Never rushed</b>Thoughtful replies that fit your day.</li><li><b>No surprise bills</b>Free with OHIP. Any uninsured service is priced before you start.</li></ul></div>
-     <div class="dr-why-ph" style="--hue:${hue}"><span>${ini}</span></div>
+     <div class="dr-why-ph" style="--hue:${hue}"><span>${ini}</span>${nlImg(id)}</div>
     </div>
    </section>
 

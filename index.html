@@ -656,6 +656,163 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   #landing .door{min-height:0}
 }
 #landing footer .fl a:hover{color:var(--fg)}
+
+/* ===== doctor profile page ===== */
+#drpage{--display:"Newsreader",Georgia,serif;--body:"Geist","Public Sans",system-ui,sans-serif;--ital:#235e49;
+  --s0:#ddd8c2;--s1:#e9e5d3;--s2:#e2ddc7;--s3:#d9d3bb;--light:#fffffb;--glass:rgba(255,255,251,.58);--glassb:rgba(255,255,255,.7);--gtext:#183d35;
+  font-family:var(--body);background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;overflow-x:clip}
+:root[data-theme="dark"]:not([data-skin="white"]) #drpage{--ital:#d7ef9e;--s0:#0a1a16;--s1:#10261f;--s2:#143029;--s3:#183a31;--light:#2a5c4c;--glass:rgba(21,48,42,.62);--glassb:rgba(215,239,158,.18);--gtext:#eef2e4}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) #drpage{--ital:#d7ef9e;--s0:#0a1a16;--s1:#10261f;--s2:#143029;--s3:#183a31;--light:#2a5c4c;--glass:rgba(21,48,42,.62);--glassb:rgba(215,239,158,.18);--gtext:#eef2e4}}
+#drpage h1,#drpage h2,#drpage h3,#drpage h4{font-family:var(--display);font-weight:400;letter-spacing:-.025em;line-height:1.08;margin:0}
+#drpage em{font-style:italic;color:var(--ital)}
+#drpage p{margin:0}
+#drpage .eyebrow{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500}
+#drpage .eyebrow.center{text-align:center}
+#drpage .av{border-radius:50%;display:inline-grid;place-items:center;font-family:var(--display);color:#183d35;flex:none}
+#drpage .av.xs{width:24px;height:24px;font-size:.62rem}
+#drpage a{color:inherit}
+#drpage :focus-visible{outline:2px solid var(--ital);outline-offset:3px}
+
+/* stage: a stack of arches you walk through while past cases drift by */
+#drpage .dr-stage{height:calc(100svh + var(--n) * 62svh + 40svh);position:relative}
+#drpage .dr-stage.short{height:100svh}
+#drpage .dr-sticky{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--s0)}
+#drpage .dr-scene{position:absolute;inset:0;transform-origin:50% 64%;will-change:transform}
+#drpage .ar{position:absolute;left:50%;bottom:-2%;transform:translateX(-50%);border-radius:999px 999px 0 0}
+#drpage .a1{width:max(118vw,1100px);height:112svh;background:var(--s1);box-shadow:inset 0 40px 90px -40px rgba(24,61,53,.25)}
+#drpage .a2{width:min(84vw,860px);height:88svh;background:var(--s2);box-shadow:inset 0 30px 70px -30px rgba(24,61,53,.28)}
+#drpage .a3{width:min(62vw,620px);height:74svh;background:var(--s3);box-shadow:inset 0 24px 60px -24px rgba(24,61,53,.3)}
+#drpage .a4{width:min(44vw,430px);height:62svh;background:linear-gradient(180deg,var(--light),color-mix(in srgb,var(--light) 80%,#d7ef9e));box-shadow:0 0 120px 30px color-mix(in srgb,var(--light) 70%,transparent),inset 0 -40px 80px -40px rgba(215,239,158,.6)}
+#drpage .glow{position:absolute;left:50%;top:52%;width:60vmin;height:60vmin;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(215,239,158,.35),transparent 65%);filter:blur(10px)}
+#drpage .floor{position:absolute;left:0;right:0;bottom:0;height:16svh;background:linear-gradient(180deg,transparent,rgba(24,61,53,.08))}
+#drpage .ghost{position:absolute;left:var(--gx);top:var(--gy);width:var(--gw);height:22px;border-radius:12px;background:var(--glass);filter:blur(2px);opacity:.55;animation:drdrift 9s ease-in-out infinite alternate}
+#drpage .ghost:nth-child(even){animation-duration:12s}
+@keyframes drdrift{to{translate:0 -14px}}
+@media (max-width:640px){#drpage .a2{width:96vw}#drpage .a3{width:78vw}#drpage .a4{width:60vw}#drpage .ghost{display:none}}
+
+#drpage .dr-hero{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:72px 16px 40px;text-align:center;will-change:transform,opacity}
+#drpage .dr-hero .logo{font-family:var(--display);font-size:1.6rem;text-decoration:none;color:var(--gtext);margin-bottom:10px;letter-spacing:-.02em}
+#drpage .dr-hero .logo span{color:#4f8a5b}
+#drpage .portrait{position:relative;width:clamp(170px,22vw,240px);aspect-ratio:4/5;border-radius:999px 999px 22px 22px;background:radial-gradient(120% 90% at 30% 20%,#fffffb 0%,var(--hue) 55%,color-mix(in srgb,var(--hue) 70%,#183d35) 100%);display:grid;place-items:center;box-shadow:0 40px 80px -40px rgba(24,61,53,.65),inset 0 0 0 6px rgba(255,255,251,.55);animation:drrise .9s cubic-bezier(.2,.7,.2,1) both}
+#drpage .ph-ini{font-family:var(--display);font-size:clamp(3.4rem,6vw,5rem);color:#183d35;letter-spacing:-.04em}
+#drpage .ph-badge{position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);white-space:nowrap;background:#183d35;color:#d7ef9e;font-size:.72rem;border-radius:999px;padding:5px 12px;box-shadow:0 8px 20px -8px rgba(24,61,53,.6)}
+#drpage .dr-name{margin-top:22px;font-size:clamp(1.9rem,4vw,2.8rem);background:var(--glass);border:1px solid var(--glassb);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-radius:999px;padding:6px 26px 10px;color:var(--gtext);animation:drrise .9s .08s cubic-bezier(.2,.7,.2,1) both}
+#drpage .dr-role{font-size:.88rem;background:var(--glass);border:1px solid var(--glassb);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-radius:999px;padding:6px 16px;color:var(--gtext);animation:drrise .9s .14s cubic-bezier(.2,.7,.2,1) both}
+#drpage .dr-ctas{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:clamp(18px,5svh,56px);animation:drrise .9s .2s cubic-bezier(.2,.7,.2,1) both}
+#drpage .glass{font:inherit;font-size:.92rem;font-weight:500;color:var(--gtext);text-decoration:none;background:var(--glass);border:1px solid var(--glassb);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-radius:999px;padding:11px 20px;cursor:pointer;transition:transform .2s,background .2s}
+#drpage .glass:hover{transform:translateY(-1px)}
+#drpage .glass[data-dr="start"]{background:#183d35;color:#f6f5ed;border-color:#183d35}
+#drpage .dr-cue{font-size:.76rem;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:10px}
+#drpage .dr-cue span{width:1px;height:30px;background:linear-gradient(var(--muted),transparent);animation:drcue 1.8s ease-in-out infinite}
+@keyframes drcue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@keyframes drrise{from{opacity:0;transform:translateY(16px)}}
+
+#drpage .dr-cases{position:absolute;inset:0;pointer-events:none}
+#drpage .dr-case{position:absolute;left:50%;top:50%;width:min(340px,80vw);display:flex;flex-direction:column;gap:8px;opacity:0;will-change:transform,opacity,filter}
+#drpage .dr-q{align-self:flex-end;max-width:88%;background:var(--glass);border:1px solid var(--glassb);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);color:var(--gtext);border-radius:20px 20px 6px 20px;padding:12px 16px;font-size:.98rem;line-height:1.35;box-shadow:0 16px 40px -24px rgba(24,61,53,.5)}
+#drpage .dr-by{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;background:var(--glass);border:1px solid var(--glassb);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-radius:999px;padding:4px 12px 4px 4px;font-size:.8rem;font-weight:500;color:var(--gtext)}
+#drpage .dr-by.big{font-size:.86rem;padding:5px 14px 5px 5px;background:var(--surface);border-color:var(--line)}
+#drpage .dr-r{align-self:flex-start;background:var(--glass);border:1px solid var(--glassb);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);color:var(--gtext);border-radius:6px 20px 20px 20px;padding:12px 16px;min-width:220px;box-shadow:0 16px 40px -24px rgba(24,61,53,.5)}
+#drpage .dr-r .lb{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;opacity:.65;margin-bottom:4px}
+#drpage .dr-r .v{font-size:1rem;font-weight:500}
+#drpage .dr-r.note{font-size:.9rem;line-height:1.45;max-width:100%}
+#drpage .rv2{display:flex;justify-content:space-between;gap:16px;font-size:.92rem}
+#drpage .rv2 b{font-weight:600}
+#drpage .rng{position:relative;height:5px;border-radius:5px;margin:10px 0 6px;background:linear-gradient(90deg,#f0c97a 0 33%,#bfe0a6 33% 66%,#f1b4a5 66%)}
+#drpage .rng i{position:absolute;top:50%;width:13px;height:13px;border-radius:50%;background:#183d35;border:2px solid #fffffb;transform:translate(-50%,-50%);box-shadow:0 2px 6px rgba(0,0,0,.25)}
+#drpage .rl{display:flex;justify-content:space-between;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;opacity:.6}
+
+/* chrome that appears once you're through the arch */
+#drpage .dr-back{position:fixed;top:14px;right:16px;z-index:30;font-size:.86rem;text-decoration:none;background:var(--glass);border:1px solid var(--glassb);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-radius:999px;padding:8px 14px;color:var(--gtext)}
+#drpage .dr-pill{position:fixed;top:12px;left:16px;z-index:30;display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 18px 5px 5px;font-family:var(--display);font-size:1.15rem;box-shadow:0 18px 40px -20px rgba(24,61,53,.45);opacity:0;transform:translateY(-10px);transition:.35s;pointer-events:none}
+#drpage .dr-pill .av{width:36px;height:36px;font-size:.85rem}
+#drpage.past .dr-pill{opacity:1;transform:none}
+#drpage .dr-bar{position:fixed;left:50%;bottom:18px;z-index:30;transform:translate(-50%,30px);opacity:0;pointer-events:none;transition:.35s;display:flex;align-items:center;gap:22px;background:#183d35;color:#f6f5ed;border-radius:22px;padding:12px 12px 12px 22px;width:min(440px,calc(100vw - 32px));box-shadow:0 24px 50px -20px rgba(24,61,53,.7)}
+#drpage .dr-bar div{flex:1;min-width:0}
+#drpage .dr-bar b{display:block;font-family:var(--display);font-weight:400;font-size:1.2rem}
+#drpage .dr-bar span{font-size:.78rem;color:#c7d6c4}
+#drpage .dr-bar button{width:46px;height:46px;border-radius:50%;border:0;background:#d7ef9e;color:#183d35;font-size:1.2rem;cursor:pointer;flex:none}
+#drpage.past .dr-bar{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+
+/* body */
+#drpage .dr-body{padding-bottom:120px}
+#drpage .dr-wrap{max-width:760px;margin:0 auto;padding:clamp(56px,8vw,96px) 16px 0;display:flex;flex-direction:column;gap:20px}
+#drpage .dr-wrap.center{align-items:center;text-align:center}
+#drpage .dr-wrap h2{font-size:clamp(2rem,4.6vw,3rem)}
+#drpage .dr-hello{align-items:center;text-align:center}
+#drpage .dr-sugg{display:flex;flex-direction:column;align-items:flex-end;gap:10px;width:100%;max-width:520px}
+#drpage .dr-sugg button{font:inherit;font-size:.95rem;text-align:left;background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:20px 20px 6px 20px;padding:12px 16px;cursor:pointer;transition:transform .2s,border-color .2s;max-width:90%}
+#drpage .dr-sugg button:hover{transform:translateX(-4px);border-color:var(--ital)}
+#drpage .dr-small{font-size:.9rem;color:var(--muted)}
+#drpage .dr-send{display:flex;align-items:center;gap:8px;width:100%;max-width:520px;background:#183d35;border-radius:999px;padding:6px 6px 6px 22px;box-shadow:0 24px 50px -28px rgba(24,61,53,.8)}
+#drpage .dr-send input{flex:1;min-width:0;border:0;background:transparent;color:#f6f5ed;font:inherit;font-family:var(--display);font-size:1.15rem;padding:10px 0;outline:none}
+#drpage .dr-send input::placeholder{color:#c7d6c4}
+#drpage .dr-send button{width:44px;height:44px;border-radius:50%;border:0;background:#d7ef9e;color:#183d35;font-size:1.15rem;cursor:pointer}
+#drpage .dr-note{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 16px;font-size:.92rem}
+#drpage .dr-bio{font-size:1.12rem;line-height:1.7}
+#drpage .dr-voice{display:flex;align-items:center;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:0 20px 50px -36px rgba(24,61,53,.5)}
+#drpage .dr-voice .play{width:48px;height:48px;border-radius:50%;border:0;background:#183d35;color:#d7ef9e;cursor:pointer;flex:none;font-size:.9rem}
+#drpage .dr-voice .wave{flex:1;display:flex;align-items:center;gap:3px;height:44px;min-width:0;overflow:hidden}
+#drpage .dr-voice .wave i{flex:1;min-width:2px;border-radius:2px;background:var(--line);transition:background .2s}
+#drpage .dr-voice.playing .wave i{background:var(--ital);animation:drwave 1s ease-in-out infinite alternate}
+#drpage .dr-voice.playing .wave i:nth-child(3n){animation-delay:.2s}#drpage .dr-voice.playing .wave i:nth-child(3n+1){animation-delay:.4s}
+@keyframes drwave{to{transform:scaleY(.45)}}
+#drpage .dr-voice .vt{display:flex;flex-direction:column;font-size:.8rem;color:var(--muted);flex:none}
+#drpage .dr-voice .vt b{color:var(--fg);font-weight:500;font-size:.88rem}
+@media (max-width:560px){#drpage .dr-voice .vt{display:none}}
+#drpage .dr-h3{font-size:1.5rem;margin-top:16px}
+#drpage .dr-tags{display:flex;flex-wrap:wrap;gap:8px}
+#drpage .dr-tags span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:.88rem}
+#drpage .dr-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:14px;margin-top:8px}
+#drpage .dr-steps article{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:10px}
+#drpage .dr-steps article.on{background:color-mix(in srgb,#d7ef9e 40%,var(--surface));border-color:transparent}
+#drpage .dr-steps .n{font-family:var(--display);font-style:italic;font-size:2rem;color:var(--ital);line-height:1}
+#drpage .dr-steps .ic,#drpage .dr-steps .av{position:absolute;top:20px;right:20px;width:34px;height:34px;font-size:.8rem}
+#drpage .dr-steps .ic{border-radius:50%;background:#183d35;color:#d7ef9e;display:grid;place-items:center;font-size:1rem}
+#drpage .dr-steps h4{font-size:1.2rem}
+#drpage .dr-steps p{font-size:.9rem;color:var(--muted)}
+#drpage .dr-wide{max-width:1060px;margin:clamp(56px,8vw,96px) auto 0;padding:0 16px}
+#drpage .dr-why{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);border-radius:32px;overflow:hidden;background:#183d35;color:#f6f5ed}
+#drpage .dr-why>div:first-child{padding:clamp(28px,5vw,56px);display:flex;flex-direction:column;gap:18px}
+#drpage .dr-why h2{font-size:clamp(2rem,4vw,2.8rem)}
+#drpage .dr-why h2 em{color:#d7ef9e}
+#drpage .dr-why p{color:#c7d6c4;line-height:1.65}
+#drpage .dr-why ul{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+#drpage .dr-why li{font-size:.88rem;color:#c7d6c4;border-top:1px solid rgba(246,245,237,.2);padding-top:12px}
+#drpage .dr-why li b{display:block;color:#f6f5ed;font-weight:500;margin-bottom:3px}
+#drpage .dr-why-ph{background:radial-gradient(100% 80% at 40% 30%,#fffffb,var(--hue) 60%,color-mix(in srgb,var(--hue) 60%,#183d35));display:grid;place-items:center}
+#drpage .dr-why-ph span{font-family:var(--display);font-size:clamp(5rem,12vw,9rem);color:#183d35;letter-spacing:-.05em}
+@media (max-width:760px){#drpage .dr-why{grid-template-columns:1fr}#drpage .dr-why-ph{min-height:200px;order:-1}#drpage .dr-why ul{grid-template-columns:1fr}}
+#drpage .dr-big{font-size:clamp(2.2rem,5vw,3.4rem)!important;max-width:18ch}
+#drpage .dr-creds{display:flex;flex-wrap:wrap;justify-content:center;margin-top:12px}
+#drpage .dr-creds div{display:flex;flex-direction:column;align-items:center;padding:6px clamp(16px,4vw,36px)}
+#drpage .dr-creds div+div{border-left:1px solid var(--line)}
+#drpage .dr-creds b{font-family:var(--display);font-weight:400;font-size:1.6rem}
+#drpage .dr-creds span{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+#drpage .dr-status{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:6px 14px;font-size:.84rem;background:color-mix(in srgb,#2c7349 12%,transparent);color:#2c7349}
+#drpage .dr-status.w{background:color-mix(in srgb,#94650f 12%,transparent);color:#94650f}
+#drpage .dr-status i{width:7px;height:7px;border-radius:50%;background:currentColor}
+#drpage .dr-faq{display:flex;flex-direction:column;gap:12px}
+#drpage .dr-faq details{background:color-mix(in srgb,#d7ef9e 22%,var(--surface));border-radius:22px;padding:22px 26px}
+#drpage .dr-faq summary{cursor:pointer;list-style:none;font-family:var(--display);font-style:italic;font-size:1.45rem;letter-spacing:-.01em}
+#drpage .dr-faq summary::-webkit-details-marker{display:none}
+#drpage .dr-faq p{margin-top:10px;color:var(--muted);line-height:1.65}
+#drpage .dr-others{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin}
+#drpage .dr-others a{display:flex;align-items:center;gap:10px;flex:none;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 16px 6px 6px}
+#drpage .dr-others .av{width:34px;height:34px;font-size:.78rem}
+#drpage .dr-others b{display:block;font-weight:500;font-size:.88rem}
+#drpage .dr-others small{color:var(--muted);font-size:.76rem}
+#drpage .dr-foot{max-width:760px;margin:56px auto 0;padding:0 16px;font-size:.8rem;color:var(--muted);text-align:center}
+
+/* reduced motion: no journey, cases laid out as a simple list */
+#drpage.still .dr-stage{height:auto}
+#drpage.still .dr-sticky{position:relative;height:auto;min-height:100svh;padding-bottom:40px}
+#drpage.still .dr-hero{position:relative;inset:auto;min-height:100svh}
+#drpage.still .dr-cases{position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;max-width:1060px;margin:0 auto;padding:0 16px;pointer-events:auto}
+#drpage.still .dr-case{position:relative;left:auto;top:auto;opacity:1;width:auto}
+#drpage.still .dr-pill,#drpage.still .dr-bar{opacity:1;transform:none;pointer-events:auto}
+#drpage.still .dr-bar{transform:translateX(-50%)}
+#drpage .dr-link{font:inherit;font-size:.9rem;background:none;border:0;color:var(--ital);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -851,6 +1008,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 
 </div>
+<div id="drpage" hidden></div>
 <div id="app" hidden>
 
 
@@ -921,7 +1079,7 @@ function draw(){
   const list=D.map((d,i)=>[d,i]).filter(([d])=>(!sp||d[1]===sp)&&(!lg||d[3].split(", ").includes(lg)));
   orbit.querySelectorAll(".oav").forEach(b=>b.classList.toggle("dim",!list.some(([,i])=>i==+b.dataset.i)));
   document.getElementById("oCount").textContent=`${list.length} clinician${list.length===1?"":"s"}.`;
-  document.getElementById("docs").innerHTML=list.length?list.map(([d,i])=>`<article class="dcard"><div class="dtop"><span class="av" style="background:${hues[i]}">${ini(d[0])}</span><div><h3>${esc(d[0])}</h3><div class="meta">${esc(d[1])} · ${esc(d[2])}</div></div></div><div class="meta">Speaks ${esc(d[3])}</div><div>${d[4].map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div><div class="dfoot"><span class="acc ${d[5]?"":"w"}">${d[5]?"Accepting patients":"Waitlist open"}</span><a class="btn ${d[5]?"primary":"ghost"} sm" href="${APP}">${d[5]?"Choose":"Join waitlist"}</a></div></article>`).join(""):`<p class="empty">No clinicians match yet. Try another language or any doctor.</p>`;
+  document.getElementById("docs").innerHTML=list.length?list.map(([d,i])=>`<article class="dcard"><div class="dtop"><span class="av" style="background:${hues[i]}">${ini(d[0])}</span><div><h3>${esc(d[0])}</h3><div class="meta">${esc(d[1])} · ${esc(d[2])}</div></div></div><div class="meta">Speaks ${esc(d[3])}</div><div>${d[4].map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div><div class="dfoot"><span class="acc ${d[5]?"":"w"}">${d[5]?"Accepting patients":"Waitlist open"}</span><a class="btn ${d[5]?"primary":"ghost"} sm" href="#dr/d${i+1}">View profile</a></div></article>`).join(""):`<p class="empty">No clinicians match yet. Try another language or any doctor.</p>`;
 }
 fS.addEventListener("change",draw);fL.addEventListener("change",draw);
 draw();
@@ -1131,12 +1289,13 @@ const NAV={
 const roleOf=v=>Object.keys(NAV).find(r=>NAV[r].some(x=>x.v===v));
 let view="home";
 const LANDING=["","top","how","find","connect","cost","clinicians","faq"];
-function showLanding(h){document.getElementById("landing").hidden=false;document.getElementById("app").hidden=true;document.title="Northline Care";
+function showLanding(h){document.getElementById("drpage").hidden=true;document.getElementById("landing").hidden=false;document.getElementById("app").hidden=true;document.title="Northline Care";
   const el=h&&h!=="top"?document.getElementById(h):null;requestAnimationFrame(()=>{if(el)el.scrollIntoView({behavior:"smooth",block:"start"});else window.scrollTo({top:0})})}
 function route(){
   let h=(location.hash||"").replace("#","");
   if(LANDING.includes(h)){showLanding(h);return}
-  document.getElementById("landing").hidden=true;document.getElementById("app").hidden=false;
+  if(h.startsWith("dr/")){showDr(h.slice(3));return}
+  document.getElementById("drpage").hidden=true;document.getElementById("landing").hidden=true;document.getElementById("app").hidden=false;document.title="Northline Care";
   if(h==="start"){openOnboarding();h="home"}
   if(h==="ask"){view="home";S.role="patient";render();openNavigator();return}
   if(h==="clinician"){h="queue"}
@@ -1145,6 +1304,7 @@ function route(){
   if(r){S.role=r;view=h}
   else{view=NAV[S.role].find(x=>x.v).v}
   render();
+  if(drPending){const pd=drPending;drPending=null;S.role="patient";drText=pd.text;openNavigator(pd.id)}
 }
 function go(v){if(location.hash==="#"+v){route()}else{location.hash=v}}
 window.addEventListener("hashchange",route);
@@ -1471,8 +1631,8 @@ function emergency(selfHarm){
 let nav=null;
 function openNavigator(docId){
   if(!S.onboarded){openOnboarding(()=>openNavigator(docId));return}
-  nav={step:0,doc:docId||S.myDoctor,reason:"",cat:"",onset:"",sev:4,flags:[],meds:S.patient.meds+"; allergic to "+S.patient.allergies,files:[]};
-  navRender();
+  nav={step:0,doc:docId||S.myDoctor,reason:drText||"",cat:"",onset:"",sev:4,flags:[],meds:S.patient.meds+"; allergic to "+S.patient.allergies,files:[]};
+  drText="";navRender();
 }
 const NSTEPS=6;
 function navRender(){
@@ -1554,7 +1714,7 @@ document.addEventListener("click",e=>{
    navNext,navBack:()=>{nav.step--;navRender()},
    obNext,obBack:()=>{ob.step--;obRender()},
    openThread:()=>{S.activeThread=id;go("messages");if(view==="messages")render()},
-   docView:()=>docProfile(id),
+   docView:()=>{closeModal();location.hash="dr/"+id},
    docMsg:()=>{const d=docById(id);if(!d.accepting){closeModal();toast("You're on "+d.name+"'s waitlist. We'll message you when a spot opens.");return}closeModal();S.role="patient";openNavigator(id)},
    chooseDoc:()=>{S.myDoctor=id;closeModal();toast(docById(id).name+" is now your doctor");render()},
    escalate:()=>bookModal(id),book:()=>bookModal(),
@@ -1608,8 +1768,182 @@ document.addEventListener("change",e=>{
   if(a.dataset.act==="accepting"){const t=S.team.find(x=>x.id===a.dataset.id);t.accepting=a.checked;docById(a.dataset.id).accepting=a.checked;toast(docById(a.dataset.id).name+(a.checked?" is accepting new patients":" is now waitlisting"))}
 });
 
+/* ---------------- doctor profile page (#dr/<id>) ---------------- */
+/* case types: rx prescription, res lab result (v value, at 0..1 on low/normal/high bar), ord order, note written reply */
+const DRX={
+ d1:{helps:["High blood pressure","Diabetes and prediabetes","High cholesterol","Preventive care","Newcomer health","Vaccines","Prescription renewals","Sleep problems","Weight management","Mental wellbeing","Lab result reviews","Specialist referrals"],
+  cases:[["My home blood pressure readings keep coming out high","rx","Ramipril 5 mg"],["Can you look at my blood test from last week?","res","HbA1c","6.8%",.72],["I just moved to Ontario. What should I set up first?","note","We'll get your health card sorted, catch up your vaccines and book a baseline checkup."],["I've been running on empty for weeks","ord","CBC, ferritin and TSH"],["How should I measure my blood pressure at home?","note","Sit quietly for five minutes, arm at heart height, two readings morning and evening for a week. Send me the log and we'll decide from real numbers."]]},
+ d2:{helps:["Francophone care","Men's health","Sleep problems","High cholesterol","Blood pressure","Erectile dysfunction","Quitting smoking","Preventive screening","Prescription renewals","Mental wellbeing"],
+  cases:[["Je dors mal depuis un mois","note","Tenez un journal de sommeil pendant deux semaines, puis on en parle ensemble."],["My cholesterol came back high","res","LDL cholesterol","4.4 mmol/L",.8],["I snore and still wake up tired","ord","Home sleep apnea test"],["Should I get my PSA checked?","note","Let's talk through the benefits and the downsides first, then decide together."],["I want to quit smoking this time","rx","Varenicline starter pack"]]},
+ d3:{helps:["Eczema","Acne","Psoriasis","Mole and skin checks","Rosacea","Hair loss","Rashes","Hives","Nail fungus","Skin infections"],
+  cases:[["This eczema patch on my arm won't settle","rx","Mometasone 0.1% cream"],["My acne is getting worse along my jaw","rx","Adapalene 0.1% gel"],["Is my bloodwork OK on isotretinoin?","res","ALT","38 U/L",.55],["Can you check a mole that looks different?","note","Send me a close photo next to a ruler. If it's changing, I'll see you in person this week."],["My scalp has been flaking for months","rx","Ketoconazole 2% shampoo"]]},
+ d4:{helps:["Type 1 diabetes","Type 2 diabetes","Prediabetes","Thyroid conditions","PCOS","Osteoporosis","Insulin pumps and sensors","Weight and metabolism","Cholesterol"],
+  cases:[["My sugars are high every morning","rx","Metformin XR 1000 mg"],["Are my thyroid results normal?","res","TSH","6.2 mIU/L",.82],["My periods are irregular and I have acne","ord","Testosterone, LH and FSH"],["What should my A1c target be?","note","For you, under 7 percent. We'll recheck in three months and adjust together."],["Can you review my sensor data?","res","Time in range","62%",.45]]},
+ d5:{helps:["Anxiety","Depression","Adult ADHD","Panic attacks","Insomnia","Medication reviews","Postpartum mood","Shared care with your family doctor"],
+  cases:[["My anxiety is making it hard to work","note","Let's pair a few CBT tools with a check in every two weeks and see what shifts."],["Could I have ADHD as an adult?","ord","ADHD screening and history review"],["Is my sertraline dose right?","rx","Sertraline 75 mg"],["I can't switch my mind off at night","note","Try a fixed wake time and a wind down hour for two weeks, then tell me how it went."]]},
+ d6:{helps:["STI testing","PrEP and PEP","Contraception","UTIs","Cold sores","HPV vaccine","Sexual wellbeing","Partner notification"],
+  cases:[["I'd like a full STI check","ord","HIV, syphilis, chlamydia and gonorrhea"],["Is PrEP right for me?","rx","Tenofovir and emtricitabine"],["Did my results come back?","res","Chlamydia","Negative",.5],["My pill is giving me headaches","note","Headaches matter on combined pills. Let's review them and look at other options together."]]},
+ d7:{helps:["Menopause","Fertility questions","Heavy periods","Pelvic health","Endometriosis","Contraception","PCOS","Cervical screening"],
+  cases:[["Hot flashes are wrecking my sleep","rx","Estradiol patch 50 mcg"],["My periods are very heavy","res","Ferritin","9 µg/L",.12],["We've been trying to conceive for a year","ord","AMH, day 3 FSH and semen analysis"],["I get pelvic pain when I exercise","note","I'm referring you to a pelvic floor physiotherapist, and we'll review in six weeks."]]},
+ d8:{helps:["Running injuries","Knee pain","Shoulder pain","Back pain","Sprains and strains","Concussion","Tendon problems","Return to sport"],
+  cases:[["My knee hurts on long runs","note","Cut your weekly distance by a third and start the three exercises I'm sending you."],["Do I need an MRI for my shoulder?","ord","Shoulder ultrasound"],["My ankle is still swollen three weeks after a sprain","rx","Naproxen 500 mg, short course"],["Can I still run my marathon?","note","Yes, if the next two weeks go to plan. Here's a staged return to running."]]},
+ d9:{helps:["Newborn questions","Fevers","Rashes","Ear infections","Growth and feeding","Sleep","Asthma","Development milestones"],
+  cases:[["My toddler has had a fever since last night","note","Fever itself isn't dangerous. Watch how she's drinking and how alert she is, and send me a photo of any rash."],["Is this rash on my baby eczema?","rx","Hydrocortisone 1% cream"],["Is my baby growing OK?","res","Weight percentile","40th",.42],["She keeps pulling at her ear","note","Let's book a quick in person look today so someone can check the ear drum."]]},
+ d10:{helps:["Minor illness","Prescription renewals","UTIs","Forms and notes","Colds and flu","Allergies","Travel vaccines","Blood pressure checks"],
+  cases:[["I need my inhaler renewed","rx","Salbutamol inhaler"],["It burns when I pee","rx","Nitrofurantoin 100 mg"],["I need a sick note for work","ord","Sick note, sent to your documents"],["Sore throat for three days","ord","Throat swab"]]}
+};
+const DRLABEL={rx:"Prescription",res:"Lab result",ord:"Ordered",note:""};
+const first=n=>n.replace(/^(Dr\.|NP)\s+/,"").split(" ")[0];
+const titled=d=>d.name.startsWith("NP")?d.name.replace(/^NP\s+/,"")+", NP":d.name+", MD";
+const callName=d=>d.name.startsWith("NP")?first(d.name):"Dr. "+d.name.split(" ").pop();
+let drScroll=null,drPending=null,drText="";
+
+function drCase(c,d,i,j){
+  const [q,t,a,b,at]=c;
+  let reply;
+  if(t==="note")reply=`<div class="dr-r note">${esc(a)}</div>`;
+  else if(t==="res"){const zone=at<.34?"low":at>.66?"high":"ok";reply=`<div class="dr-r res"><div class="lb">◌ ${DRLABEL.res}</div><div class="rv2"><span>${esc(a)}</span><b>${esc(b)}</b></div><div class="rng ${zone}"><i style="left:${at*100}%"></i></div><div class="rl"><span>Low</span><span>Normal</span><span>High</span></div></div>`}
+  else reply=`<div class="dr-r"><div class="lb">${t==="rx"?"℞":"＋"} ${DRLABEL[t]}</div><div class="v">${esc(a)}</div></div>`;
+  return `<div class="dr-case" data-k="${j}"><div class="dr-q">${esc(q)}</div><div class="dr-by">${avatar(d.name,i,"xs")}${esc(callName(d))}</div>${reply}</div>`;
+}
+
+function showDr(id){
+  const d=docById(id);if(!d){location.hash="doctors";return}
+  const i=docIdx(id),x=DRX[id]||{helps:d.focus,cases:[]},hue=hues[i%hues.length],cn=callName(d);
+  document.getElementById("landing").hidden=true;document.getElementById("app").hidden=true;
+  const P=document.getElementById("drpage");P.hidden=false;document.title=d.name+" · Northline Care";
+  const ini=esc(initials(d.name));
+  const qs=x.cases.slice(0,2).map(c=>c[0]);
+  const reg=d.role==="Nurse practitioner"?"College of Nurses of Ontario":"College of Physicians and Surgeons of Ontario";
+  const others=doctors.filter(o=>o.id!==id).slice(0,10);
+  P.innerHTML=`
+  <a class="dr-back" href="#doctors">← All doctors</a>
+  <div class="dr-pill" aria-hidden="true">${avatar(d.name,i,"xs")}<span>${esc(d.name)}</span></div>
+  <section class="dr-stage${x.cases.length?"":" short"}" style="--hue:${hue};--n:${x.cases.length}">
+   <div class="dr-sticky">
+    <div class="dr-scene" aria-hidden="true"><span class="ar a1"></span><span class="ar a2"></span><span class="ar a3"></span><span class="ar a4"></span><span class="glow"></span><span class="floor"></span>
+     ${Array.from({length:7},(_,k)=>`<span class="ghost" style="--gx:${[12,78,22,66,84,8,48][k]}%;--gy:${[22,30,62,70,52,44,14][k]}%;--gw:${[120,90,140,100,80,110,70][k]}px"></span>`).join("")}</div>
+    <div class="dr-hero">
+     <a class="logo" href="#top">northline<span>✳</span>care</a>
+     <div class="portrait"><span class="ph-ini">${ini}</span><span class="ph-badge">${d.accepting?"Accepting patients":"Waitlist open"}</span></div>
+     <h1 class="dr-name">${esc(titled(d))}</h1>
+     <div class="dr-role">${esc(d.role)} · ${esc(d.spec)} · ${esc(d.city)}</div>
+     <div class="dr-ctas"><button class="glass" data-dr="start">${d.accepting?"Send a message":"Join the waitlist"}</button><a class="glass" href="#dr-about">About ${esc(cn)}</a></div>
+     <div class="dr-cue" aria-hidden="true">Scroll to see how ${esc(cn)} helps<span></span></div>
+    </div>
+    <div class="dr-cases" role="list" aria-label="Examples of how ${esc(cn)} helps">${x.cases.map((c,j)=>drCase(c,d,i,j)).join("")}</div>
+   </div>
+  </section>
+
+  <main class="dr-body">
+   <section class="dr-wrap dr-hello">
+    <div class="dr-by big">${avatar(d.name,i,"xs")}${esc(cn)}</div>
+    <h2>Hi, I'm ${esc(cn)}. <em>What's on your mind?</em></h2>
+    <div class="dr-sugg">${qs.map(q=>`<button data-dr="start" data-q="${esc(q)}">${esc(q)}</button>`).join("")}</div>
+    <p class="dr-small">If it's on your mind, it's worth a message. Covered by OHIP for Ontario residents.</p>
+    <div class="eyebrow center">Start below. It's free and takes about three minutes.</div>
+    <form class="dr-send" data-dr="form"><input id="drMsg" placeholder="${d.accepting?"Send "+esc(cn)+" a message":"Join "+esc(cn)+"'s waitlist"}" aria-label="Your message"><button aria-label="Send">→</button></form>
+    ${d.spec==="Family medicine"&&d.accepting?`<button class="dr-link" data-dr="mine">${S.myDoctor===id?"✓ "+esc(cn)+" is your doctor":"Make "+esc(cn)+" my family doctor"}</button>`:""}
+    <p class="dr-note" id="drNote" hidden></p>
+   </section>
+
+   <section class="dr-wrap" id="dr-about">
+    <div class="eyebrow">About me</div>
+    <p class="dr-bio">${esc(d.bio)}</p>
+    <div class="dr-voice"><button class="play" data-dr="play" aria-label="Play hello">▶</button><div class="wave" aria-hidden="true">${Array.from({length:48},(_,k)=>`<i style="height:${18+Math.round(Math.abs(Math.sin(k*1.7+i))*62)}%"></i>`).join("")}</div><div class="vt"><b>A hello from ${esc(cn)}</b><span>Voice note · 0:42 · prototype</span></div></div>
+    <h3 class="dr-h3">Here's what I help with:</h3>
+    <div class="dr-tags">${x.helps.map(h=>`<span>${esc(h)}</span>`).join("")}</div>
+   </section>
+
+   <section class="dr-wrap">
+    <div class="eyebrow">How it works</div>
+    <h2>My Care Navigator gathers. <em>Then I take over.</em></h2>
+    <div class="dr-steps">
+     <article class="on"><span class="n">1</span><span class="ic">✳</span><h4>Start with a message</h4><p>Tell me what's going on. The Care Navigator asks the follow up questions I'd ask and sends me your case.</p></article>
+     <article><span class="n">2</span>${avatar(d.name,i,"xs")}<h4>I review and reply</h4><p>I read your own words, then reply myself with a plan: advice, a prescription, labs, or a visit.</p></article>
+     <article><span class="n">3</span>${avatar(d.name,i,"xs")}<h4>I stay your doctor</h4><p>Message me again any time. I'll remember what we tried and adjust as results come in.</p></article>
+    </div>
+   </section>
+
+   <section class="dr-wide">
+    <div class="dr-why">
+     <div><h2>What is a <em>personal doctor?</em></h2><p>One clinician who handles your everyday care: questions, prescriptions, results and follow up. You wouldn't book a day off to ask about a rash or a renewal. You'd just message your doctor.</p>
+      <ul><li><b>Care when you need it</b>${esc(d.resp)}, not weeks from now.</li><li><b>Follow up included</b>One ongoing conversation, not a new stranger each time.</li><li><b>Never rushed</b>Thoughtful replies that fit your day.</li><li><b>No surprise bills</b>Free with OHIP. Any uninsured service is priced before you start.</li></ul></div>
+     <div class="dr-why-ph" style="--hue:${hue}"><span>${ini}</span></div>
+    </div>
+   </section>
+
+   <section class="dr-wrap center">
+    <h2 class="dr-big">The doctor who knows you, <em>for every Canadian.</em></h2>
+    <div class="dr-creds"><div><b>${d.years} years</b><span>in practice</span></div><div><b>${esc(d.resp.replace(/^Usually /,"").replace(/^within /,"Within "))}</b><span>typical reply</span></div><div><b>${d.langs.length} language${d.langs.length>1?"s":""}</b><span>${esc(d.langs.join(", "))}</span></div></div>
+    <div class="dr-status ${d.accepting?"ok":"w"}"><i></i>${d.accepting?"Accepting new patients":"Waitlist open"}</div>
+    <p class="dr-small">Registered with the ${reg} (prototype: not a real registrant).</p>
+   </section>
+
+   <section class="dr-wrap">
+    <div class="eyebrow">Common questions</div>
+    <div class="dr-faq">
+     <details open><summary>“What can I message you about?”</summary><p>Anything you'd normally see ${d.spec==="Family medicine"?"a family doctor":"a "+esc(d.role.toLowerCase())} for: new symptoms, ongoing conditions, renewals, results, or a question you're not sure is worth a visit. If something needs to be seen in person, I'll tell you and arrange it.</p></details>
+     <details><summary>“How quickly will you reply?”</summary><p>${esc(d.resp)}. The Care Navigator gathers the details first to save us both time, but it never gives medical advice. Every plan comes from me.</p></details>
+     <details><summary>“How will I know it's really you?”</summary><p>Every plan carries my signature and registration, and you can see who opened your record at any time in Privacy and consent.</p></details>
+     <details><summary>“What does it cost?”</summary><p>Care OHIP covers is free to you, with no membership. Sick notes, forms and travel advice have a clear price shown before you confirm.</p></details>
+     <details><summary>“What if I need to be seen?”</summary><p>I'll book a phone, video or in person visit at a partner clinic, and it stays in the same conversation. For emergencies, call 911.</p></details>
+    </div>
+   </section>
+
+   <section class="dr-wrap">
+    <div class="eyebrow">Other clinicians</div>
+    <div class="dr-others">${others.map(o=>{const k=docIdx(o.id);return `<a href="#dr/${o.id}">${avatar(o.name,k,"xs")}<span><b>${esc(o.name)}</b><small>${esc(o.spec)}</small></span></a>`}).join("")}</div>
+   </section>
+   <p class="dr-foot">Northline Care is a prototype. ${esc(d.name)} is a fictional clinician and no medical services are offered yet. In an emergency call 911.</p>
+  </main>
+
+  <div class="dr-bar"><div><b>${d.accepting?"Free with OHIP":"Waitlist open"}</b><span>${d.accepting?"Ontario residents · no membership":"We'll message you when a spot opens"}</span></div><button data-dr="start" aria-label="${d.accepting?"Message":"Join waitlist"}">→</button></div>`;
+  window.scrollTo({top:0});
+  drBind(d);
+}
+
+function drStart(d,text){
+  if(!d.accepting){const n=document.getElementById("drNote");n.hidden=false;n.textContent="You're on "+d.name+"'s waitlist. We'll message you when a spot opens.";n.scrollIntoView({behavior:"smooth",block:"center"});return}
+  drPending={id:d.id,text:text||""};location.hash="home";
+}
+function drBind(d){
+  const P=document.getElementById("drpage");
+  P.onclick=e=>{const b=e.target.closest("[data-dr]");if(!b)return;
+    if(b.dataset.dr==="start"){e.preventDefault();drStart(d,b.dataset.q||"")}
+    if(b.dataset.dr==="mine"){S.myDoctor=d.id;b.textContent="✓ "+callName(d)+" is your doctor"}
+    if(b.dataset.dr==="play"){const v=P.querySelector(".dr-voice");v.classList.toggle("playing");b.textContent=v.classList.contains("playing")?"❚❚":"▶"}};
+  P.querySelector(".dr-send").onsubmit=e=>{e.preventDefault();drStart(d,document.getElementById("drMsg").value.trim())};
+  const stage=P.querySelector(".dr-stage"),cases=[...P.querySelectorAll(".dr-case")],hero=P.querySelector(".dr-hero"),scene=P.querySelector(".dr-scene");
+  const reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(drScroll)window.removeEventListener("scroll",drScroll);
+  if(reduce){P.classList.add("still");return}
+  /* positions alternate around the arch; each case owns a slice of the scroll */
+  const POS=[[66,30],[30,56],[64,62],[34,28],[58,44]];
+  let tick=false;
+  drScroll=()=>{if(tick)return;tick=true;requestAnimationFrame(()=>{tick=false;
+    if(P.hidden)return;
+    const r=stage.getBoundingClientRect(),vh=innerHeight,span=Math.max(1,r.height-vh);
+    const p=Math.min(1,Math.max(0,-r.top/span));
+    P.style.setProperty("--p",p.toFixed(4));
+    hero.style.opacity=Math.max(0,1-p*7);hero.style.transform=`translateY(${-p*120}px) scale(${1-p*.4})`;hero.style.pointerEvents=p>.08?"none":"";
+    scene.style.transform=`scale(${1+p*2.2})`;
+    const n=cases.length,start=.1,len=(.92-start)/Math.max(1,n);
+    cases.forEach((c,j)=>{const s=start+j*len,t=(p-s)/(len*1.6);
+      const vis=t<=0||t>=1?0:Math.min(1,Math.sin(t*Math.PI)*1.6);
+      const [x,y]=POS[j%POS.length];
+      c.style.opacity=vis.toFixed(3);
+      const sc=.78+t*.45,half=c.offsetWidth*sc/2,lim=Math.max(0,innerWidth/2-half-12),dx=Math.max(-lim,Math.min(lim,(x-50)*(.6+t*.8)*innerWidth/100));
+      c.style.transform=`translate(-50%,-50%) translate(${dx}px,${(y-50)*(.5+t*.6)}vh) scale(${sc})`;
+      c.style.filter=`blur(${(Math.abs(t-.5)*2*3).toFixed(2)}px)`});
+    P.classList.toggle("past",r.bottom<vh*.6);
+  })};
+  window.addEventListener("scroll",drScroll,{passive:true});drScroll();
+}
+
 route();
 })();
+
 
 </script>
 <script>

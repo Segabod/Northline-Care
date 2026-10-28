@@ -580,24 +580,40 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 #landing .tl{border-radius:16px;background:var(--surface)}
 #landing .tl b{font-family:var(--display);font-weight:500;font-style:italic;color:var(--ital);font-size:1.05rem}
 
-/* doors: arches */
-#landing .doors{gap:20px}
-#landing .door{position:relative;border:1px solid var(--line);border-radius:999px 999px 18px 18px;padding:clamp(44px,5vw,64px) 26px 26px;text-align:center;align-items:center;min-height:400px;background:var(--surface)}
-#landing .door::before{content:"";position:absolute;inset:9px;border:1px solid var(--line);border-radius:inherit;pointer-events:none}
-#landing .door h3{font-size:1.5rem;color:var(--fg)}
-#landing .door p{color:var(--muted)}
-#landing .door .k{color:var(--muted)}
-#landing .door .ic{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--soft);color:var(--fg);margin-bottom:6px}
-#landing .door .ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-#landing .door .foot{margin-top:auto;padding-top:16px;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);width:100%}
-#landing .door.us{background:var(--ink);color:var(--cream);border-color:var(--ink);box-shadow:0 40px 70px -36px rgba(24,61,53,.7)}
-#landing .door.us::before{border-color:rgba(246,245,237,.22)}
-#landing .door.us h3{color:var(--cream)}
-#landing .door.us p{color:#c7d6c4}
-#landing .door.us .k{color:var(--lime)}
-#landing .door.us .ic.star{background:var(--lime);color:var(--ink);font-size:1.5rem;font-weight:800}
-#landing .door.us .foot{color:#c7d6c4;border-color:rgba(246,245,237,.22)}
-#landing .door.us .btn{margin-top:8px}
+/* doors: a route map. Three grey dashed stops, then the solid Northline terminus */
+#landing .route{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,1.25fr);gap:18px}
+#landing .stop:not(:last-child)::after{content:"";position:absolute;left:44px;right:-18px;top:20px;border-top:4px dashed var(--line)}
+#landing .stop:nth-child(3)::after{border-top:0;top:19px;height:6px;border-radius:6px;background:linear-gradient(90deg,var(--line),var(--green))}
+#landing .stop{position:relative;display:flex;flex-direction:column;gap:18px}
+#landing .stop .dot{position:relative;z-index:1;align-self:flex-start;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--bg);border:4px solid var(--line);font-family:var(--display);font-style:italic;font-size:1.15rem;color:var(--muted)}
+#landing .stop .sc{display:flex;flex-direction:column;gap:10px;padding-right:8px}
+#landing .stop .k{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+#landing .stop h3{font-size:1.5rem;color:var(--fg)}
+#landing .stop p{color:var(--muted);font-size:.94rem}
+#landing .stop dl{margin:6px 0 0;display:flex;flex-direction:column;border-top:1px solid var(--line)}
+#landing .stop dl div{display:flex;justify-content:space-between;gap:12px;padding-block:9px;border-bottom:1px solid var(--line);font-size:.86rem}
+#landing .stop dt{color:var(--muted);white-space:nowrap}
+#landing .stop dd{margin:0;text-align:right;color:var(--fg);font-weight:500}
+#landing .stop.us .dot{width:58px;height:58px;margin-top:-7px;background:var(--lime);border:5px solid var(--green);color:var(--ink);font-style:normal;font-weight:800;font-size:1.6rem;box-shadow:0 0 0 8px color-mix(in srgb,var(--lime) 35%,transparent);animation:nlpulse 2.6s ease-in-out infinite}
+@keyframes nlpulse{50%{box-shadow:0 0 0 14px color-mix(in srgb,var(--lime) 0%,transparent)}}
+#landing .stop.us .sc{background:var(--ink);color:var(--cream);border-radius:24px;padding:24px;margin-top:-4px;box-shadow:0 34px 60px -34px rgba(24,61,53,.7)}
+#landing .stop.us .k{color:var(--lime)}
+#landing .stop.us h3{color:var(--cream)}
+#landing .stop.us h3::after{content:" ✓";color:var(--lime);font-size:.9em}
+#landing .stop.us p,#landing .stop.us dt{color:#c7d6c4}
+#landing .stop.us dl,#landing .stop.us dl div{border-color:rgba(246,245,237,.18)}
+#landing .stop.us dd{color:var(--lime)}
+#landing .stop.us .btn{align-self:flex-start;margin-top:6px}
+@media (max-width:900px){
+  #landing .route{grid-template-columns:1fr;gap:26px;padding-left:4px}
+  #landing .stop:not(:last-child)::after{left:20px;right:auto;top:44px;bottom:-26px;border-top:0;border-left:4px dashed var(--line)}
+  #landing .stop:nth-child(3)::after{border-left:0;width:6px;height:auto;left:19px;background:linear-gradient(180deg,var(--line),var(--green))}
+  #landing .stop{flex-direction:row;gap:16px}
+  #landing .stop .dot{flex:none}
+  #landing .stop.us .dot{margin:0 -7px}
+  #landing .stop .sc{flex:1;min-width:0}
+}
+@media (prefers-reduced-motion:reduce){#landing .stop.us .dot{animation:none}}
 
 /* pricing on a light panel */
 #landing .pcard{background:var(--surface);border:1px solid var(--line);color:var(--fg);border-radius:26px;padding:30px}
@@ -730,12 +746,12 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 <section class="ruled"><div class="in">
   <div class="rv sec-head"><div><div class="eyebrow">When something's wrong</div><h2 style="margin-top:12px">You've had <em>three options.</em> Now you have four.</h2></div><p style="max-width:42ch">Three were designed around the system's schedule. One was designed around you.</p></div>
-  <div class="doors">
-    <div class="rv door"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V8l8-5 8 5v13M9 21v-6h6v6M12 7v4M10 9h4"/></svg></span><span class="k">Door 1</span><h3>The clinic visit</h3><p>Weeks for an appointment, time off work, a waiting room, and a short visit that ends before your questions do.</p><span class="foot">Weeks of waiting</span></div>
-    <div class="rv door"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></svg></span><span class="k">Door 2</span><h3>The virtual queue</h3><p>A call with whoever is on shift. Quick, but they don't know you, and follow up is your problem.</p><span class="foot">A stranger, every time</span></div>
-    <div class="rv door"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 8V4M9 13h.01M15 13h.01M3 13v2M21 13v2"/></svg></span><span class="k">Door 3</span><h3>The chatbot</h3><p>Instant answers, but it can't examine you, prescribe, order tests, or take responsibility for your care.</p><span class="foot">No Rx · No labs</span></div>
-    <div class="rv door us"><span class="ic star">✳</span><span class="k">Door 4</span><h3>Your personal doctor</h3><p>Your own licensed doctor by message, with a plan they sign, follow up they own, and visits when needed.</p><a class="btn lime sm" href="#start">Open door 4 →</a><span class="foot">Today · $0 with OHIP</span></div>
-  </div>
+  <ol class="route" aria-label="Four ways to get care, compared">
+    <li class="rv stop"><span class="dot" aria-hidden="true">1</span><div class="sc"><span class="k">Option 1</span><h3>The clinic visit</h3><p>Time off work, a waiting room, and a short visit that ends before your questions do.</p><dl><div><dt>Wait</dt><dd>Weeks</dd></div><div><dt>You see</dt><dd>Your doctor, if you have one</dd></div><div><dt>Follow up</dt><dd>Book again</dd></div></dl></div></li>
+    <li class="rv stop"><span class="dot" aria-hidden="true">2</span><div class="sc"><span class="k">Option 2</span><h3>The virtual queue</h3><p>Quick, but they don't know you, and follow up is your problem.</p><dl><div><dt>Wait</dt><dd>Hours</dd></div><div><dt>You see</dt><dd>Whoever is on shift</dd></div><div><dt>Follow up</dt><dd>Up to you</dd></div></dl></div></li>
+    <li class="rv stop"><span class="dot" aria-hidden="true">3</span><div class="sc"><span class="k">Option 3</span><h3>The chatbot</h3><p>Instant answers, but it can't examine you, prescribe, order tests, or take responsibility.</p><dl><div><dt>Wait</dt><dd>Seconds</dd></div><div><dt>You see</dt><dd>No one licensed</dd></div><div><dt>Follow up</dt><dd>None</dd></div></dl></div></li>
+    <li class="rv stop us"><span class="dot" aria-hidden="true">✳</span><div class="sc"><span class="k">Your stop</span><h3>Northline Care</h3><p>Your own licensed doctor by message, with a plan they sign and visits when needed.</p><dl><div><dt>Wait</dt><dd>Same day</dd></div><div><dt>You see</dt><dd>Your own doctor</dd></div><div><dt>Follow up</dt><dd>They own it</dd></div></dl><a class="btn lime sm" href="#start">Start here →</a></div></li>
+  </ol>
 </div></section>
 
 <section class="panel" id="cost"><div class="in">

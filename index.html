@@ -821,6 +821,46 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 #drpage .portrait .pic{position:absolute;inset:6px;width:calc(100% - 12px);height:calc(100% - 12px);object-fit:cover;object-position:50% 20%;border-radius:999px 999px 16px 16px}
 #drpage .portrait{overflow:visible}
 #drpage .portrait .ph-badge{z-index:2}
+
+/* health wallet */
+#app .wrec{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--surface)}
+#app .fambar{display:flex;height:12px;border-radius:6px;overflow:hidden;background:var(--soft)}
+#app .fambar span{display:block;height:100%}
+#app .dot{width:10px;height:10px;border-radius:50%;flex:none}
+#app .solid{background:linear-gradient(135deg,color-mix(in srgb,var(--hi) 35%,var(--surface)),var(--surface) 70%)}
+#app .sstats>div{display:flex;flex-direction:column;gap:2px;border-left:2px solid var(--accent);padding-left:12px}
+#app .sstats b{font-family:var(--display);font-size:1.5rem;font-variant-numeric:tabular-nums}
+#app .sstats span{font-size:.82rem;color:var(--muted)}
+#app input[type=range]{width:100%;accent-color:var(--accent)}
+#app .mk{border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px}
+#app .hbar{display:grid;grid-template-columns:150px minmax(0,1fr) 60px;gap:10px;align-items:center;font-size:.88rem}
+#app .hbar b{text-align:right}
+@media (max-width:520px){#app .hbar{grid-template-columns:100px minmax(0,1fr) 52px}}
+#app .cant>div{display:flex;flex-direction:column;gap:4px;padding:12px;border-radius:10px;background:var(--soft);font-size:.86rem}
+#app .cant span{color:var(--muted)}
+
+/* for employers */
+#landing .emp{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,5vw,64px);align-items:center}
+@media (max-width:860px){#landing .emp{grid-template-columns:minmax(0,1fr)}}
+#landing .emp h2{font-size:clamp(2.2rem,4.8vw,3.6rem)}
+#landing .emp-list{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column}
+#landing .emp-list li{padding:12px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.94rem}
+#landing .emp-list b{display:block;color:var(--fg);font-family:var(--display);font-weight:400;font-size:1.25rem}
+#landing .empcard{background:var(--ink);color:var(--cream);border-radius:28px;padding:26px;display:flex;flex-direction:column;gap:16px;box-shadow:0 40px 80px -40px rgba(24,61,53,.7);max-width:420px;width:100%;justify-self:center}
+#landing .empcard .eyebrow{color:#c7d6c4}
+#landing .ec-top{display:flex;justify-content:space-between;align-items:center}
+#landing .ec-pill{font-size:.72rem;background:var(--lime);color:var(--ink);border-radius:999px;padding:3px 10px;font-weight:600}
+#landing .ec-amt{font-family:var(--display);font-size:3rem;letter-spacing:-.03em;line-height:1}
+#landing .ec-amt span{font-family:var(--body);font-size:.85rem;color:#c7d6c4;letter-spacing:0}
+#landing .ec-bar{display:flex;height:10px;border-radius:5px;overflow:hidden;background:rgba(246,245,237,.12)}
+#landing .ec-bar i{display:block;height:100%}
+#landing .ec-plan{background:rgba(246,245,237,.07);border:1px solid rgba(246,245,237,.14);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+#landing .ec-by{display:flex;align-items:center;gap:8px;font-size:.8rem;color:#c7d6c4}
+#landing .ec-row{display:flex;justify-content:space-between;font-size:.88rem;color:#c7d6c4}
+#landing .ec-row b{color:var(--cream)}#landing .ec-row b.lime{color:var(--lime)}
+#landing .ec-pool{font-size:.84rem;color:#c7d6c4;border-top:1px solid rgba(246,245,237,.14);padding-top:12px}
+#landing .ec-pool b{color:var(--lime);font-weight:600}
+@media (max-width:520px){#app .g4{grid-template-columns:repeat(2,minmax(0,1fr))}#app .stat .v,#app .sstats b{font-size:1.45rem}}
 </style>
 </head>
 <body>
@@ -988,6 +1028,30 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   </div>
 </div></section>
 
+<section id="employers" class="panel"><div class="in emp">
+  <div>
+    <div class="eyebrow">For employers, with CarePool</div>
+    <h2 style="margin-top:12px">Benefits that <em>follow the care.</em></h2>
+    <div class="body" style="margin-top:18px;color:var(--muted);display:flex;flex-direction:column;gap:14px;font-size:1.04rem">
+      <p>Give your people their own Northline doctor and one flexible health wallet in the same app. When a doctor recommends physio, therapy or a dietitian, the plan arrives already matched to what's covered and where to book.</p>
+      <p>Insured care stays billed to OHIP. The wallet funds only what no provincial plan covers, and you see combined results, never anyone's health information.</p>
+    </div>
+    <ul class="emp-list">
+      <li><b>One family balance</b>No more category caps: unused dental can pay for the physio someone actually needs.</li>
+      <li><b>Partner prices</b>Negotiated rates stretch the same budget further.</li>
+      <li><b>A solidarity pool</b>Employees can give unused balances to help colleagues, verified by a clinician's signed plan.</li>
+    </ul>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px"><a class="btn primary" href="#benefits">See the employer view →</a><a class="btn ghost" href="#wallet">See the employee wallet</a></div>
+  </div>
+  <div class="empcard rv" aria-hidden="true">
+    <div class="ec-top"><span class="eyebrow">Health wallet · family</span><span class="ec-pill">CarePool</span></div>
+    <div class="ec-amt">$640 <span>left this year</span></div>
+    <div class="ec-bar"><i style="width:49%;background:#d7ef9e"></i><i style="width:21%;background:#c9e2ef"></i><i style="width:8%;background:#f1c7bd"></i></div>
+    <div class="ec-plan"><div class="ec-by"><span class="av" style="background:#e6cfe6;width:26px;height:26px;font-size:.62rem">MB</span>Dr. Bell recommends</div><b>Physiotherapy, 6 sessions</b><div class="ec-row"><span>Wallet covers</span><b>$346</b></div><div class="ec-row"><span>Solidarity top up</span><b class="lime">$224</b></div></div>
+    <div class="ec-pool"><b>$74,200</b> given by 734 colleagues · <b>86</b> helped</div>
+  </div>
+</div></section>
+
 <section id="faq"><div class="in faqgrid">
   <div class="rv"><div class="eyebrow">Frequently asked</div><h2 style="margin-top:12px">Questions, <em>answered.</em></h2><p style="margin-top:16px;color:var(--muted);max-width:32ch">Still curious? <a href="#start">Look around inside the prototype →</a></p></div>
   <div class="faq">
@@ -1009,7 +1073,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 </div></section>
 
 <footer><div class="in">
-  <div class="fr"><a class="logo" href="#top">northline<span>✳</span>care</a><div class="fl"><a href="#how">How it works</a><a href="#find">Doctors</a><a href="#connect">Connect your AI</a><a href="#cost">Pricing</a><a href="#clinicians">Clinicians</a><a href="#faq">FAQ</a></div></div>
+  <div class="fr"><a class="logo" href="#top">northline<span>✳</span>care</a><div class="fl"><a href="#how">How it works</a><a href="#find">Doctors</a><a href="#connect">Connect your AI</a><a href="#cost">Pricing</a><a href="#clinicians">Clinicians</a><a href="#employers">Employers</a><a href="#faq">FAQ</a></div></div>
   <p>Northline Care is a business concept and interactive prototype. It does not provide medical advice or services. In an emergency call 911. For a mental health crisis call or text 988.</p>
   <p>© 2026 Northline Care · Toronto, Ontario</p>
 </div></footer>
@@ -1028,6 +1092,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     <button data-role="patient">Patient</button>
     <button data-role="clinician">Clinician</button>
     <button data-role="admin">Clinic admin</button>
+    <button data-role="employer">Employer</button>
   </div>
   <a class="btn ghost sm" href="#top" id="toSite">← Northline Care site</a>
   <div class="spacer"></div>
@@ -1295,14 +1360,15 @@ const NAV={
   {group:"Health record"},
   {v:"rx",l:"Prescriptions"},{v:"labs",l:"Lab results"},{v:"docs",l:"Documents"},
   {group:"Account"},
-  {v:"family",l:"Family"},{v:"coverage",l:"Coverage and payments"},{v:"privacy",l:"Privacy and consent"}
+  {v:"family",l:"Family"},{v:"wallet",l:"Health wallet"},{v:"coverage",l:"Coverage and payments"},{v:"privacy",l:"Privacy and consent"}
  ],
  clinician:[{group:"Clinical work"},{v:"queue",l:"Case queue",n:()=>S.queue.length},{v:"panel",l:"My patients"},{v:"schedule",l:"Today's schedule"},{v:"billing",l:"Billing"}],
+ employer:[{group:"Benefits"},{v:"benefits",l:"Benefits overview"}],
  admin:[{group:"Operations"},{v:"overview",l:"Overview"},{v:"team",l:"Clinicians"},{v:"integrations",l:"Integrations"},{group:"Readiness"},{v:"compliance",l:"Privacy and compliance"},{v:"launch",l:"Launch tracker"}]
 };
 const roleOf=v=>Object.keys(NAV).find(r=>NAV[r].some(x=>x.v===v));
 let view="home";
-const LANDING=["","top","how","find","connect","cost","clinicians","faq"];
+const LANDING=["","top","how","find","connect","cost","clinicians","employers","faq"];
 function showLanding(h){document.getElementById("drpage").hidden=true;document.getElementById("landing").hidden=false;document.getElementById("app").hidden=true;document.title="Northline Care";
   const el=h&&h!=="top"?document.getElementById(h):null;requestAnimationFrame(()=>{if(el)el.scrollIntoView({behavior:"smooth",block:"start"});else window.scrollTo({top:0})})}
 function route(){
@@ -1326,7 +1392,7 @@ window.addEventListener("hashchange",route);
 /* ---------------- shell render ---------------- */
 function renderShell(){
   document.querySelectorAll("[data-role]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.role===S.role)));
-  const who={patient:[S.patient.name,"Patient, Toronto",0],clinician:["Dr. Amara Okafor","Family physician",0],admin:["Northline Ops","Clinic partner: Queen West Health",3]}[S.role];
+  const who={patient:[S.patient.name,"Patient, Toronto",0],clinician:["Dr. Amara Okafor","Family physician",0],admin:["Northline Ops","Clinic partner: Queen West Health",3],employer:["Harbourfront Logistics","Employer · 1,248 employees",4]}[S.role];
   $("#who").innerHTML=`${avatar(who[0],who[2])}<div class="meta"><div style="font-weight:600">${esc(who[0])}</div><div class="muted" style="font-size:.78rem">${esc(who[1])}</div></div>`;
   let html="";
   if(S.role==="patient")html+=`<div class="cta"><button class="btn primary" data-act="navigator" style="width:100%">Ask a doctor</button></div>`;
@@ -1374,6 +1440,7 @@ V.home=()=>{
     <button class="card stack" style="text-align:left;cursor:pointer" data-act="go" data-v="messages"><span class="eyebrow">Messages</span><span class="stat"><span class="v">${S.threads.length}</span></span><span class="muted">${S.threads.filter(t=>t.status==="Waiting on you").length} waiting on you</span></button>
     <button class="card stack" style="text-align:left;cursor:pointer" data-act="go" data-v="plan"><span class="eyebrow">Care plan tasks</span><span class="stat"><span class="v">${open.length}</span></span><span class="muted">open this week</span></button>
     <button class="card stack" style="text-align:left;cursor:pointer" data-act="go" data-v="rx"><span class="eyebrow">Prescriptions</span><span class="stat"><span class="v">${S.rx.filter(r=>r.status!=="Expired").length}</span></span><span class="muted">active, 1 renewal due soon</span></button>
+    <button class="card stack" style="text-align:left;cursor:pointer" data-act="go" data-v="wallet"><span class="eyebrow">Health wallet</span><span class="stat"><span class="v">${money(wLeft())}</span></span><span class="muted">left for your family this year</span></button>
     <button class="card stack" style="text-align:left;cursor:pointer" data-act="go" data-v="labs"><span class="eyebrow">New results</span><span class="stat"><span class="v">${S.labs.length}</span></span><span class="muted">from Oct 15, 1 flagged</span></button>
   </div>
   <div class="grid g2">
@@ -1467,7 +1534,8 @@ V.plan=()=>`<div class="head"><div class="stack" style="gap:6px"><div class="eye
   <div class="card stack"><h3>Tasks</h3><div class="list">${S.plan.tasks.map(taskRow).join("")}</div></div>
   <div class="card stack"><h3>Follow ups</h3><div class="list">${S.plan.followups.map(f=>`<div class="row between"><div><b>${esc(f.t)}</b><div class="muted" style="font-size:.86rem">${esc(f.how)}</div></div><span class="pill plain">${esc(f.when)}</span></div>`).join("")}</div>
   <div class="stack"><h4>Log a home reading</h4><form class="row" id="bpForm"><input type="text" id="bpSys" placeholder="Systolic" inputmode="numeric" style="width:110px" aria-label="Systolic"><input type="text" id="bpDia" placeholder="Diastolic" inputmode="numeric" style="width:110px" aria-label="Diastolic"><button class="btn primary sm">Save reading</button></form><div id="bpLog" class="muted" style="font-size:.86rem"></div></div></div>
- </div>`;
+ </div>
+ <div class="card stack"><div class="row between"><h3>Recommended care and how it's paid</h3><button class="btn ghost sm" data-act="go" data-v="wallet">Open health wallet</button></div><p class="muted" style="font-size:.9rem">Services your clinicians recommended that OHIP doesn't cover, matched to your CarePool health wallet.</p><div class="grid g3">${wRecs()}</div></div>`;
 const bpLog=[];
 after.plan=()=>{$("#bpForm").addEventListener("submit",e=>{e.preventDefault();const s=+$("#bpSys").value,d=+$("#bpDia").value;if(!s||!d){toast("Enter both numbers, for example 132 and 84");return}
   if(s>=180||d>=120){modal(`${mhead("Reading flagged","That reading is very high")}<div class="notice bad">A reading of ${s}/${d} needs prompt attention. If you have chest pain, shortness of breath, weakness, vision changes or trouble speaking, call 911 now. Otherwise rest 5 minutes and measure again.</div><div class="row"><button class="btn primary" data-act="close">I understand</button></div>`);}
@@ -1523,7 +1591,7 @@ V.family=()=>`<div class="head"><div class="stack" style="gap:6px"><div class="e
 V.coverage=()=>`<div class="head"><div class="stack" style="gap:6px"><div class="eyebrow">Ontario residents</div><h1>Coverage and payments</h1><p class="muted">Care that OHIP covers is free to you on Northline Care. You only pay for services that no provincial plan covers, and you'll always see the price before you confirm.</p></div></div>
  <div class="grid g2">
   <div class="card stack"><div class="row between"><h3>Your health card</h3><span class="pill ok">Verified</span></div><dl class="kv"><dt>Plan</dt><dd>Ontario Health Insurance Plan</dd><dt>Number</dt><dd class="mono">${esc(S.patient.ohip)}</dd><dt>Expires</dt><dd>Apr 12, 2029</dd></dl><button class="btn ghost sm" data-act="updateCard" style="align-self:flex-start">Update health card</button></div>
-  <div class="card stack"><h3>Workplace benefits</h3><p class="muted" style="font-size:.9rem">Add your group benefits to have eligible uninsured services billed to your plan instead of your card.</p><button class="btn ghost sm" data-act="addBenefits" style="align-self:flex-start">Add benefits plan</button></div>
+  <div class="card stack"><div class="row between"><h3>Workplace benefits</h3><span class="pill ok">Connected</span></div><p class="muted" style="font-size:.9rem">CarePool health wallet through ${esc(W.employer)}. Eligible services OHIP doesn't cover are paid from your family balance: ${money(wLeft())} left this year.</p><button class="btn ghost sm" data-act="go" data-v="wallet" style="align-self:flex-start">Open health wallet</button></div>
  </div>
  <div class="card stack"><h3>What things cost</h3><div class="tablewrap"><table><thead><tr><th>Service</th><th>Who pays</th><th>Your cost</th></tr></thead><tbody>
   <tr><td>Messages, phone and video care with your doctor (insured services)</td><td>OHIP</td><td><b>$0</b></td></tr>
@@ -1714,7 +1782,7 @@ function obNext(){
 
 /* ---------------- actions ---------------- */
 document.addEventListener("click",e=>{
-  const r=e.target.closest("[data-role]");if(r){go({patient:"home",clinician:"queue",admin:"overview"}[r.dataset.role]);return}
+  const r=e.target.closest("[data-role]");if(r){go({patient:"home",clinician:"queue",admin:"overview",employer:"benefits"}[r.dataset.role]);return}
   if(e.target.closest("#bell")){modal(`${mhead("","Notifications")}<div class="list">${S.notifications.map((n,i)=>`<button class="row between" data-act="notif" data-i="${i}" style="background:none;border:0;border-bottom:1px solid var(--line);text-align:left;cursor:pointer;width:100%"><span style="${n.unread?"font-weight:700":""}">${esc(n.t)}</span>${n.unread?`<span class="pill hi plain">New</span>`:""}</button>`).join("")||`<div class="empty">You're all caught up.</div>`}</div>`);return}
   const a=e.target.closest("[data-act]");if(!a)return;
   const act=a.dataset.act,id=a.dataset.id;
@@ -1954,6 +2022,96 @@ function drBind(d){
   })};
   window.addEventListener("scroll",drScroll,{passive:true});drScroll();
 }
+
+/* ---------------- CarePool inside Northline: health wallet, solidarity pool, employer view ---------------- */
+/* Insured care is billed to OHIP and never touches the wallet. The wallet funds only what no provincial plan covers. */
+const W={
+ employer:"Harbourfront Logistics",total:3000,used:2360,saved:212,reset:"Jan 1",
+ family:[["Maya Chen","You",1480],["Daniel Chen","Spouse",640],["Lily Chen","Daughter, 8",240]],
+ recs:[
+  {id:"w1",by:"d1",t:"Dietitian, 3 sessions on lower salt eating",why:"Supports your blood pressure goal",unit:90,qty:3,where:"Nourish RD, virtual",st:"open"},
+  {id:"w2",by:"d1",t:"Ramipril 5 mg, 90 day supply",why:"Dispensing fee and drug cost",unit:24,qty:1,where:"Your pharmacy: Rexall Queen West",st:"open"},
+  {id:"w3",by:"d8",t:"Physiotherapy, 6 sessions for knee pain",why:"Staged return to running",unit:95,qty:6,where:"Bloor West Physio, 1.2 km",st:"open"}
+ ],
+ market:[
+  ["Physiotherapy","Bloor West Physio","1.2 km",95,115],["Psychotherapy","Mindwell Counselling","Virtual",120,150],
+  ["Registered dietitian","Nourish RD","Virtual",90,110],["Dental cleaning","Queen West Dental","0.8 km",150,180],
+  ["Eye exam","ClearView Optometry","2.1 km",80,100],["Massage therapy","Hands On RMT","1.5 km",85,105]
+ ],
+ tx:[["Oct 22","Physiotherapy","Bloor West Physio","Maya",95],["Oct 9","Dental cleaning","Queen West Dental","Lily",150],["Sep 28","Psychotherapy","Mindwell Counselling","Daniel",120],["Sep 14","Eye exam","ClearView Optometry","Maya",80]],
+ pool:{fund:74200,givers:734,helped:86,funded:68350,share:10,unused:640},
+ topups:{}
+};
+const money=n=>"$"+Math.round(n).toLocaleString("en-CA");
+const wLeft=()=>W.total-W.used;
+/* walk the open recommendations in order against what's left */
+function wFund(){let left=wLeft();return W.recs.map(r=>{const cost=r.unit*r.qty;
+  if(r.st==="booked")return {...r,cost,from:cost,gap:0};
+  const from=Math.min(cost,Math.max(0,left));left-=from;return {...r,cost,from,gap:cost-from}})}
+function wRecRow(r){
+  const d=docById(r.by),top=W.topups[r.id];
+  let status,btn="";
+  if(r.st==="booked"){status=`<span class="pill ok">Booked · paid from wallet</span>`}
+  else if(r.gap===0){status=`<span class="pill ok">Covered by your wallet</span>`;btn=`<button class="btn primary sm" data-w="book" data-id="${r.id}">Book and pay</button>`}
+  else if(top){status=`<span class="pill hi">Top up requested</span>`;btn=`<span class="muted" style="font-size:.82rem">Reviewed in 2 business days</span>`}
+  else{status=`<span class="pill warn">${money(r.from)} covered · ${money(r.gap)} gap</span>`;btn=`<button class="btn primary sm" data-w="topup" data-id="${r.id}">Request a top up</button>`}
+  return `<div class="wrec"><div class="row" style="gap:10px;align-items:flex-start">${avatar(d.name,docIdx(d.id))}<div class="stack" style="gap:2px;flex:1;min-width:0"><b>${esc(r.t)}</b><span class="muted" style="font-size:.84rem">${esc(d.name)} · ${esc(r.why)}</span><span class="muted" style="font-size:.84rem">${esc(r.where)} · ${r.qty>1?r.qty+" × "+money(r.unit)+" = ":""}${money(r.cost)}</span></div></div><div class="row between" style="margin-top:10px">${status}${btn}</div></div>`;
+}
+const wRecs=()=>wFund().map(wRecRow).join("");
+
+V.wallet=()=>{
+ const left=wLeft(),pct=W.used/W.total*100;const giving=Math.round(W.pool.unused*W.pool.share/100);
+ return `<div class="head"><div class="stack" style="gap:6px"><div class="eyebrow">CarePool · through ${esc(W.employer)}</div><h1>Health wallet</h1><p class="muted">One family balance for the care OHIP doesn't cover, like physio, therapy, dental and prescriptions. Care OHIP covers is never charged here.</p></div><span class="pill warn">Prototype: illustrative benefits</span></div>
+ <div class="grid g4">
+  <div class="card stat"><span class="eyebrow">Left this year</span><div class="v">${money(left)}</div><div class="bar"><span style="width:${pct}%"></span></div><span class="muted" style="font-size:.84rem">${money(W.used)} of ${money(W.total)} used</span></div>
+  <div class="card stat"><span class="eyebrow">Saved at partner prices</span><div class="v">${money(W.saved)}</div><span class="muted" style="font-size:.84rem">vs regular rates</span></div>
+  <div class="card stat"><span class="eyebrow">Family members</span><div class="v">${W.family.length}</div><span class="muted" style="font-size:.84rem">sharing one balance</span></div>
+  <div class="card stat"><span class="eyebrow">Resets</span><div class="v">${W.reset}</div><span class="muted" style="font-size:.84rem">choose what happens to unused funds</span></div>
+ </div>
+ <div class="grid g2">
+  <div class="card stack"><div class="row between"><h3>From your care plan</h3><span class="muted" style="font-size:.84rem">Signed by your clinicians</span></div><p class="muted" style="font-size:.9rem">What your doctors recommended, and how each item is paid for.</p><div class="stack" style="gap:10px">${wRecs()}</div></div>
+  <div class="card stack"><h3>Family pool</h3><p class="muted" style="font-size:.9rem">One balance your household shares, instead of separate limits per person and per category.</p>
+   <div class="fambar">${W.family.map((f,i)=>`<span style="width:${f[2]/W.total*100}%;background:${hues[(i+2)%hues.length]}" title="${esc(f[0])}"></span>`).join("")}</div>
+   <div class="list">${W.family.map((f,i)=>`<div class="row between"><div class="row"><span class="dot" style="background:${hues[(i+2)%hues.length]}"></span><div><b>${esc(f[0])}</b><div class="muted" style="font-size:.82rem">${esc(f[1])}</div></div></div><span class="tabnum">${money(f[2])}</span></div>`).join("")}<div class="row between"><b>Left to share</b><b class="tabnum">${money(left)}</b></div></div>
+  </div>
+ </div>
+ <div class="card stack solid"><div class="row between"><div class="stack" style="gap:4px"><span class="eyebrow">Solidarity pool at ${esc(W.employer)}</span><h3>Your unused benefits can help a colleague</h3></div><span class="pill hi">Voluntary</span></div>
+  <div class="grid g4 sstats"><div><b>${W.pool.givers}</b><span>colleagues contributed</span></div><div><b>${money(W.pool.fund)}</b><span>given this year</span></div><div><b>${W.pool.helped}</b><span>colleagues helped</span></div><div><b>${money(W.pool.funded)}</b><span>of care funded</span></div></div>
+  <div class="stack" style="gap:8px"><label for="wShare"><b>At year end, give <span id="wPct">${W.pool.share}</span>% of what's left</b> <span class="muted">(about <span id="wAmt">${money(giving)}</span> of ${money(W.pool.unused)})</span></label><input type="range" id="wShare" min="0" max="30" step="5" value="${W.pool.share}" aria-label="Share of unused balance to give"><div class="row between muted" style="font-size:.78rem"><span>Keep it all</span><span>30%</span></div></div>
+  <p class="muted" style="font-size:.86rem">Top ups are approved when a Northline clinician's signed plan shows the need. ${esc(W.employer)} sees totals only: never who asked, why, or what care they received.</p>
+ </div>
+ <div class="card stack"><div class="row between"><h3>Partner providers</h3><span class="muted" style="font-size:.84rem">Paid straight from your wallet</span></div>
+  <div class="grid g3">${W.market.map((m,i)=>`<div class="mk"><span class="eyebrow">${esc(m[0])}</span><b>${esc(m[1])}</b><span class="muted" style="font-size:.84rem">${esc(m[2])}</span><div class="row between"><span><b class="tabnum">${money(m[3])}</b> <s class="muted tabnum" style="font-size:.84rem">${money(m[4])}</s></span><button class="btn ghost sm" data-w="mk" data-id="${i}">Book</button></div></div>`).join("")}</div>
+  <p class="muted" style="font-size:.8rem">Your clinician never earns anything from where you book. You choose the provider.</p></div>
+ <div class="card stack"><h3>Recent activity</h3><div class="tablewrap"><table><thead><tr><th>Date</th><th>Service</th><th>Provider</th><th>For</th><th style="text-align:right">Amount</th></tr></thead><tbody>${W.tx.map(t=>`<tr><td>${t[0]}</td><td>${esc(t[1])}</td><td>${esc(t[2])}</td><td>${esc(t[3])}</td><td class="tabnum" style="text-align:right">${money(t[4])}</td></tr>`).join("")}</tbody></table></div></div>`;
+};
+after.wallet=()=>{const r=$("#wShare");if(!r)return;r.addEventListener("input",()=>{W.pool.share=+r.value;$("#wPct").textContent=r.value;$("#wAmt").textContent=money(W.pool.unused*r.value/100)});};
+
+/* employer: combined numbers only, by design */
+V.benefits=()=>{
+ const cats=[["Physiotherapy",612],["Mental health",548],["Dental",861],["Prescriptions",704],["Vision",233],["Dietitian and other",142]];const mx=900;
+ return `<div class="head"><div class="stack" style="gap:6px"><div class="eyebrow">${esc(W.employer)} · CarePool with Northline Care</div><h1>Benefits overview</h1><p class="muted">How your health benefits budget turns into care. Every figure is combined across employees; no one's health information is visible here.</p></div><span class="pill warn">Prototype: illustrative numbers</span></div>
+ <div class="grid g4">
+  <div class="card stat"><span class="eyebrow">Employees</span><div class="v">1,248</div><span class="muted" style="font-size:.84rem">2,906 people incl. family</span></div>
+  <div class="card stat"><span class="eyebrow">Annual budget</span><div class="v">$3.74M</div><span class="pill ok">72% used</span></div>
+  <div class="card stat"><span class="eyebrow">Partner savings</span><div class="v">$183K</div><span class="muted" style="font-size:.84rem">more care, same budget</span></div>
+  <div class="card stat"><span class="eyebrow">Unused capacity</span><div class="v">$1.05M</div><span class="muted" style="font-size:.84rem">available to redirect</span></div>
+ </div>
+ <div class="grid g2">
+  <div class="card stack"><h3>Where wallet dollars went</h3><p class="muted" style="font-size:.88rem">Thousands of dollars, year to date</p><div class="stack" style="gap:10px">${cats.map(c=>`<div class="hbar"><span>${c[0]}</span><div class="bar"><span style="width:${c[1]/mx*100}%"></span></div><b class="tabnum">$${c[1]}K</b></div>`).join("")}</div></div>
+  <div class="card stack"><h3>Northline Care</h3><dl class="kv"><dt>Members with a doctor</dt><dd>1,021 (82%)</dd><dt>Seen by their own doctor</dt><dd>91% of requests</dd><dt>Median first reply</dt><dd>3.4 hours</dd><dt>Care plans with funding attached</dt><dd>2,140</dd><dt>Insured care billed to you</dt><dd><b>$0</b>: billed to OHIP by partner clinics</dd></dl></div>
+ </div>
+ <div class="card stack solid"><div class="row between"><h3>Solidarity pool</h3><span class="pill hi">Voluntary, employee funded</span></div>
+  <div class="grid g4 sstats"><div><b>59%</b><span>of employees contributed</span></div><div><b>${money(W.pool.fund)}</b><span>given</span></div><div><b>${W.pool.helped}</b><span>top ups approved</span></div><div><b>${money(Math.round(W.pool.funded/W.pool.helped))}</b><span>average top up</span></div></div>
+  <p class="muted" style="font-size:.86rem">Requests are verified by a clinician's signed plan and administered by your benefits carrier. CarePool provides the technology and holds no insurance risk.</p></div>
+ <div class="card stack"><h3>What you can't see</h3><div class="grid g3 cant"><div><b>Who used care</b><span>No names, no individual claims.</span></div><div><b>Why they needed it</b><span>No diagnoses, symptoms or messages.</span></div><div><b>Who asked for help</b><span>Solidarity requests stay between the employee, their clinician and the administrator.</span></div></div><p class="muted" style="font-size:.84rem">Figures for groups smaller than 20 people are hidden to prevent anyone being identified.</p></div>`;
+};
+
+document.addEventListener("click",e=>{const b=e.target.closest("[data-w]");if(!b)return;const id=b.dataset.id;
+  if(b.dataset.w==="book"){const r=W.recs.find(x=>x.id===id);r.st="booked";W.used+=r.unit*r.qty;W.tx.unshift(["Today",r.t.split(",")[0],r.where.split(",")[0].replace("Your pharmacy: ",""),"Maya",r.unit*r.qty]);toast("Booked. "+money(r.unit*r.qty)+" paid from your health wallet.");render()}
+  if(b.dataset.w==="topup"){W.topups[id]=true;toast("Top up requested with your doctor's signed plan. Your employer won't see why.");render()}
+  if(b.dataset.w==="mk"){const m=W.market[+id];toast(m[1]+": pick a time in the booking window. "+money(m[3])+" will be paid from your wallet.")}
+});
 
 route();
 })();

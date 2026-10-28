@@ -57,7 +57,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 #landing .band p{color:var(--band-muted)}
 
 /* hero */#landing .hero{padding-block:clamp(40px,6vw,80px) clamp(56px,7vw,96px)}
-#landing .hero .in{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(28px,5vw,64px);align-items:center}
+#landing .hero .in{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(28px,5vw,64px);align-items:start}
 #landing .hero h1{font-size:clamp(2.6rem,7vw,5.4rem);font-weight:800}
 #landing .hero h1 em{font-style:normal;background:var(--lime);color:#183d35;padding:0 .12em;border-radius:.12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 #landing .hero .lede{font-size:clamp(1.08rem,1.6vw,1.25rem);max-width:52ch;color:var(--muted);margin-top:22px}
@@ -393,18 +393,20 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 @media (max-width:520px){.skin button span{display:none}.skin button{padding:5px 7px}}
 
 /* ===== motion and connect your AI ===== */
-#landing .rot{display:inline-grid;vertical-align:bottom}
+#landing .rot{display:grid;contain:layout}
+#landing .rot>em{white-space:nowrap}
+@media (max-width:420px){#landing .rot>em{white-space:normal}}
 #landing .rot>em{grid-area:1/1;transition:opacity .5s ease,transform .5s ease}
 #landing .rot>em:not(.on){opacity:0;transform:translateY(.35em)}
 #landing .rot>em.out{opacity:0;transform:translateY(-.35em)}
 #landing .hero .eyebrow,#landing .hero h1,#landing .hero .lede,#landing .hero .ctas,#landing .hero .proof{animation:nlrise .7s cubic-bezier(.2,.7,.2,1) both}
 #landing .hero h1{animation-delay:.06s}#landing .hero .lede{animation-delay:.14s}#landing .hero .ctas{animation-delay:.22s}#landing .hero .proof{animation-delay:.3s}
 @keyframes nlrise{from{opacity:.001;transform:translateY(18px)}to{opacity:1;transform:none}}
-#landing .phone{position:relative;min-height:470px}
+#landing .phone{position:relative;padding-bottom:58px}
 #landing .phone .bub,#landing .phone .typing{transition:opacity .35s ease,transform .35s ease}
-#landing .phone.play .seq:not(.shown){opacity:0;transform:translateY(10px);position:absolute;pointer-events:none}
-#landing .phone .typing{display:none}
-#landing .phone.play .typing.on{display:flex}
+#landing .phone.play .seq:not(.shown){opacity:0;transform:translateY(10px);pointer-events:none}
+#landing .phone .typing{display:flex;position:absolute;left:20px;bottom:16px;opacity:0;transition:opacity .25s}
+#landing .phone.play .typing.on{opacity:1}
 #landing .orbit{position:absolute;top:-22px;right:-14px;width:64px;height:64px;border-radius:50%;background:var(--lime);color:#183d35;display:grid;place-items:center;font-size:2rem;font-weight:800;animation:nlspin 14s linear infinite;box-shadow:0 10px 30px -10px rgba(24,61,53,.5)}
 @keyframes nlspin{to{transform:rotate(360deg)}}
 #landing .wall{overflow:hidden;border-block:1px solid var(--line);padding-block:16px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
@@ -652,7 +654,6 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   #landing .ocenter{bottom:0;width:86%}
   #landing .docs{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:84%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;margin-inline:-16px;padding-inline:16px;scroll-padding-inline:16px}
   #landing .dcard{scroll-snap-align:start}
-  #landing .phone{min-height:400px}
   #landing .door{min-height:0}
 }
 #landing footer .fl a:hover{color:var(--fg)}
@@ -1110,7 +1111,7 @@ if(ph&&!reduce){
   let t=[];const clear=()=>{t.forEach(clearTimeout);t=[]};
   function run(){clear();ph.classList.add("play");seq.forEach(x=>x.classList.remove("shown"));let at=400;
     seq.forEach((el,i)=>{const fromThem=!el.classList.contains("me");
-      if(fromThem){t.push(setTimeout(()=>{ph.insertBefore(typ,el);typ.classList.add("on")},at));at+=1300}
+      if(fromThem){t.push(setTimeout(()=>{typ.classList.add("on")},at));at+=1300}
       t.push(setTimeout(()=>{typ.classList.remove("on");el.classList.add("shown")},at));at+=fromThem?1500:1100});
     t.push(setTimeout(run,at+5200))}
   run();

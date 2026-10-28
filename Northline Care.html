@@ -1,0 +1,1206 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Northline Care</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: one page, two modes. The marketing site (#landing) uses full bleed bands on a 1160px column; the app (#app) is a shell with a role switch, section rail and work area. Hash routes choose the mode. */
+
+/* Layout: full-bleed bands alternating cream and deep pine, each with a centred 1160px inner column; hero splits headline and a live chat card. */:root{
+  --cream:#f6f5ed; --ink:#183d35; --green:#235e49; --lime:#d7ef9e;
+  --bg:#f6f5ed; --fg:#183d35; --surface:#fffffb; --soft:#ecebdf; --line:#dbdacd; --muted:#5a6d66;
+  --band:#183d35; --band-fg:#f6f5ed; --band-muted:#c7d6c4; --accent:#235e49; --accent-fg:#f6f5ed;
+  --display:"Bricolage Grotesque","Avenir Next",system-ui,sans-serif;
+  --body:"Public Sans","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0f2420;--fg:#e7eadf;--surface:#15302a;--soft:#1c3a33;--line:#2a4840;--muted:#9bb2a9;--band:#081a16;--band-fg:#eef2e4;--band-muted:#a9bdb2;--accent:#d7ef9e;--accent-fg:#183d35;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f2420;--fg:#e7eadf;--surface:#15302a;--soft:#1c3a33;--line:#2a4840;--muted:#9bb2a9;--band:#081a16;--band-fg:#eef2e4;--band-muted:#a9bdb2;--accent:#d7ef9e;--accent-fg:#183d35;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+#landing h1,#landing h2,#landing h3{font-family:var(--display);line-height:1.05;letter-spacing:-.02em;margin:0;text-wrap:balance}
+#landing p{margin:0}
+#landing a{color:inherit}
+#landing :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+#landing .in{max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+#landing .eyebrow{font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+#landing .band .eyebrow{color:var(--lime)}
+#landing .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:13px 22px;font-weight:600;text-decoration:none;border:1px solid transparent;white-space:nowrap;font-size:.98rem;transition:transform .15s}
+#landing .btn:hover{transform:translateY(-1px)}
+#landing .btn.primary{background:var(--accent);color:var(--accent-fg)}
+#landing .btn.lime{background:var(--lime);color:#183d35}
+#landing .btn.ghost{border-color:var(--line);color:var(--fg)}
+#landing .band .btn.ghost{border-color:rgba(246,245,237,.35);color:var(--band-fg)}
+#landing .btn.sm{padding:8px 14px;font-size:.88rem}
+
+#landing .strip{background:var(--band);color:var(--band-muted);font-size:.78rem;text-align:center;padding-block:7px}
+#landing .strip b{color:var(--lime)}
+#landing nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+#landing nav.top .in{display:flex;align-items:center;gap:22px;padding-block:14px}
+#landing .logo{font-family:var(--display);font-weight:800;font-size:1.35rem;text-decoration:none;display:flex;gap:2px;align-items:center}
+#landing .logo span{color:var(--green)}
+:root[data-theme="dark"] #landing .logo span{color:var(--lime)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) #landing .logo span{color:var(--lime)}}
+#landing .links{display:flex;gap:20px;font-weight:500;font-size:.94rem}
+#landing .links a{text-decoration:none;color:var(--muted)}
+#landing .links a:hover{color:var(--fg)}
+#landing nav .sp{flex:1}
+@media (max-width:900px){#landing .links{display:none}#landing nav .hide-sm{display:none}}
+
+#landing section{padding-block:clamp(56px,8vw,104px)}
+#landing .band{background:var(--band);color:var(--band-fg)}
+#landing .band p{color:var(--band-muted)}
+
+/* hero */#landing .hero{padding-block:clamp(40px,6vw,80px) clamp(56px,7vw,96px)}
+#landing .hero .in{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(28px,5vw,64px);align-items:center}
+#landing .hero h1{font-size:clamp(2.6rem,7vw,5.4rem);font-weight:800}
+#landing .hero h1 em{font-style:normal;background:var(--lime);color:#183d35;padding:0 .12em;border-radius:.12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+#landing .hero .lede{font-size:clamp(1.08rem,1.6vw,1.25rem);max-width:52ch;color:var(--muted);margin-top:22px}
+#landing .hero .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+#landing .hero .proof{display:flex;gap:18px;flex-wrap:wrap;margin-top:26px;font-size:.88rem;color:var(--muted)}
+#landing .hero .proof span::before{content:"✳ ";color:var(--green)}
+@media (max-width:860px){#landing .hero .in{grid-template-columns:1fr}}
+
+#landing .phone{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:18px;box-shadow:0 30px 60px -30px rgba(24,61,53,.35);display:flex;flex-direction:column;gap:12px;max-width:420px;width:100%;justify-self:center}
+#landing .phone .ph{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+#landing .av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:700;color:#183d35;flex:none}
+#landing .bub{padding:10px 14px;border-radius:16px;font-size:.92rem;max-width:88%}
+#landing .bub.me{align-self:flex-end;background:var(--ink);color:var(--cream);border-bottom-right-radius:4px}
+:root[data-theme="dark"] #landing .bub.me{background:var(--lime);color:var(--ink)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) #landing .bub.me{background:var(--lime);color:var(--ink)}}
+#landing .bub.ai{align-self:flex-start;background:var(--soft);border-bottom-left-radius:4px}
+#landing .bub.ai b{display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+#landing .bub.plan{align-self:flex-start;border:1.5px solid var(--accent);background:var(--surface)}
+#landing .typing{display:flex;gap:4px;padding:12px 14px;background:var(--soft);border-radius:16px;align-self:flex-start}
+#landing .typing i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:b 1.2s infinite}
+#landing .typing i:nth-child(2){animation-delay:.15s}#landing .typing i:nth-child(3){animation-delay:.3s}
+@keyframes b{0%,60%,100%{opacity:.3}30%{opacity:1}}
+
+/* why */#landing .why .in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,72px);align-items:end}
+#landing .why h2{font-size:clamp(2rem,4.6vw,3.6rem)}
+#landing .why .body{display:flex;flex-direction:column;gap:16px;font-size:1.08rem}
+@media (max-width:800px){#landing .why .in{grid-template-columns:1fr}}
+
+/* steps */#landing .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:40px}
+#landing .sec-head h2{font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch}
+#landing .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px}
+#landing .step{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:14px}
+#landing .step .n{font-family:var(--display);font-size:3.2rem;font-weight:800;color:var(--green);line-height:1}
+:root[data-theme="dark"] #landing .step .n{color:var(--lime)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) #landing .step .n{color:var(--lime)}}
+#landing .step h3{font-size:1.5rem}
+#landing .step p{color:var(--muted)}
+#landing .step .note{font-size:.88rem;border-top:1px dashed var(--line);padding-top:12px}
+
+/* doctors */#landing .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+#landing .chip{border:1px solid rgba(246,245,237,.3);background:transparent;color:var(--band-fg);border-radius:999px;padding:8px 16px;cursor:pointer;font:inherit;font-size:.9rem}
+#landing .chip[aria-pressed="true"]{background:var(--lime);color:#183d35;border-color:var(--lime)}
+#landing .rowscroll{overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;scrollbar-width:thin}
+#landing .docs{display:flex;gap:16px;width:max-content}
+#landing .dcard{scroll-snap-align:start;width:260px;background:rgba(246,245,237,.06);border:1px solid rgba(246,245,237,.14);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:10px}
+#landing .dcard .av{width:56px;height:56px;font-size:1.1rem}
+#landing .dcard h3{font-size:1.15rem;color:var(--band-fg)}
+#landing .dcard .meta{font-size:.86rem;color:var(--band-muted)}
+#landing .dcard .tag{display:inline-block;font-size:.75rem;background:rgba(215,239,158,.16);color:var(--lime);border-radius:999px;padding:2px 10px;margin:0 4px 4px 0}
+#landing .dcard .acc{font-size:.8rem;color:var(--lime)}
+#landing .dcard .acc.w{color:#f0c97a}
+#landing .dcard a{margin-top:auto;align-self:flex-start}
+
+/* compare */#landing .compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px}
+#landing .col{border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:14px}
+#landing .col.us{background:var(--lime);color:#183d35}
+#landing .col.them{background:var(--surface);border:1px solid var(--line)}
+#landing .col h3{font-size:1.4rem}
+#landing .col ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px}
+#landing .col li{display:flex;gap:10px}
+#landing .col.us li::before{content:"✓";font-weight:800}
+#landing .col.them li::before{content:"–";color:var(--muted);font-weight:800}
+#landing .col.them li{color:var(--muted)}
+
+/* doors */#landing .doors{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px}
+#landing .door{border:1px solid var(--line);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:10px;background:var(--surface)}
+#landing .door h3{font-size:1.2rem}
+#landing .door p{color:var(--muted);font-size:.94rem}
+#landing .door.us{background:var(--band);color:var(--band-fg);border-color:var(--band)}
+#landing .door.us p{color:var(--band-muted)}
+#landing .door .k{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+#landing .door.us .k{color:var(--lime)}
+
+/* text section */#landing .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);align-items:center}
+@media (max-width:800px){#landing .split{grid-template-columns:1fr}}
+#landing .split h2{font-size:clamp(2rem,4.4vw,3.2rem)}
+#landing .split .body{display:flex;flex-direction:column;gap:14px;font-size:1.06rem;color:var(--muted)}
+#landing .band .split .body{color:var(--band-muted)}
+#landing .timeline{display:flex;flex-direction:column;gap:10px}
+#landing .tl{display:flex;gap:14px;align-items:baseline;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+#landing .tl b{font-family:var(--display);min-width:74px;font-variant-numeric:tabular-nums}
+
+/* pricing */#landing .price{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:18px}
+#landing .pcard{background:rgba(246,245,237,.06);border:1px solid rgba(246,245,237,.14);border-radius:22px;padding:26px;display:flex;flex-direction:column;gap:12px}
+#landing .pcard.feat{background:var(--lime);color:#183d35;border-color:var(--lime)}
+#landing .pcard.feat p,#landing .pcard.feat li{color:#2d4f46}
+#landing .pcard .amt{font-family:var(--display);font-size:2.6rem;font-weight:800}
+#landing .pcard ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;color:var(--band-muted);font-size:.94rem}
+#landing .pcard h3{font-size:1.2rem}
+#landing .pcard a{margin-top:auto;align-self:flex-start}
+
+/* faq */#landing .faq{display:flex;flex-direction:column;border-top:1px solid var(--line);max-width:860px}
+#landing details{border-bottom:1px solid var(--line);padding-block:18px}
+#landing summary{cursor:pointer;font-family:var(--display);font-weight:700;font-size:1.2rem;list-style:none;display:flex;justify-content:space-between;gap:16px}
+#landing summary::-webkit-details-marker{display:none}
+#landing summary::after{content:"+";font-size:1.4rem;line-height:1;color:var(--green);flex:none}
+#landing details[open] summary::after{content:"−"}
+#landing details p{margin-top:10px;color:var(--muted);max-width:68ch}
+
+#landing .final{text-align:center}
+#landing .final h2{font-size:clamp(2.4rem,6vw,4.6rem);font-weight:800;margin-bottom:18px}
+#landing .final .ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+#landing footer{border-top:1px solid var(--line);padding-block:36px;font-size:.88rem;color:var(--muted)}
+#landing footer .in{display:flex;flex-direction:column;gap:14px}
+#landing footer .fr{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+#landing footer .fl{display:flex;gap:18px;flex-wrap:wrap}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+#landing{font-size:16px}
+@media (max-width:440px){#landing nav.top .in{gap:10px}#landing .logo{font-size:1.12rem}#landing nav .btn.sm{padding:8px 12px;font-size:.84rem}}
+#landing section[id],#landing header[id]{scroll-margin-top:80px}
+/* ===== app ===== */
+
+/* Layout: app shell. Top bar with role switch, left rail for sections, main work area. Collapses to a scrolling tab rail on phones. */:root{
+  --cream:#f6f5ed; --ink:#183d35; --green:#235e49; --lime:#d7ef9e;
+  --bg:#f6f5ed; --fg:#183d35; --surface:#fffffb; --soft:#ecebdf; --line:#dbdacd;
+  --muted:#5a6d66; --accent:#235e49; --accent-fg:#f6f5ed; --hi:#d7ef9e; --hi-fg:#183d35;
+  --danger:#b13f2c; --danger-soft:#f6e1da; --warn:#94650f; --warn-soft:#f5ead1; --ok:#2c7349; --ok-soft:#dcefe0;
+  --shadow:0 1px 2px rgba(24,61,53,.06),0 8px 24px rgba(24,61,53,.07);
+  --display:"Bricolage Grotesque","Avenir Next",system-ui,sans-serif;
+  --body:"Public Sans","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f2420; --fg:#e7eadf; --surface:#15302a; --soft:#1c3a33; --line:#2a4840;
+  --muted:#9bb2a9; --accent:#d7ef9e; --accent-fg:#183d35; --hi:#d7ef9e; --hi-fg:#183d35;
+  --danger:#ec8f78; --danger-soft:#3d2620; --warn:#e6b85c; --warn-soft:#3a3020; --ok:#8fd3a7; --ok-soft:#1d3a2c;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f2420; --fg:#e7eadf; --surface:#15302a; --soft:#1c3a33; --line:#2a4840;
+  --muted:#9bb2a9; --accent:#d7ef9e; --accent-fg:#183d35; --hi:#d7ef9e; --hi-fg:#183d35;
+  --danger:#ec8f78; --danger-soft:#3d2620; --warn:#e6b85c; --warn-soft:#3a3020; --ok:#8fd3a7; --ok-soft:#1d3a2c;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.5;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+#app h1,#app h2,#app h3,#app h4{font-family:var(--display);font-weight:700;letter-spacing:-.01em;line-height:1.15;margin:0;text-wrap:balance}
+#app h1{font-size:clamp(1.6rem,3vw,2.1rem)} #app h2{font-size:1.35rem} #app h3{font-size:1.08rem} #app h4{font-size:.98rem}
+#app p{margin:0}
+#app button,#app input,#app select,#app textarea{font:inherit;color:inherit}
+#app :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#app .mono{font-family:var(--mono);font-size:.82em}
+#app .muted{color:var(--muted)}
+#app .eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+#app .tabnum{font-variant-numeric:tabular-nums}
+
+/* demo strip */#app .strip{background:var(--ink);color:#e9efd9;font-size:.78rem;letter-spacing:.04em;text-align:center;padding-block:6px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+:root[data-theme="dark"] #app .strip{background:#081814}
+#app .strip b{color:var(--lime)}
+
+/* top bar */#app .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+#app .logo{font-family:var(--display);font-weight:700;font-size:1.25rem;display:flex;align-items:center;gap:2px;color:var(--fg);text-decoration:none}
+#app .logo .star{color:var(--green);font-size:1.3rem;transform:translateY(-1px)}
+:root[data-theme="dark"] #app .logo .star{color:var(--lime)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) #app .logo .star{color:var(--lime)}}
+#app .roles{display:flex;background:var(--soft);border-radius:999px;padding:3px;gap:2px}
+#app .roles button{border:0;background:transparent;padding:6px 14px;border-radius:999px;cursor:pointer;font-weight:600;font-size:.86rem;color:var(--muted)}
+#app .roles button[aria-pressed="true"]{background:var(--surface);color:var(--fg);box-shadow:var(--shadow)}
+#app .top .spacer{flex:1}
+#app .iconbtn{position:relative;border:1px solid var(--line);background:var(--surface);border-radius:999px;width:38px;height:38px;display:grid;place-items:center;cursor:pointer}
+#app .iconbtn svg{width:18px;height:18px}
+#app .dot{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;border-radius:9px;background:var(--danger);color:#fff;font-size:.68rem;font-weight:700;display:grid;place-items:center;padding:0 4px}
+#app .who{display:flex;align-items:center;gap:8px;font-size:.88rem}
+#app .av{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:.85rem;color:#183d35;flex:none;font-family:var(--display)}
+#app .av.lg{width:64px;height:64px;font-size:1.3rem}
+#app .av.sm{width:28px;height:28px;font-size:.72rem}
+
+/* shell */#app .shell{display:grid;grid-template-columns:232px minmax(0,1fr);min-height:calc(100% - 110px)}
+#app .rail{border-right:1px solid var(--line);padding:18px 12px;display:flex;flex-direction:column;gap:2px}
+#app .rail .group{margin:14px 10px 6px}
+#app .rail a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;color:var(--fg);text-decoration:none;font-weight:500;font-size:.93rem}
+#app .rail a:hover{background:var(--soft)}
+#app .rail a[aria-current="page"]{background:var(--ink);color:var(--cream)}
+:root[data-theme="dark"] #app .rail a[aria-current="page"]{background:var(--lime);color:var(--ink)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) #app .rail a[aria-current="page"]{background:var(--lime);color:var(--ink)}}
+#app .rail a .n{margin-left:auto;background:var(--hi);color:var(--hi-fg);border-radius:999px;font-size:.72rem;font-weight:700;padding:1px 7px}
+#app .rail .cta{margin:4px 0 8px}
+#app main{padding-block:28px 64px;padding-left:max(16px,min(4vw,40px));padding-right:max(16px,min(4vw,40px));min-width:0}
+#app .wrap{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+@media (max-width:860px){
+  #app .shell{grid-template-columns:1fr}
+  #app .rail{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:8px max(16px,env(safe-area-inset-right,0px)) 8px max(16px,env(safe-area-inset-left,0px));gap:4px;scrollbar-width:none}
+  #app .rail .group{display:none}
+  #app .rail a{white-space:nowrap;flex:none}
+  #app .rail .cta{margin:0;flex:none}
+  #app .who .meta{display:none}
+}
+
+/* components */#app .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid transparent;border-radius:999px;padding:10px 18px;font-weight:600;cursor:pointer;text-decoration:none;font-size:.92rem;white-space:nowrap}
+#app .btn.primary{background:var(--accent);color:var(--accent-fg)}
+#app .btn.primary:hover{filter:brightness(1.08)}
+#app .btn.lime{background:var(--lime);color:var(--ink)}
+#app .btn.ghost{background:transparent;border-color:var(--line);color:var(--fg)}
+#app .btn.ghost:hover{background:var(--soft)}
+#app .btn.danger{background:var(--danger);color:#fff}
+#app .btn.sm{padding:6px 12px;font-size:.84rem}
+#app .btn:disabled{opacity:.45;cursor:not-allowed}
+#app .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+#app .grid{display:grid;gap:16px}
+#app .g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+#app .g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+#app .g4{grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr))}
+#app .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+#app .stack{display:flex;flex-direction:column;gap:12px}
+#app .between{justify-content:space-between}
+#app .pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:2px 10px;font-size:.76rem;font-weight:600;background:var(--soft);color:var(--fg);white-space:nowrap}
+#app .pill.ok{background:var(--ok-soft);color:var(--ok)}
+#app .pill.warn{background:var(--warn-soft);color:var(--warn)}
+#app .pill.bad{background:var(--danger-soft);color:var(--danger)}
+#app .pill.hi{background:var(--hi);color:var(--hi-fg)}
+#app .pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.8}
+#app .pill.plain::before{display:none}
+#app .head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+#app .head p{max-width:62ch}
+#app label.f{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:.86rem}
+#app input[type=text],#app input[type=email],#app input[type=search],#app input[type=tel],#app input[type=date],#app select,#app textarea{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%;font-weight:400;font-size:.94rem}
+#app textarea{resize:vertical;min-height:90px}
+#app .check{display:flex;gap:10px;align-items:flex-start;font-size:.92rem;cursor:pointer}
+#app .check input{margin-top:3px;accent-color:var(--green)}
+#app table{border-collapse:collapse;width:100%;font-size:.9rem}
+#app th{text-align:left;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;padding:8px 10px;border-bottom:1px solid var(--line)}
+#app td{padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+#app tr:last-child td{border-bottom:0}
+#app .tablewrap{overflow-x:auto}
+#app .list{display:flex;flex-direction:column}
+#app .list>*{padding:14px 0;border-bottom:1px solid var(--line)}
+#app .list>*:last-child{border-bottom:0}
+#app .stat .v{font-family:var(--display);font-size:2rem;font-weight:700;font-variant-numeric:tabular-nums}
+#app .hero{background:var(--ink);color:var(--cream);border-radius:20px;padding:26px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:24px;align-items:center}
+:root[data-theme="dark"] #app .hero{background:#0a1b17;border:1px solid var(--line)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) #app .hero{background:#0a1b17;border:1px solid var(--line)}}
+#app .hero h1{color:var(--cream)}
+#app .hero p{color:#cfdccb}
+#app .hero .mini{background:rgba(246,245,237,.08);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px}
+@media (max-width:760px){#app .hero{grid-template-columns:1fr}}
+#app .notice{border-radius:12px;padding:12px 14px;font-size:.88rem;display:flex;gap:10px;align-items:flex-start}
+#app .notice.warn{background:var(--warn-soft);color:var(--fg)}
+#app .notice.bad{background:var(--danger-soft);color:var(--fg)}
+#app .notice.info{background:var(--soft)}
+#app .chips{display:flex;flex-wrap:wrap;gap:8px}
+#app .chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 14px;cursor:pointer;font-size:.88rem;font-weight:500}
+#app .chip:hover{border-color:var(--accent)}
+#app .chip[aria-pressed="true"]{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+:root[data-theme="dark"] #app .chip[aria-pressed="true"]{background:var(--lime);color:var(--ink);border-color:var(--lime)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) #app .chip[aria-pressed="true"]{background:var(--lime);color:var(--ink);border-color:var(--lime)}}
+
+/* doctors */#app .doc{display:flex;flex-direction:column;gap:12px}
+#app .doc .top2{display:flex;gap:12px;align-items:center}
+#app .doc .tags{display:flex;flex-wrap:wrap;gap:6px}
+#app .doc .foot{display:flex;gap:8px;margin-top:auto;flex-wrap:wrap}
+
+/* messaging */#app .msgs{display:grid;grid-template-columns:300px minmax(0,1fr);border:1px solid var(--line);border-radius:var(--r);background:var(--surface);min-height:560px;overflow:hidden}
+#app .threads{border-right:1px solid var(--line);overflow-y:auto;max-height:640px}
+#app .thread{display:flex;gap:10px;padding:14px;border-bottom:1px solid var(--line);cursor:pointer;width:100%;text-align:left;background:transparent;border-left:0;border-right:0;border-top:0}
+#app .thread:hover{background:var(--soft)}
+#app .thread[aria-current="true"]{background:var(--soft)}
+#app .thread .t{flex:1;min-width:0}
+#app .thread .t p{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:.84rem;color:var(--muted)}
+#app .convo{display:flex;flex-direction:column;min-width:0}
+#app .convo .ch{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+#app .bubbles{flex:1;padding:18px;display:flex;flex-direction:column;gap:12px;overflow-y:auto;max-height:470px}
+#app .b{max-width:76%;padding:10px 14px;border-radius:16px;font-size:.93rem}
+#app .b.me{align-self:flex-end;background:var(--ink);color:var(--cream);border-bottom-right-radius:4px}
+:root[data-theme="dark"] #app .b.me{background:var(--lime);color:var(--ink)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) #app .b.me{background:var(--lime);color:var(--ink)}}
+#app .b.them{align-self:flex-start;background:var(--soft);border-bottom-left-radius:4px}
+#app .b.sys{align-self:center;background:transparent;color:var(--muted);font-size:.8rem;text-align:center;max-width:90%}
+#app .b .when{display:block;font-size:.7rem;opacity:.65;margin-top:4px}
+#app .b.plan{align-self:flex-start;background:var(--surface);border:1px solid var(--accent);max-width:86%}
+#app .att{display:inline-flex;gap:6px;align-items:center;border:1px solid currentColor;border-radius:8px;padding:3px 8px;font-size:.8rem;margin-top:6px;opacity:.85}
+#app .composer{border-top:1px solid var(--line);padding:12px;display:flex;gap:8px;align-items:flex-end}
+#app .composer textarea{min-height:44px;height:44px}
+@media (max-width:760px){#app .msgs{grid-template-columns:1fr}#app .threads{max-height:220px;border-right:0;border-bottom:1px solid var(--line)}#app .b{max-width:90%}}
+
+/* navigator */#app .nav-chat{display:flex;flex-direction:column;gap:14px}
+#app .qa{display:flex;gap:10px;align-items:flex-start}
+#app .qa .bot{width:30px;height:30px;border-radius:50%;background:var(--lime);color:var(--ink);display:grid;place-items:center;font-weight:700;flex:none}
+#app .progress{height:6px;background:var(--soft);border-radius:3px;overflow:hidden}
+#app .progress span{display:block;height:100%;background:var(--accent);transition:width .3s}
+#app input[type=range]{width:100%;accent-color:var(--green)}
+
+/* clinician */#app .split{display:grid;grid-template-columns:340px minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:980px){#app .split{grid-template-columns:1fr}}
+#app .case{display:flex;flex-direction:column;gap:6px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);cursor:pointer;text-align:left;width:100%}
+#app .case[aria-current="true"]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+#app .case.urgent{border-left:4px solid var(--danger)}
+#app .case.soon{border-left:4px solid var(--warn)}
+#app .case.routine{border-left:4px solid var(--ok)}
+#app .kv{display:grid;grid-template-columns:140px minmax(0,1fr);gap:6px 14px;font-size:.9rem}
+#app .kv dt{color:var(--muted)}
+#app .kv dd{margin:0}
+#app .ai{border:1px dashed var(--accent);border-radius:12px;padding:14px;background:var(--soft)}
+
+/* modal + toast */#app .scrim{position:fixed;inset:0;background:rgba(10,25,21,.55);z-index:50;display:grid;place-items:center;padding:16px}
+#app .modal{background:var(--surface);border-radius:18px;max-width:640px;width:100%;max-height:calc(100% - 32px);overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:16px;box-shadow:0 30px 80px rgba(0,0,0,.3)}
+#app .modal.wide{max-width:820px}
+#app .mhead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+#app .x{border:0;background:var(--soft);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1.1rem;flex:none}
+#app .steps{display:flex;gap:6px}
+#app .steps span{flex:1;height:4px;border-radius:2px;background:var(--soft)}
+#app .steps span.on{background:var(--accent)}
+#app .toasts{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;display:flex;flex-direction:column;gap:8px;max-width:min(380px,calc(100% - 32px))}
+#app .toast{background:var(--ink);color:var(--cream);border-radius:12px;padding:12px 16px;font-size:.9rem;box-shadow:var(--shadow);animation:in .25s ease}
+:root[data-theme="dark"] #app .toast{background:var(--lime);color:var(--ink)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) #app .toast{background:var(--lime);color:var(--ink)}}
+@keyframes in{from{transform:translateY(8px);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+#app .letter{background:#fffffb;color:#1b2b27;border:1px solid var(--line);border-radius:6px;padding:28px;font-family:Georgia,"Times New Roman",serif;font-size:.95rem;display:flex;flex-direction:column;gap:12px}
+#app .letter .lh{display:flex;justify-content:space-between;border-bottom:2px solid #235e49;padding-bottom:10px;font-family:var(--body);flex-wrap:wrap;gap:8px}
+#app .slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px}
+#app .bar{height:8px;background:var(--soft);border-radius:4px;overflow:hidden}
+#app .bar span{display:block;height:100%;background:var(--accent)}
+#app .empty{text-align:center;padding:40px 16px;color:var(--muted)}
+#app .drop{border:2px dashed var(--line);border-radius:12px;padding:18px;text-align:center;color:var(--muted);font-size:.9rem}
+#app .toggle{position:relative;width:42px;height:24px;flex:none}
+#app .toggle input{opacity:0;width:100%;height:100%;margin:0;position:absolute;cursor:pointer;z-index:1}
+#app .toggle span{position:absolute;inset:0;background:var(--line);border-radius:12px;transition:.2s}
+#app .toggle span::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.2s}
+#app .toggle input:checked+span{background:var(--green)}
+#app .toggle input:checked+span::after{left:21px}
+#app .toggle input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+
+#app .shell{min-height:calc(100vh - 110px)}
+</style>
+<div id="landing">
+
+
+<div class="strip"><b>Prototype.</b> Northline Care is a concept in development. Clinicians shown are fictional and no medical services are offered yet.</div>
+
+<nav class="top"><div class="in">
+  <a class="logo" href="#top">northline<span>✳</span>care</a>
+  <div class="links"><a href="#how">How it works</a><a href="#find">Doctors</a><a href="#cost">What it costs</a><a href="#clinicians">For clinicians</a><a href="#faq">FAQ</a></div>
+  <div class="sp"></div>
+  <a class="btn ghost sm hide-sm" href="#clinician">I'm a clinician</a>
+  <a class="btn primary sm" href="#start">Enter Northline Care</a>
+</div></nav>
+
+<header class="hero" id="top"><div class="in">
+  <div>
+    <div class="eyebrow">Ontario first · launching with partner clinics</div>
+    <h1 style="margin-top:14px">Your own doctor, <em>a message away.</em></h1>
+    <p class="lede">Message licensed Ontario doctors from your phone or browser. The same doctor reads every message, replies with a plan usually the same day, and care covered by OHIP costs you nothing.</p>
+    <div class="ctas">
+      <a class="btn primary" href="#start">Enter Northline Care →</a>
+      <a class="btn ghost" href="#home">I already have an account</a>
+    </div>
+    <div class="proof"><span>One doctor who knows you</span><span>Replies in hours, not weeks</span><span>No membership for insured care</span></div>
+  </div>
+  <div class="phone" aria-label="Example conversation">
+    <div class="ph"><span class="av" style="background:#d7ef9e">AO</span><div><b>Dr. Amara Okafor</b><div style="font-size:.8rem;color:var(--muted)">Your family doctor · usually within 3 hours</div></div></div>
+    <div class="bub me">My blood pressure readings at home averaged 136/86 this week. Should I change anything?</div>
+    <div class="bub ai"><b>Care Navigator</b>Thanks Maya. Any headaches, chest pain or vision changes? And are you still taking ramipril 5 mg?</div>
+    <div class="bub me">No symptoms. Yes, every morning.</div>
+    <div class="bub ai" style="background:var(--soft)"><b>Dr. Okafor</b>That's a little above target. Keep the same dose, cut back on salty takeout, and send me another week of readings.</div>
+    <div class="bub plan"><div class="eyebrow" style="color:var(--accent)">Care plan updated</div>7 more days of readings · review Nov 3</div>
+    <div class="typing" aria-hidden="true"><i></i><i></i><i></i></div>
+  </div>
+</div></header>
+
+<section class="band why"><div class="in">
+  <div><div class="eyebrow">Why we exist</div><h2 style="margin-top:14px">Some people have always had a doctor on speed dial. Every Canadian should.</h2></div>
+  <div class="body"><p>Millions of people in Ontario don't have a family doctor, and many who do wait weeks for a short appointment. Walk‑in and virtual queues help in a pinch, but you meet someone new every time and tell your story from the beginning.</p><p>Health improves when one clinician knows you, watches what works, and answers when something comes up. Northline Care makes that ongoing relationship possible by message, with phone, video and in person visits when they're needed.</p></div>
+</div></section>
+
+<section id="how"><div class="in">
+  <div class="sec-head"><div><div class="eyebrow">All through messages</div><h2 style="margin-top:12px">How does it work?</h2></div><p style="max-width:40ch;color:var(--muted)">Two steps. No waiting room, no phone tag, no booking unless your doctor needs to see you.</p></div>
+  <div class="steps">
+    <article class="step"><span class="n">1</span><h3>Our Care Navigator takes your history</h3><p>Describe what's going on in your own words. An AI assistant asks the follow up questions a resident would: when it started, what you've tried, your medications, any warning signs. Add photos or test results if they help.</p><p class="note">If you report an emergency symptom, it tells you to call 911 or 988 right away instead of waiting for a reply.</p></article>
+    <article class="step"><span class="n">2</span><h3>Your doctor reviews it and replies</h3><p>Your chosen doctor reads your original words and the summary, then writes your plan: advice, a prescription sent to your pharmacy, a lab requisition, or a video or in person visit. Most replies arrive the same day.</p><p class="note">The AI never diagnoses or prescribes. A licensed clinician signs every plan.</p></article>
+  </div>
+  <div style="margin-top:28px"><a class="btn primary" href="#ask">Try the Care Navigator →</a></div>
+</div></section>
+
+<section class="band" id="find"><div class="in">
+  <div class="sec-head"><div><div class="eyebrow">Find your doctor</div><h2 style="margin-top:12px;color:var(--band-fg)">Choose a doctor who stays with you</h2></div><a class="btn lime" href="#doctors">Browse all doctors →</a></div>
+  <div class="filters" id="filters" role="group" aria-label="Filter by specialty"></div>
+  <div class="rowscroll"><div class="docs" id="docs"></div></div>
+</div></section>
+
+<section><div class="in">
+  <div class="sec-head"><div><div class="eyebrow">Why the same doctor matters</div><h2 style="margin-top:12px">A personal doctor beats a virtual queue</h2></div></div>
+  <div class="compare">
+    <div class="col us"><h3>With your Northline doctor</h3><ul><li>The same doctor reads every message and remembers what you tried last time</li><li>Your plan is adjusted as results and progress come in</li><li>Prescriptions, labs and referrals continue without starting over</li><li>Video or in person visits with the same doctor when needed</li><li>One record shared with the specialists you add</li></ul></div>
+    <div class="col them"><h3>With a walk‑in virtual queue</h3><ul><li>Whoever is next on shift, a different person each time</li><li>Your history starts from zero on every call</li><li>Follow up is up to you, often at another clinic</li><li>Short, scheduled calls that interrupt your day</li><li>Notes scattered across services that don't talk to each other</li></ul></div>
+  </div>
+</div></section>
+
+<section class="band"><div class="in split">
+  <div><div class="eyebrow">Care that fits your day</div><h2 style="margin-top:12px;color:var(--band-fg)">Why call when you can text?</h2></div>
+  <div class="body"><p>Start a message on the bus, add a photo at lunch, read your doctor's reply after work. No hold music, no booking a day off to sit in a waiting room for a ten minute visit.</p><p>When a message isn't enough, your doctor books a phone, video or in person visit at a partner clinic, and it all stays in one conversation.</p></div>
+</div></section>
+
+<section><div class="in split">
+  <div class="timeline">
+    <div class="tl"><b>8:05 a.m.</b><span>You send a photo of a rash before work</span></div>
+    <div class="tl"><b>8:07 a.m.</b><span>The Care Navigator asks three follow up questions</span></div>
+    <div class="tl"><b>11:20 a.m.</b><span>Dr. Sandhu replies with a plan and sends a cream to your pharmacy</span></div>
+    <div class="tl"><b>Day 10</b><span>You send a progress photo; the plan is adjusted</span></div>
+  </div>
+  <div><div class="eyebrow">You pay for unbiased advice, or nothing at all</div><h2 style="margin-top:12px">The doctor is the care. We don't sell medication.</h2><div class="body" style="margin-top:18px"><p>Many online health services earn their money on the prescriptions they push. Northline Care doesn't own a pharmacy or sell drugs, so your doctor has no reason to recommend anything except what's right for you.</p><p>Care that OHIP covers is billed to OHIP by our partner clinics. You never pay a membership fee to reach your doctor.</p></div></div>
+</div></section>
+
+<section class="band"><div class="in">
+  <div class="sec-head"><div><div class="eyebrow">When something's wrong</div><h2 style="margin-top:12px;color:var(--band-fg)">You've had three options. Now you have four.</h2></div><p style="max-width:42ch">Three were designed around the system's schedule. One was designed around you.</p></div>
+  <div class="doors">
+    <div class="door"><span class="k">Door 1</span><h3>The clinic visit</h3><p>Weeks for an appointment, time off work, a waiting room, and a short visit that ends before your questions do.</p></div>
+    <div class="door"><span class="k">Door 2</span><h3>The virtual queue</h3><p>A call with whoever is on shift. Quick, but they don't know you, and follow up is your problem.</p></div>
+    <div class="door"><span class="k">Door 3</span><h3>The chatbot</h3><p>Instant answers, but it can't examine you, prescribe, order tests, or take responsibility for your care.</p></div>
+    <div class="door us"><span class="k">Door 4</span><h3>Northline Care</h3><p>Your own licensed doctor by message, with a plan they sign, follow up they own, and visits when needed.</p><a class="btn lime sm" style="margin-top:6px;align-self:flex-start" href="#start">Open door 4 →</a></div>
+  </div>
+</div></section>
+
+<section class="band" id="cost" style="padding-top:0"><div class="in">
+  <div class="sec-head"><div><div class="eyebrow">What it costs</div><h2 style="margin-top:12px;color:var(--band-fg)">Free for insured care. Clear prices for the rest.</h2></div></div>
+  <div class="price">
+    <div class="pcard feat"><h3>Ontario residents</h3><div class="amt">$0</div><p>Messages, calls, video and in person care with your doctor, billed to OHIP by our partner clinics.</p><ul><li>No membership or access fee</li><li>Prescriptions, labs and referrals included</li><li>Add family members to one account</li></ul><a class="btn primary" href="#start" style="background:#183d35;color:#f6f5ed">Get started</a></div>
+    <div class="pcard"><h3>Services OHIP doesn't cover</h3><div class="amt" style="color:var(--band-fg)">From $25</div><ul><li>Sick notes for work or school: $25</li><li>Insurance and employment forms: $40 to $90</li><li>Travel health consultations: $60</li><li>Often claimable through workplace benefits</li></ul><a class="btn ghost" href="#coverage">See all prices</a></div>
+    <div class="pcard"><h3>Visitors and people between plans</h3><div class="amt" style="color:var(--band-fg)">$65</div><ul><li>Per consult for people without Ontario coverage</li><li>Includes a written plan and prescriptions</li><li>Receipts for travel or private insurance</li></ul><a class="btn ghost" href="#start">Check eligibility</a></div>
+  </div>
+  <p style="margin-top:18px;font-size:.84rem">Pilot prices are illustrative and subject to legal review of Ontario's rules on uninsured services.</p>
+</div></section>
+
+<section id="clinicians"><div class="in split">
+  <div><div class="eyebrow">For doctors and nurse practitioners</div><h2 style="margin-top:12px">Practise the way you wish medicine worked</h2><div class="body" style="margin-top:18px"><p>Build a panel of patients you follow over time, answer from anywhere, and let the Care Navigator collect the history before you open the chart. You review, edit and sign; nothing reaches a patient without you.</p><p>Insured work is billed to OHIP through your partner clinic's EMR. You set your hours, your panel size and when you're accepting new patients.</p></div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:26px"><a class="btn primary" href="#clinician">See the clinician workspace →</a><a class="btn ghost" href="#admin">For clinic partners</a></div></div>
+  <div class="timeline">
+    <div class="tl"><b>Queue</b><span>Requests arrive triaged, with the patient's own words and an AI summary to verify</span></div>
+    <div class="tl"><b>Chart</b><span>History, medications, allergies, photos and results in one view</span></div>
+    <div class="tl"><b>Act</b><span>Prescribe, order labs, refer, or offer a video visit from the same screen</span></div>
+    <div class="tl"><b>Sign</b><span>One signature sends the plan to the patient and the encounter to billing</span></div>
+  </div>
+</div></section>
+
+<section id="faq" style="padding-top:0"><div class="in">
+  <div class="sec-head"><div><div class="eyebrow">FAQ</div><h2 style="margin-top:12px">Questions, answered</h2></div></div>
+  <div class="faq">
+    <details><summary>Is this real healthcare?</summary><p>Northline Care is designed so that every plan comes from a licensed Ontario clinician working with a partner clinic, under the same standards as an office visit. It is currently a prototype: no clinical services are offered yet, and the doctors shown are fictional.</p></details>
+    <details><summary>Which doctors will be on Northline Care?</summary><p>Family physicians and nurse practitioners first, with specialists such as dermatology, endocrinology, mental health and pediatrics added as the pilot grows. Every clinician's registration is checked with their regulatory college before they can see patients.</p></details>
+    <details><summary>Where is it available?</summary><p>The first launch is planned for Ontario residents with a valid health card. Other provinces will follow once licensing and coverage rules are reviewed for each one. You can join the waitlist for your province today.</p></details>
+    <details><summary>How much does it cost?</summary><p>Care that OHIP covers is free to you, with no membership fee. Services no provincial plan covers, like sick notes and travel consultations, have a clear price shown before you confirm.</p></details>
+    <details><summary>How fast will my doctor reply?</summary><p>Our target is a reply within the same day for most requests, and each doctor's usual response time is shown on their profile. Northline Care isn't for emergencies: call 911, or call or text 988 for a mental health crisis.</p></details>
+    <details><summary>What does the AI do, exactly?</summary><p>The Care Navigator asks follow up questions and drafts a summary for your doctor. It doesn't diagnose, prescribe or reply on your doctor's behalf, and your doctor always sees your original words. You can turn it off in your privacy settings.</p></details>
+    <details><summary>How is my information protected?</summary><p>Health information will be stored in Canada, encrypted, and handled under Ontario's Personal Health Information Protection Act. You can see who has viewed your record and change what you share at any time.</p></details>
+  </div>
+</div></section>
+
+<section class="band final"><div class="in">
+  <h2 style="color:var(--band-fg)">Meet your doctor.</h2>
+  <p style="max-width:46ch;margin:0 auto;font-size:1.1rem">Set up takes about three minutes: confirm your province, add your health card, and choose the doctor who'll get to know you.</p>
+  <div class="ctas"><a class="btn lime" href="#start">Enter Northline Care →</a><a class="btn ghost" href="#doctors">Browse doctors</a></div>
+</div></section>
+
+<footer><div class="in">
+  <div class="fr"><a class="logo" href="#top">northline<span>✳</span>care</a><div class="fl"><a href="#how">How it works</a><a href="#find">Doctors</a><a href="#cost">Pricing</a><a href="#clinicians">Clinicians</a><a href="#faq">FAQ</a></div></div>
+  <p>Northline Care is a business concept and interactive prototype. It does not provide medical advice or services. In an emergency call 911. For a mental health crisis call or text 988.</p>
+  <p>© 2026 Northline Care · Toronto, Ontario</p>
+</div></footer>
+
+
+</div>
+<div id="app" hidden>
+
+
+<div class="strip"><b>Northline Care prototype.</b> Clinicians, patients and records shown are fictional. Nothing you enter is sent or stored. In an emergency call 911.</div>
+
+<header class="top">
+  <a class="logo" href="#home" aria-label="Northline Care home">northline<span class="star">✳</span>care</a>
+  <div class="roles" role="group" aria-label="Switch workspace">
+    <button data-role="patient">Patient</button>
+    <button data-role="clinician">Clinician</button>
+    <button data-role="admin">Clinic admin</button>
+  </div>
+  <a class="btn ghost sm" href="#top" id="toSite">← Northline Care site</a>
+  <div class="spacer"></div>
+  <button class="iconbtn" id="bell" aria-label="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span class="dot" id="bellN" hidden>0</span></button>
+  <div class="who" id="who"></div>
+</header>
+
+<div class="shell">
+  <nav class="rail" id="rail" aria-label="Sections"></nav>
+  <main id="main"><div class="wrap" id="view"></div></main>
+</div>
+<div id="modalRoot"></div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+
+</div>
+<script>
+
+(function(){
+const APP="#doctors";
+const hues=["#d7ef9e","#f2d6a2","#c9e2ef","#f1c7bd","#dcd3f0","#cfe8d4","#f3e3a6","#e6cfe6","#bfe0d6","#f0d9c4"];
+const D=[
+ ["Dr. Amara Okafor","Family medicine","Toronto","English, Yoruba",["Chronic conditions","Newcomer health"],1],
+ ["Dr. Luc Tremblay","Family medicine","Ottawa","English, French",["Francophone care","Sleep"],1],
+ ["Dr. Priya Sandhu","Dermatology","Brampton","English, Punjabi, Hindi",["Eczema","Acne"],1],
+ ["Dr. Wei Zhang","Endocrinology","Markham","English, Mandarin",["Diabetes","Thyroid"],1],
+ ["Dr. Hannah Cohen","Mental health","Toronto","English",["Anxiety","Adult ADHD"],0],
+ ["Dr. Joseph Reyes","Sexual health","Mississauga","English, Tagalog",["STI testing","PrEP"],1],
+ ["Dr. Nadia Haddad","Women's health","London","English, Arabic, French",["Menopause","Pelvic health"],1],
+ ["Dr. Marcus Bell","Sports medicine","Hamilton","English",["Joint pain","Running injuries"],1],
+ ["Dr. Elena Ruiz","Pediatrics","Toronto","English, Spanish",["Newborns","Fevers and rashes"],1],
+ ["NP Kiran Patel","Family medicine","Waterloo","English, Gujarati",["Renewals","Minor illness"],1]
+];
+const specs=["All",...new Set(D.map(d=>d[1]))];
+let cur="All";
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ini=n=>n.replace(/^(Dr\.|NP)\s+/,"").split(" ").map(x=>x[0]).join("");
+function draw(){
+  document.getElementById("filters").innerHTML=specs.map(s=>`<button class="chip" aria-pressed="${s===cur}" data-s="${esc(s)}">${esc(s)}</button>`).join("");
+  document.getElementById("docs").innerHTML=D.map((d,i)=>[d,i]).filter(([d])=>cur==="All"||d[1]===cur).map(([d,i])=>`<article class="dcard"><span class="av" style="background:${hues[i]}">${ini(d[0])}</span><h3>${esc(d[0])}</h3><div class="meta">${esc(d[1])} · ${esc(d[2])}<br>Speaks ${esc(d[3])}</div><div>${d[4].map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div><div class="acc ${d[5]?"":"w"}">${d[5]?"● Accepting new patients":"● Waitlist open"}</div><a class="btn lime sm" href="${APP}">${d[5]?"Choose":"Join waitlist"}</a></article>`).join("");
+}
+document.getElementById("filters").addEventListener("click",e=>{const b=e.target.closest("[data-s]");if(!b)return;cur=b.dataset.s;draw()});
+draw();
+})();
+
+</script>
+<script>
+
+(function(){
+"use strict";
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const hues=["#d7ef9e","#f2d6a2","#c9e2ef","#f1c7bd","#dcd3f0","#cfe8d4","#f3e3a6","#e6cfe6","#bfe0d6","#f0d9c4"];
+const initials=n=>n.replace(/^(Dr\.|NP)\s+/,"").split(" ").map(x=>x[0]).slice(0,2).join("");
+const avatar=(n,i,cls="")=>`<span class="av ${cls}" style="background:${hues[i%hues.length]}" aria-hidden="true">${esc(initials(n))}</span>`;
+const now=()=>new Date().toLocaleTimeString("en-CA",{hour:"numeric",minute:"2-digit"});
+
+/* ---------------- data ---------------- */
+const doctors=[
+ {id:"d1",name:"Dr. Amara Okafor",role:"Family physician",spec:"Family medicine",langs:["English","Yoruba"],resp:"Usually within 3 hours",accepting:true,years:12,city:"Toronto",focus:["Chronic conditions","Preventive care","Newcomer health"],bio:"Amara looks after adults and families across the GTA, with a focus on blood pressure, diabetes and helping newcomers find their way into Ontario's health system."},
+ {id:"d2",name:"Dr. Luc Tremblay",role:"Family physician",spec:"Family medicine",langs:["English","French"],resp:"Usually within 4 hours",accepting:true,years:9,city:"Ottawa",focus:["Francophone care","Men's health","Sleep"],bio:"Luc practises bilingual family medicine in Ottawa and follows patients over time by message, phone and video."},
+ {id:"d3",name:"Dr. Priya Sandhu",role:"Dermatologist",spec:"Dermatology",langs:["English","Punjabi","Hindi"],resp:"Usually within 1 day",accepting:true,years:8,city:"Brampton",focus:["Eczema","Acne","Skin checks"],bio:"Priya reviews skin concerns from photos, then follows your progress so treatment can be adjusted without a new wait."},
+ {id:"d4",name:"Dr. Wei Zhang",role:"Endocrinologist",spec:"Endocrinology",langs:["English","Mandarin"],resp:"Usually within 1 day",accepting:true,years:15,city:"Markham",focus:["Diabetes","Thyroid","PCOS"],bio:"Wei manages diabetes and thyroid conditions with regular check ins on readings and lab results between visits."},
+ {id:"d5",name:"Dr. Hannah Cohen",role:"Psychiatrist",spec:"Mental health",langs:["English"],resp:"Usually within 1 day",accepting:false,years:11,city:"Toronto",focus:["Anxiety","Depression","ADHD in adults"],bio:"Hannah offers consultation and shared care with family physicians. Currently waitlisting new patients."},
+ {id:"d6",name:"Dr. Joseph Reyes",role:"Family physician",spec:"Sexual and reproductive health",langs:["English","Tagalog"],resp:"Usually within 3 hours",accepting:true,years:7,city:"Mississauga",focus:["STI testing","Contraception","PrEP"],bio:"Joseph provides confidential sexual health care, including lab requisitions you can take to a local collection site."},
+ {id:"d7",name:"Dr. Nadia Haddad",role:"Obstetrician gynecologist",spec:"Women's health",langs:["English","Arabic","French"],resp:"Usually within 1 day",accepting:true,years:14,city:"London",focus:["Menopause","Fertility questions","Pelvic health"],bio:"Nadia supports women through menopause, fertility questions and gynecological concerns, with in person visits arranged when needed."},
+ {id:"d8",name:"Dr. Marcus Bell",role:"Sport and exercise physician",spec:"Sports medicine",langs:["English"],resp:"Usually within 6 hours",accepting:true,years:10,city:"Hamilton",focus:["Joint pain","Running injuries","Return to activity"],bio:"Marcus helps active people recover from injuries with staged plans, exercise videos and imaging referrals when they make sense."},
+ {id:"d9",name:"Dr. Elena Ruiz",role:"Pediatrician",spec:"Pediatrics",langs:["English","Spanish"],resp:"Usually within 4 hours",accepting:true,years:13,city:"Toronto",focus:["Newborn questions","Rashes and fevers","Growth"],bio:"Elena cares for children and answers the questions parents have between well child visits."},
+ {id:"d10",name:"NP Kiran Patel",role:"Nurse practitioner",spec:"Family medicine",langs:["English","Gujarati"],resp:"Usually within 2 hours",accepting:true,years:6,city:"Waterloo",focus:["Minor illness","Prescription renewals","Forms"],bio:"Kiran handles common illnesses, renewals and forms quickly, and loops in a physician whenever more is needed."}
+];
+const docById=id=>doctors.find(d=>d.id===id);
+const docIdx=id=>doctors.findIndex(d=>d.id===id);
+
+const S={
+ role:"patient",
+ onboarded:false,
+ myDoctor:"d1",
+ patient:{name:"Maya Chen",dob:"1988-04-12",city:"Toronto, ON",ohip:"•••• ••• 482 ‑ KT",allergies:"Penicillin (rash)",meds:"Ramipril 5 mg once daily"},
+ notifications:[{t:"Dr. Okafor replied about your blood pressure readings",v:"messages",unread:true},{t:"Your lab results are ready: lipid panel",v:"labs",unread:true}],
+ threads:[
+  {id:"t1",doc:"d1",subject:"Blood pressure follow up",status:"Answered",msgs:[
+   {from:"me",text:"Hi Dr. Okafor, my home readings this week averaged 136 over 86. Should I change anything?",when:"Mon 8:12 a.m."},
+   {from:"them",text:"Thanks Maya. That is a little above where we want you. Keep the ramipril at 5 mg, cut back on salty takeout this week, and send me another week of readings. I've added it to your care plan.",when:"Mon 11:40 a.m."},
+   {from:"plan",text:"Care plan updated: 7 more days of home BP readings, reduce sodium, review on Nov 3.",when:"Mon 11:41 a.m."}
+  ]},
+  {id:"t2",doc:"d3",subject:"Eczema flare on hands",status:"Waiting on you",msgs:[
+   {from:"me",text:"The rash on my hands is back since it got cold. Photos attached.",when:"Oct 19",att:["hands_1.jpg","hands_2.jpg"]},
+   {from:"them",text:"This looks like a hand eczema flare. Use the mometasone cream twice daily for 2 weeks, moisturise after every hand wash, and send a photo on day 10 so I can check progress.",when:"Oct 20"}
+  ]}
+ ],
+ activeThread:"t1",
+ plan:{
+  goals:[{t:"Home blood pressure under 135/85",p:62},{t:"Hand eczema clear by mid November",p:40},{t:"Annual bloodwork completed",p:100}],
+  tasks:[
+   {id:"k1",t:"Log home BP readings morning and evening",due:"Daily until Nov 3",done:false,by:"d1"},
+   {id:"k2",t:"Send day 10 photo of hands",due:"Oct 30",done:false,by:"d3"},
+   {id:"k3",t:"Reduce takeout to twice a week",due:"Ongoing",done:false,by:"d1"},
+   {id:"k4",t:"Fasting lipid panel at a collection site",due:"Completed Oct 15",done:true,by:"d1"}
+  ],
+  followups:[{t:"BP review with Dr. Okafor",when:"Nov 3",how:"Message"},{t:"Eczema check with Dr. Sandhu",when:"Oct 30",how:"Photo review"},{t:"Annual physical",when:"Jan 2027",how:"In person, clinic partner site"}]
+ },
+ rx:[
+  {id:"r1",drug:"Ramipril 5 mg capsule",sig:"1 capsule by mouth once daily",doc:"d1",refills:1,last:"Sep 28",status:"Active",pharmacy:"Queen St. Community Pharmacy"},
+  {id:"r2",drug:"Mometasone 0.1% cream",sig:"Apply thin layer twice daily to hands for 14 days",doc:"d3",refills:0,last:"Oct 20",status:"Active",pharmacy:"Queen St. Community Pharmacy"},
+  {id:"r3",drug:"Cetirizine 10 mg tablet",sig:"1 tablet daily as needed in spring",doc:"d1",refills:0,last:"May 4",status:"Expired",pharmacy:"Queen St. Community Pharmacy"}
+ ],
+ labs:[
+  {test:"LDL cholesterol",val:"3.1",unit:"mmol/L",ref:"< 3.5",flag:"ok",date:"Oct 15",trend:[3.9,3.6,3.4,3.1]},
+  {test:"HDL cholesterol",val:"1.4",unit:"mmol/L",ref:"> 1.3",flag:"ok",date:"Oct 15",trend:[1.2,1.3,1.3,1.4]},
+  {test:"Triglycerides",val:"1.9",unit:"mmol/L",ref:"< 1.7",flag:"high",date:"Oct 15",trend:[1.6,1.8,2.0,1.9]},
+  {test:"HbA1c",val:"5.8",unit:"%",ref:"< 6.0",flag:"ok",date:"Oct 15",trend:[5.6,5.7,5.9,5.8]},
+  {test:"Creatinine",val:"68",unit:"µmol/L",ref:"50 to 100",flag:"ok",date:"Oct 15",trend:[70,66,71,68]},
+  {test:"Potassium",val:"4.6",unit:"mmol/L",ref:"3.5 to 5.0",flag:"ok",date:"Oct 15",trend:[4.3,4.4,4.5,4.6]}
+ ],
+ docs:[
+  {id:"x1",type:"Care plan summary",title:"Hypertension plan, October",from:"d1",date:"Oct 20"},
+  {id:"x2",type:"Lab requisition",title:"Fasting lipid panel and HbA1c",from:"d1",date:"Oct 6"},
+  {id:"x3",type:"Work note",title:"Absence note, Oct 9 to 10",from:"d10",date:"Oct 10"},
+  {id:"x4",type:"Referral letter",title:"Referral to physiotherapy, right knee",from:"d8",date:"Aug 22"}
+ ],
+ visits:[
+  {id:"v1",what:"Video check in: blood pressure",doc:"d1",when:"Mon Nov 3, 9:30 a.m.",mode:"Video",status:"Booked"},
+  {id:"v2",what:"Annual physical",doc:"d1",when:"Jan 2027 (to be scheduled)",mode:"In person",status:"Requested"}
+ ],
+ family:[{name:"Leo Chen",rel:"Son",age:"6",doc:"d9"}],
+ consents:{share_ohp:true,ai_intake:true,research:false,sms:true,caregiver:false},
+ audit:[
+  {who:"Dr. Amara Okafor",what:"Viewed chart and sent message",when:"Oct 20, 11:40 a.m."},
+  {who:"Dr. Priya Sandhu",what:"Viewed 2 photos",when:"Oct 20, 9:02 a.m."},
+  {who:"Care Navigator (AI)",what:"Drafted intake summary for review",when:"Oct 19, 7:55 p.m."},
+  {who:"Maya Chen",what:"Signed in from Chrome on macOS",when:"Oct 19, 7:50 p.m."}
+ ],
+ receipts:[{what:"Work note (uninsured service)",amt:"$25.00",date:"Oct 10",method:"Visa ending 4417"}],
+ /* clinician */
+ queue:[
+  {id:"c2",pt:"Daniel Osei",age:58,pri:"routine",due:"Due in 6 h",reason:"Prescription renewal: amlodipine",summary:"Stable on amlodipine 5 mg for 2 years. Home BP 128/80 average. No side effects reported. Requests 90 day renewal.",hx:"Hypertension (2019)",meds:"Amlodipine 5 mg daily",all:"None known",flags:[]},
+  {id:"c3",pt:"Sofia Marino",age:34,pri:"soon",due:"Due in 2 h",reason:"Spreading rash on forearm, 5 days",summary:"Red, warm patch on left forearm about 6 cm, enlarging since a scratch from her cat 5 days ago. Low grade fever 37.9°C last night. No trouble breathing. 2 photos attached.",hx:"No chronic conditions",meds:"None",all:"Sulfa (hives)",flags:["Possible cellulitis","Fever"],photos:2},
+  {id:"c4",pt:"Liam Gauthier",age:27,pri:"soon",due:"Due in 3 h",reason:"Low mood and poor sleep, 6 weeks",summary:"Low mood, poor sleep and loss of interest for about 6 weeks after a job loss. PHQ‑9 score 14 (moderate). Denies thoughts of self harm on screening. Would like to talk about options.",hx:"Anxiety (2021)",meds:"None",all:"None known",flags:["PHQ‑9 moderate"]},
+  {id:"c5",pt:"Aisha Rahman",age:41,pri:"routine",due:"Due in 5 h",reason:"Burning with urination, 2 days",summary:"Dysuria and frequency for 2 days. No fever, flank pain, or vaginal discharge. Not pregnant. Last UTI 2 years ago.",hx:"None relevant",meds:"None",all:"None known",flags:[]}
+ ],
+ activeCase:"c3",
+ done:[{pt:"Grace Liu",reason:"Travel vaccine questions",at:"8:42 a.m."},{pt:"Omar Farouk",reason:"Asthma inhaler renewal",at:"8:10 a.m."}],
+ plans:{},
+ billing:[
+  {pt:"Grace Liu",svc:"Virtual care, existing patient",payer:"OHIP",status:"Submitted via EMR",amt:"Fee schedule"},
+  {pt:"Omar Farouk",svc:"Virtual care, existing patient",payer:"OHIP",status:"Submitted via EMR",amt:"Fee schedule"},
+  {pt:"Ben Carter (BC resident)",svc:"Out of province virtual consult",payer:"Patient",status:"Paid",amt:"$65.00"},
+  {pt:"Maya Chen",svc:"Work note",payer:"Patient",status:"Paid",amt:"$25.00"},
+  {pt:"Rita Gomez",svc:"Pre‑employment form",payer:"Employer plan",status:"Invoiced",amt:"$40.00"}
+ ],
+ /* admin */
+ team:doctors.map((d,i)=>({id:d.id,licence:i===4?"Renewal due Nov 30":"Verified",college:d.role==="Nurse practitioner"?"CNO":"CPSO",load:[78,64,88,52,100,47,70,58,81,66][i],accepting:d.accepting,median:["2.4 h","3.1 h","19 h","21 h","22 h","2.8 h","17 h","5.2 h","3.6 h","1.6 h"][i]})),
+ launch:[
+  {area:"Legal",t:"Corporate structure and clinic partner agreements",owner:"Founder",st:"In progress"},
+  {area:"Legal",t:"Health lawyer review of fees, block fees and uninsured services",owner:"Counsel",st:"Not started"},
+  {area:"Privacy",t:"Privacy impact assessment under PHIPA",owner:"Privacy officer",st:"In progress"},
+  {area:"Privacy",t:"Canadian data residency for all clinical data",owner:"CTO",st:"Done"},
+  {area:"Privacy",t:"Breach response plan and IPC reporting process",owner:"Privacy officer",st:"Not started"},
+  {area:"Clinical",t:"Medical director appointed",owner:"Founder",st:"In progress"},
+  {area:"Clinical",t:"Virtual care standard and escalation protocols aligned with CPSO",owner:"Medical director",st:"Not started"},
+  {area:"Clinical",t:"AI intake validation study with clinician sign off",owner:"Medical director",st:"Not started"},
+  {area:"Product",t:"Production sign in with MFA and identity verification",owner:"CTO",st:"In progress"},
+  {area:"Product",t:"Clinical data store, encryption and audit log",owner:"CTO",st:"In progress"},
+  {area:"Integrations",t:"EMR integration with first clinic partner",owner:"CTO",st:"Not started"},
+  {area:"Integrations",t:"E‑prescribing and pharmacy routing",owner:"CTO",st:"Not started"},
+  {area:"Integrations",t:"Lab results feed (OLIS) and hospital reports (HRM)",owner:"CTO",st:"Not started"},
+  {area:"Commercial",t:"First 2 clinic partners signed for Ontario pilot",owner:"Founder",st:"Not started"},
+  {area:"Commercial",t:"Professional liability coverage confirmed for clinicians",owner:"Founder",st:"Not started"}
+ ],
+ integrations:[
+  {n:"Clinic EMR",d:"Two way sync of charts, encounters and billing with the partner clinic's EMR",st:"Not connected"},
+  {n:"E‑prescribing",d:"Send prescriptions securely to the patient's chosen pharmacy",st:"Not connected"},
+  {n:"OLIS lab results",d:"Ontario Laboratories Information System feed into the patient chart",st:"Not connected"},
+  {n:"Health Report Manager",d:"Hospital discharge and imaging reports",st:"Not connected"},
+  {n:"Identity verification",d:"Health card and photo ID check at sign up",st:"Sandbox"},
+  {n:"Payments",d:"Card payments for uninsured services and receipts",st:"Sandbox"},
+  {n:"Video visits",d:"Encrypted video hosted in Canada",st:"Sandbox"},
+  {n:"SMS and email",d:"Appointment reminders and new message alerts, no health details",st:"Sandbox"}
+ ]
+};
+
+/* ---------------- routing ---------------- */
+const NAV={
+ patient:[
+  {group:"Care"},
+  {v:"home",l:"Home"},{v:"messages",l:"Messages",n:()=>S.threads.filter(t=>t.status==="Waiting on you").length},{v:"doctors",l:"Find a doctor"},{v:"plan",l:"Care plan"},{v:"visits",l:"Appointments"},
+  {group:"Health record"},
+  {v:"rx",l:"Prescriptions"},{v:"labs",l:"Lab results"},{v:"docs",l:"Documents"},
+  {group:"Account"},
+  {v:"family",l:"Family"},{v:"coverage",l:"Coverage and payments"},{v:"privacy",l:"Privacy and consent"}
+ ],
+ clinician:[{group:"Clinical work"},{v:"queue",l:"Case queue",n:()=>S.queue.length},{v:"panel",l:"My patients"},{v:"schedule",l:"Today's schedule"},{v:"billing",l:"Billing"}],
+ admin:[{group:"Operations"},{v:"overview",l:"Overview"},{v:"team",l:"Clinicians"},{v:"integrations",l:"Integrations"},{group:"Readiness"},{v:"compliance",l:"Privacy and compliance"},{v:"launch",l:"Launch tracker"}]
+};
+const roleOf=v=>Object.keys(NAV).find(r=>NAV[r].some(x=>x.v===v));
+let view="home";
+const LANDING=["","top","how","find","cost","clinicians","faq"];
+function showLanding(h){document.getElementById("landing").hidden=false;document.getElementById("app").hidden=true;document.title="Northline Care";
+  const el=h&&h!=="top"?document.getElementById(h):null;requestAnimationFrame(()=>{if(el)el.scrollIntoView({behavior:"smooth",block:"start"});else window.scrollTo({top:0})})}
+function route(){
+  let h=(location.hash||"").replace("#","");
+  if(LANDING.includes(h)){showLanding(h);return}
+  document.getElementById("landing").hidden=true;document.getElementById("app").hidden=false;
+  if(h==="start"){openOnboarding();h="home"}
+  if(h==="ask"){view="home";S.role="patient";render();openNavigator();return}
+  if(h==="clinician"){h="queue"}
+  if(h==="admin"){h="overview"}
+  const r=roleOf(h);
+  if(r){S.role=r;view=h}
+  else{view=NAV[S.role].find(x=>x.v).v}
+  render();
+}
+function go(v){if(location.hash==="#"+v){route()}else{location.hash=v}}
+window.addEventListener("hashchange",route);
+
+/* ---------------- shell render ---------------- */
+function renderShell(){
+  document.querySelectorAll("[data-role]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.role===S.role)));
+  const who={patient:[S.patient.name,"Patient, Toronto",0],clinician:["Dr. Amara Okafor","Family physician",0],admin:["Northline Ops","Clinic partner: Queen West Health",3]}[S.role];
+  $("#who").innerHTML=`${avatar(who[0],who[2])}<div class="meta"><div style="font-weight:600">${esc(who[0])}</div><div class="muted" style="font-size:.78rem">${esc(who[1])}</div></div>`;
+  let html="";
+  if(S.role==="patient")html+=`<div class="cta"><button class="btn primary" data-act="navigator" style="width:100%">Ask a doctor</button></div>`;
+  NAV[S.role].forEach(x=>{
+    if(x.group){html+=`<div class="group eyebrow">${x.group}</div>`;return}
+    const n=x.n?x.n():0;
+    html+=`<a href="#${x.v}" ${x.v===view?'aria-current="page"':""}>${x.l}${n?`<span class="n">${n}</span>`:""}</a>`;
+  });
+  $("#rail").innerHTML=html;
+  const unread=S.notifications.filter(n=>n.unread).length;
+  $("#bellN").hidden=!unread;$("#bellN").textContent=unread;
+}
+function render(){renderShell();const fn=V[view]||V.home;$("#view").innerHTML=fn();after[view]&&after[view]();window.scrollTo({top:0})}
+
+/* ---------------- toast & modal ---------------- */
+function toast(t){const d=document.createElement("div");d.className="toast";d.textContent=t;$("#toasts").appendChild(d);setTimeout(()=>d.remove(),3800)}
+function modal(html,cls=""){$("#modalRoot").innerHTML=`<div class="scrim" data-act="scrim"><div class="modal ${cls}" role="dialog" aria-modal="true">${html}</div></div>`;const f=$("#modalRoot .modal");const i=f.querySelector("input,select,textarea,button:not(.x)");i&&i.focus()}
+function closeModal(){$("#modalRoot").innerHTML=""}
+const mhead=(eb,t)=>`<div class="mhead"><div class="stack" style="gap:4px">${eb?`<div class="eyebrow">${eb}</div>`:""}<h2>${t}</h2></div><button class="x" data-act="close" aria-label="Close">×</button></div>`;
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+
+/* ---------------- views ---------------- */
+const V={},after={};
+const pillFor=s=>({"Answered":"ok","Waiting on you":"warn","With your doctor":"hi","Active":"ok","Expired":"bad","Renewal requested":"warn","Booked":"ok","Requested":"warn","Done":"ok","In progress":"warn","Not started":"bad","Verified":"ok","Sandbox":"warn","Not connected":"bad","Connected":"ok","Paid":"ok","Invoiced":"warn","Submitted via EMR":"hi"}[s]||"");
+
+V.home=()=>{
+  const d=docById(S.myDoctor);const t=S.threads[0];
+  const open=S.plan.tasks.filter(k=>!k.done);
+  return `
+  ${!S.onboarded?`<div class="notice info"><span>👋</span><div class="row between" style="flex:1"><span>Finish setting up your account to message a doctor: province check, health card and consent take about 3 minutes.</span><button class="btn primary sm" data-act="onboard">Finish setup</button></div></div>`:""}
+  <section class="hero">
+    <div class="stack" style="gap:14px">
+      <div class="eyebrow" style="color:var(--lime)">Good evening, Maya</div>
+      <h1>What can your care team help with today?</h1>
+      <p>Describe what's going on in your own words. Our Care Navigator asks the right follow up questions, then ${esc(d.name)} reviews everything and replies with a plan, usually the same day.</p>
+      <div class="row"><button class="btn lime" data-act="navigator">Ask ${esc(d.name.replace("Dr. ","Dr. "))}</button><button class="btn ghost" style="color:var(--cream);border-color:rgba(246,245,237,.35)" data-act="go" data-v="doctors">Find a specialist</button></div>
+    </div>
+    <div class="mini">
+      <div class="row">${avatar(d.name,docIdx(d.id))}<div><div style="font-weight:700">${esc(d.name)}</div><div style="font-size:.84rem;color:#cfdccb">Your doctor · ${esc(d.resp.toLowerCase())}</div></div></div>
+      <div style="font-size:.88rem;color:#e6ecd9">“${esc(t.msgs[1].text.slice(0,120))}…”</div>
+      <button class="btn sm lime" data-act="openThread" data-id="${t.id}" style="align-self:flex-start">Open conversation</button>
+    </div>
+  </section>
+  <div class="grid g4">
+    <button class="card stack" style="text-align:left;cursor:pointer" data-act="go" data-v="messages"><span class="eyebrow">Messages</span><span class="stat"><span class="v">${S.threads.length}</span></span><span class="muted">${S.threads.filter(t=>t.status==="Waiting on you").length} waiting on you</span></button>
+    <button class="card stack" style="text-align:left;cursor:pointer" data-act="go" data-v="plan"><span class="eyebrow">Care plan tasks</span><span class="stat"><span class="v">${open.length}</span></span><span class="muted">open this week</span></button>
+    <button class="card stack" style="text-align:left;cursor:pointer" data-act="go" data-v="rx"><span class="eyebrow">Prescriptions</span><span class="stat"><span class="v">${S.rx.filter(r=>r.status!=="Expired").length}</span></span><span class="muted">active, 1 renewal due soon</span></button>
+    <button class="card stack" style="text-align:left;cursor:pointer" data-act="go" data-v="labs"><span class="eyebrow">New results</span><span class="stat"><span class="v">${S.labs.length}</span></span><span class="muted">from Oct 15, 1 flagged</span></button>
+  </div>
+  <div class="grid g2">
+    <div class="card stack">
+      <div class="row between"><h3>Your next steps</h3><a href="#plan" class="muted" style="font-size:.88rem">Full care plan</a></div>
+      <div class="list">${open.map(k=>taskRow(k)).join("")}</div>
+    </div>
+    <div class="card stack">
+      <div class="row between"><h3>Coming up</h3><a href="#visits" class="muted" style="font-size:.88rem">Appointments</a></div>
+      <div class="list">${S.plan.followups.map(f=>`<div class="row between"><div><div style="font-weight:600">${esc(f.t)}</div><div class="muted" style="font-size:.86rem">${esc(f.how)}</div></div><span class="pill plain">${esc(f.when)}</span></div>`).join("")}</div>
+    </div>
+  </div>
+  <div class="card row between"><div class="stack" style="gap:4px"><h3>Something urgent?</h3><p class="muted">Northline Care is for non‑emergency care. For chest pain, trouble breathing or signs of stroke, call 911. For a mental health crisis, call or text 988.</p></div></div>`;
+};
+const taskRow=k=>`<label class="check" style="align-items:center"><input type="checkbox" data-act="task" data-id="${k.id}" ${k.done?"checked":""}><span style="flex:1"><span style="font-weight:600;${k.done?"text-decoration:line-through;opacity:.6":""}">${esc(k.t)}</span><br><span class="muted" style="font-size:.84rem">${esc(k.due)} · from ${esc(docById(k.by).name)}</span></span></label>`;
+
+/* doctors */
+let dq={q:"",spec:"",lang:"",acc:false};
+V.doctors=()=>{
+  const specs=[...new Set(doctors.map(d=>d.spec))].sort();
+  const langs=[...new Set(doctors.flatMap(d=>d.langs))].sort();
+  return `<div class="head"><div class="stack" style="gap:6px"><div class="eyebrow">Ontario pilot · ${doctors.length} clinicians</div><h1>Find a doctor who stays with you</h1><p class="muted">Choose one personal doctor and add specialists as you need them. Every clinician is licensed in Ontario and follows your care over time instead of starting from scratch each visit.</p></div></div>
+  <div class="card row" style="gap:10px">
+    <input type="search" id="dq" placeholder="Search by name, condition or language" value="${esc(dq.q)}" style="flex:2;min-width:200px" aria-label="Search clinicians">
+    <select id="dspec" style="flex:1;min-width:160px" aria-label="Specialty"><option value="">All specialties</option>${specs.map(s=>`<option ${dq.spec===s?"selected":""}>${s}</option>`).join("")}</select>
+    <select id="dlang" style="flex:1;min-width:140px" aria-label="Language"><option value="">Any language</option>${langs.map(s=>`<option ${dq.lang===s?"selected":""}>${s}</option>`).join("")}</select>
+    <label class="check" style="align-items:center"><input type="checkbox" id="dacc" ${dq.acc?"checked":""}>Accepting new patients</label>
+  </div>
+  <div class="grid g3" id="docGrid"></div>`;
+};
+function docCards(){
+  const q=dq.q.toLowerCase();
+  const list=doctors.filter(d=>(!dq.spec||d.spec===dq.spec)&&(!dq.lang||d.langs.includes(dq.lang))&&(!dq.acc||d.accepting)&&(!q||[d.name,d.spec,d.role,d.city,...d.langs,...d.focus].join(" ").toLowerCase().includes(q)));
+  $("#docGrid").innerHTML=list.length?list.map(d=>{const i=docIdx(d.id);const mine=S.myDoctor===d.id;return `<article class="card doc">
+    <div class="top2">${avatar(d.name,i,"lg")}<div><h3>${esc(d.name)}</h3><div class="muted" style="font-size:.88rem">${esc(d.role)} · ${esc(d.city)}</div></div></div>
+    <div class="tags">${d.focus.map(f=>`<span class="pill plain">${esc(f)}</span>`).join("")}</div>
+    <div class="muted" style="font-size:.86rem">Speaks ${esc(d.langs.join(", "))}<br>${esc(d.resp)}</div>
+    <div>${d.accepting?`<span class="pill ok">Accepting new patients</span>`:`<span class="pill warn">Waitlist open</span>`} ${mine?`<span class="pill hi">Your doctor</span>`:""}</div>
+    <div class="foot"><button class="btn primary sm" data-act="docMsg" data-id="${d.id}">${d.accepting?"Message":"Join waitlist"}</button><button class="btn ghost sm" data-act="docView" data-id="${d.id}">View profile</button></div>
+  </article>`}).join(""):`<div class="empty card">No clinicians match those filters. Try another language or clear the specialty.</div>`;
+}
+after.doctors=()=>{docCards();
+  $("#dq").addEventListener("input",e=>{dq.q=e.target.value;docCards()});
+  $("#dspec").addEventListener("change",e=>{dq.spec=e.target.value;docCards()});
+  $("#dlang").addEventListener("change",e=>{dq.lang=e.target.value;docCards()});
+  $("#dacc").addEventListener("change",e=>{dq.acc=e.target.checked;docCards()});
+};
+function docProfile(id){
+  const d=docById(id),i=docIdx(id);
+  modal(`${mhead(d.role,esc(d.name))}
+   <div class="row">${avatar(d.name,i,"lg")}<div class="stack" style="gap:4px"><div>${d.accepting?`<span class="pill ok">Accepting new patients</span>`:`<span class="pill warn">Waitlist open</span>`}</div><div class="muted" style="font-size:.88rem">${esc(d.city)}, Ontario · ${d.years} years in practice</div></div></div>
+   <p>${esc(d.bio)}</p>
+   <dl class="kv"><dt>Focus</dt><dd>${esc(d.focus.join(", "))}</dd><dt>Languages</dt><dd>${esc(d.langs.join(", "))}</dd><dt>Response time</dt><dd>${esc(d.resp)}</dd><dt>Visit options</dt><dd>Message, phone, video, and in person at a partner clinic when needed</dd><dt>Registration</dt><dd>${d.role==="Nurse practitioner"?"College of Nurses of Ontario":"College of Physicians and Surgeons of Ontario"} <span class="muted">(prototype: not a real registrant)</span></dd></dl>
+   <div class="row">${S.myDoctor===id?`<span class="pill hi">This is your doctor</span>`:(d.spec==="Family medicine"&&d.accepting?`<button class="btn primary" data-act="chooseDoc" data-id="${id}">Make ${esc(d.name)} my doctor</button>`:"")}<button class="btn ${S.myDoctor===id||d.spec!=="Family medicine"?"primary":"ghost"}" data-act="docMsg" data-id="${id}">${d.accepting?"Start a message":"Join the waitlist"}</button></div>`);
+}
+
+/* messages */
+V.messages=()=>{
+  const t=S.threads.find(x=>x.id===S.activeThread)||S.threads[0];
+  return `<div class="head"><div class="stack" style="gap:6px"><div class="eyebrow">Secure messaging</div><h1>Messages</h1></div><button class="btn primary" data-act="navigator">New request</button></div>
+  <div class="msgs">
+    <div class="threads">${S.threads.map(x=>{const d=docById(x.doc),last=x.msgs[x.msgs.length-1];return `<button class="thread" data-act="openThread" data-id="${x.id}" aria-current="${x.id===t.id}">${avatar(d.name,docIdx(d.id),"sm")}<div class="t"><div class="row between" style="gap:6px"><b style="font-size:.9rem">${esc(d.name)}</b><span class="muted" style="font-size:.72rem">${esc(last.when)}</span></div><div style="font-size:.86rem;font-weight:600">${esc(x.subject)}</div><p>${esc(last.text)}</p><span class="pill ${pillFor(x.status)}" style="margin-top:4px">${esc(x.status)}</span></div></button>`}).join("")}</div>
+    <div class="convo">
+      <div class="ch">${avatar(docById(t.doc).name,docIdx(t.doc),"sm")}<div style="flex:1;min-width:0"><b>${esc(t.subject)}</b><div class="muted" style="font-size:.82rem">${esc(docById(t.doc).name)} · ${esc(docById(t.doc).resp.toLowerCase())}</div></div><button class="btn ghost sm" data-act="escalate" data-id="${t.doc}">Request a video visit</button></div>
+      <div class="bubbles" id="bubbles">${t.msgs.map(bubble).join("")}</div>
+      <form class="composer" id="composer"><label class="btn ghost sm" style="cursor:pointer" title="Attach a photo or file">＋ Attach<input type="file" id="attach" multiple hidden></label><textarea id="msgText" placeholder="Write to ${esc(docById(t.doc).name)}" aria-label="Message"></textarea><button class="btn primary sm" type="submit">Send</button></form>
+      <div id="attList" class="muted" style="font-size:.8rem;padding:0 14px 10px"></div>
+    </div>
+  </div>`;
+};
+const bubble=m=>m.from==="plan"?`<div class="b plan"><span class="eyebrow" style="color:var(--accent)">Care plan</span><div>${esc(m.text)}</div><span class="when">${esc(m.when)}</span></div>`:m.from==="sys"?`<div class="b sys">${esc(m.text)}</div>`:`<div class="b ${m.from==="me"?"me":"them"}">${esc(m.text)}${(m.att||[]).map(a=>`<div><span class="att">📎 ${esc(a)}</span></div>`).join("")}<span class="when">${esc(m.when)}</span></div>`;
+let pendingAtt=[];
+after.messages=()=>{
+  const b=$("#bubbles");b.scrollTop=b.scrollHeight;pendingAtt=[];
+  $("#attach").addEventListener("change",e=>{pendingAtt=[...e.target.files].map(f=>f.name);$("#attList").textContent=pendingAtt.length?"Attached: "+pendingAtt.join(", "):""});
+  $("#composer").addEventListener("submit",e=>{e.preventDefault();const v=$("#msgText").value.trim();if(!v&&!pendingAtt.length)return;
+    if(redFlag(v)){emergency();return}
+    const t=S.threads.find(x=>x.id===S.activeThread);t.msgs.push({from:"me",text:v||"Sent attachments",when:now(),att:pendingAtt});t.status="With your doctor";render();toast("Sent to "+docById(t.doc).name);
+    simulateReply(t.id,"Thanks for the update. I've read it and added a note to your plan. Keep going as we discussed and message me if anything changes.");});
+};
+function simulateReply(id,text,planText){
+  setTimeout(()=>{const t=S.threads.find(x=>x.id===id);if(!t)return;t.msgs.push({from:"them",text,when:now()});if(planText)t.msgs.push({from:"plan",text:planText,when:now()});t.status="Answered";
+    S.notifications.unshift({t:docById(t.doc).name+" replied: "+t.subject,v:"messages",unread:true});
+    if(S.role==="patient"&&view==="messages"&&S.activeThread===id)render();else renderShell();toast(docById(t.doc).name+" replied");},4200);
+}
+
+/* care plan */
+V.plan=()=>`<div class="head"><div class="stack" style="gap:6px"><div class="eyebrow">Signed by your care team</div><h1>Your care plan</h1><p class="muted">One shared plan across every clinician you see on Northline Care. Tick things off as you go; your doctor sees your progress.</p></div></div>
+ <div class="grid g3">${S.plan.goals.map(g=>`<div class="card stack"><span class="eyebrow">Goal</span><h3>${esc(g.t)}</h3><div class="bar"><span style="width:${g.p}%"></span></div><span class="muted tabnum" style="font-size:.85rem">${g.p}% of the way there</span></div>`).join("")}</div>
+ <div class="grid g2">
+  <div class="card stack"><h3>Tasks</h3><div class="list">${S.plan.tasks.map(taskRow).join("")}</div></div>
+  <div class="card stack"><h3>Follow ups</h3><div class="list">${S.plan.followups.map(f=>`<div class="row between"><div><b>${esc(f.t)}</b><div class="muted" style="font-size:.86rem">${esc(f.how)}</div></div><span class="pill plain">${esc(f.when)}</span></div>`).join("")}</div>
+  <div class="stack"><h4>Log a home reading</h4><form class="row" id="bpForm"><input type="text" id="bpSys" placeholder="Systolic" inputmode="numeric" style="width:110px" aria-label="Systolic"><input type="text" id="bpDia" placeholder="Diastolic" inputmode="numeric" style="width:110px" aria-label="Diastolic"><button class="btn primary sm">Save reading</button></form><div id="bpLog" class="muted" style="font-size:.86rem"></div></div></div>
+ </div>`;
+const bpLog=[];
+after.plan=()=>{$("#bpForm").addEventListener("submit",e=>{e.preventDefault();const s=+$("#bpSys").value,d=+$("#bpDia").value;if(!s||!d){toast("Enter both numbers, for example 132 and 84");return}
+  if(s>=180||d>=120){modal(`${mhead("Reading flagged","That reading is very high")}<div class="notice bad">A reading of ${s}/${d} needs prompt attention. If you have chest pain, shortness of breath, weakness, vision changes or trouble speaking, call 911 now. Otherwise rest 5 minutes and measure again.</div><div class="row"><button class="btn primary" data-act="close">I understand</button></div>`);}
+  bpLog.unshift(`${now()}: ${s}/${d} mmHg ${s>=135||d>=85?"(above target)":"(on target)"}`);$("#bpLog").innerHTML=bpLog.map(esc).join("<br>");toast("Reading saved and shared with Dr. Okafor");e.target.reset();});};
+
+/* prescriptions */
+V.rx=()=>`<div class="head"><div class="stack" style="gap:6px"><div class="eyebrow">Sent to your pharmacy</div><h1>Prescriptions</h1><p class="muted">Request renewals here. Your clinician reviews each request and sends it to the pharmacy you choose.</p></div><button class="btn ghost" data-act="pharmacy">Change pharmacy</button></div>
+ <div class="card tablewrap"><table><thead><tr><th>Medication</th><th>Directions</th><th>Prescriber</th><th>Refills</th><th>Status</th><th></th></tr></thead><tbody>${S.rx.map(r=>`<tr><td><b>${esc(r.drug)}</b><div class="muted" style="font-size:.8rem">Last filled ${esc(r.last)}</div></td><td>${esc(r.sig)}</td><td>${esc(docById(r.doc).name)}</td><td class="tabnum">${r.refills}</td><td><span class="pill ${pillFor(r.status)}">${esc(r.status)}</span></td><td>${r.status==="Renewal requested"?`<span class="muted" style="font-size:.84rem">Under review</span>`:`<button class="btn ${r.refills===0||r.status==="Expired"?"primary":"ghost"} sm" data-act="renew" data-id="${r.id}">Request renewal</button>`}</td></tr>`).join("")}</tbody></table></div>
+ <div class="card row between"><div><div class="eyebrow">Your pharmacy</div><b id="pharmName">${esc(S.rx[0].pharmacy)}</b><div class="muted" style="font-size:.86rem">412 Queen St W, Toronto · Prescriptions sent electronically once e‑prescribing is connected</div></div></div>`;
+
+/* labs */
+const spark=(arr,flag)=>{const w=96,h=28,mn=Math.min(...arr),mx=Math.max(...arr),r=mx-mn||1;const pts=arr.map((v,i)=>[4+i*(w-8)/(arr.length-1),h-4-(v-mn)/r*(h-8)]);const col=flag==="high"?"var(--danger)":"var(--accent)";return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" aria-hidden="true"><polyline points="${pts.map(p=>p.join(",")).join(" ")}" fill="none" stroke="${col}" stroke-width="2"/><circle cx="${pts[pts.length-1][0]}" cy="${pts[pts.length-1][1]}" r="3" fill="${col}"/></svg>`};
+V.labs=()=>`<div class="head"><div class="stack" style="gap:6px"><div class="eyebrow">Collected Oct 15 · reviewed by Dr. Okafor</div><h1>Lab results</h1><p class="muted">Results arrive with a note from your clinician explaining what they mean for you. Trends show your last four tests.</p></div><button class="btn ghost" data-act="doc" data-id="x2">View requisition</button></div>
+ <div class="notice info"><span>🩺</span><div><b>Dr. Okafor's note:</b> Your cholesterol has improved since last year. Triglycerides are slightly high, which often follows a high carbohydrate diet; the food changes in your plan should help. No medication changes needed. We'll repeat these in 12 months.</div></div>
+ <div class="card tablewrap"><table><thead><tr><th>Test</th><th>Result</th><th>Reference</th><th>Trend</th><th>Flag</th></tr></thead><tbody>${S.labs.map(l=>`<tr><td><b>${esc(l.test)}</b></td><td class="tabnum">${esc(l.val)} <span class="muted">${esc(l.unit)}</span></td><td class="tabnum muted">${esc(l.ref)}</td><td>${spark(l.trend,l.flag)}</td><td>${l.flag==="high"?`<span class="pill bad">Above range</span>`:`<span class="pill ok">In range</span>`}</td></tr>`).join("")}</tbody></table></div>
+ <p class="muted" style="font-size:.84rem">In production, results flow from Ontario's lab information system into your chart. In this prototype they are sample values.</p>`;
+
+/* documents */
+V.docs=()=>`<div class="head"><div class="stack" style="gap:6px"><div class="eyebrow">Your record</div><h1>Documents</h1><p class="muted">Notes, requisitions, referrals and summaries from your care team, kept in one place.</p></div><button class="btn primary" data-act="requestNote">Request a note or form</button></div>
+ <div class="grid g2">${S.docs.map(x=>`<div class="card row between"><div class="stack" style="gap:2px"><span class="eyebrow">${esc(x.type)}</span><b>${esc(x.title)}</b><span class="muted" style="font-size:.85rem">${esc(docById(x.from).name)} · ${esc(x.date)}</span></div><button class="btn ghost sm" data-act="doc" data-id="${x.id}">Preview</button></div>`).join("")}</div>`;
+function docPreview(id){
+  const x=S.docs.find(d=>d.id===id),d=docById(x.from);
+  const bodies={
+   "Work note":`<p>To whom it may concern,</p><p>Maya Chen was assessed through Northline Care on October 9, 2026 and was unable to attend work from October 9 to October 10, 2026 for medical reasons. She is fit to return on October 11, 2026.</p>`,
+   "Lab requisition":`<p><b>Tests requested:</b> Lipid panel (fasting), HbA1c, creatinine with eGFR, potassium.</p><p><b>Clinical information:</b> Hypertension on ramipril, annual monitoring.</p><p><b>Copy to:</b> Northline Care, Queen West Health.</p>`,
+   "Referral letter":`<p>Dear colleague,</p><p>Thank you for seeing Maya Chen, 38, for right knee pain after running, 6 weeks duration, consistent with patellofemoral pain. Please assess and treat with a graded strengthening program.</p>`,
+   "Care plan summary":`<p><b>Diagnosis:</b> Essential hypertension, stage 1.</p><p><b>Plan:</b> Continue ramipril 5 mg daily. Home BP twice daily for 7 days. Reduce sodium. Review Nov 3; consider dose increase if average stays above 135/85.</p>`
+  };
+  modal(`${mhead(x.type,esc(x.title))}<div class="letter"><div class="lh"><b style="color:#235e49">northline✳care</b><span style="font-size:.8rem">Queen West Health · 412 Queen St W, Toronto ON</span></div><p style="font-size:.85rem">Patient: Maya Chen · DOB 1988‑04‑12 · Health card ${esc(S.patient.ohip)}</p>${bodies[x.type]}<p>${esc(d.name)}<br><span style="font-size:.85rem">${esc(d.role)} · Sample document, not valid for use</span></p></div><div class="row"><button class="btn primary" data-act="shareDoc">Share securely</button><button class="btn ghost" data-act="close">Close</button></div>`,"wide");
+}
+
+/* visits */
+V.visits=()=>`<div class="head"><div class="stack" style="gap:6px"><div class="eyebrow">When a message isn't enough</div><h1>Appointments</h1><p class="muted">Most care happens by message. When your doctor needs to see or examine you, book a phone, video or in person visit with the same doctor.</p></div><button class="btn primary" data-act="book">Book a visit</button></div>
+ <div class="card"><div class="list">${S.visits.map(v=>`<div class="row between"><div class="row">${avatar(docById(v.doc).name,docIdx(v.doc),"sm")}<div><b>${esc(v.what)}</b><div class="muted" style="font-size:.86rem">${esc(docById(v.doc).name)} · ${esc(v.mode)} · ${esc(v.when)}</div></div></div><div class="row"><span class="pill ${pillFor(v.status)}">${esc(v.status)}</span>${v.mode==="Video"&&v.status==="Booked"?`<button class="btn ghost sm" data-act="joinVideo">Join</button>`:""}</div></div>`).join("")}</div></div>`;
+function bookModal(docId){
+  const d=docById(docId||S.myDoctor);const days=["Thu Oct 29","Fri Oct 30","Mon Nov 2"];const times=["9:00","9:30","11:15","1:45","3:30","4:15"];
+  modal(`${mhead("Book with "+esc(d.name),"Choose a time")}
+  <div class="chips" id="mode">${["Video","Phone","In person"].map((m,i)=>`<button class="chip" aria-pressed="${i===0}" data-mode="${m}">${m}</button>`).join("")}</div>
+  ${days.map(dy=>`<div class="stack" style="gap:8px"><b>${dy}</b><div class="slots">${times.map(t=>`<button class="chip slot" data-slot="${dy}, ${t}">${t}</button>`).join("")}</div></div>`).join("")}
+  <p class="muted" style="font-size:.85rem">In person visits take place at a partner clinic. Insured services are covered by OHIP at no cost to you.</p>
+  <div class="row"><button class="btn primary" id="confirmBook" data-doc="${d.id}" disabled>Confirm booking</button></div>`);
+  let mode="Video",slot=null;
+  $("#mode").addEventListener("click",e=>{const b=e.target.closest("[data-mode]");if(!b)return;mode=b.dataset.mode;$("#mode").querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",String(c===b)))});
+  $("#modalRoot").querySelectorAll(".slot").forEach(s=>s.addEventListener("click",()=>{slot=s.dataset.slot;$("#modalRoot").querySelectorAll(".slot").forEach(c=>c.setAttribute("aria-pressed",String(c===s)));$("#confirmBook").disabled=false;$("#confirmBook").textContent="Confirm "+mode.toLowerCase()+" on "+slot}));
+  $("#confirmBook").addEventListener("click",()=>{S.visits.unshift({id:"v"+Date.now(),what:mode+" visit",doc:d.id,when:slot+(+slot.split(", ")[1].split(":")[0]<8?" p.m.":" a.m."),mode,status:"Booked"});closeModal();toast("Booked. A reminder will arrive the day before.");if(view==="visits")render();});
+}
+
+/* family */
+V.family=()=>`<div class="head"><div class="stack" style="gap:6px"><div class="eyebrow">One account, the whole household</div><h1>Family</h1><p class="muted">Manage care for children under 16 and, with their consent, adults you help look after.</p></div><button class="btn primary" data-act="addFamily">Add a family member</button></div>
+ <div class="grid g3">${S.family.map(f=>`<div class="card stack">${avatar(f.name,4,"lg")}<h3>${esc(f.name)}</h3><span class="muted">${esc(f.rel)} · age ${esc(f.age)}</span><span style="font-size:.88rem">Doctor: ${esc(docById(f.doc).name)}</span><button class="btn ghost sm" data-act="navigator" style="align-self:flex-start">Ask about ${esc(f.name.split(" ")[0])}</button></div>`).join("")}</div>`;
+
+/* coverage */
+V.coverage=()=>`<div class="head"><div class="stack" style="gap:6px"><div class="eyebrow">Ontario residents</div><h1>Coverage and payments</h1><p class="muted">Care that OHIP covers is free to you on Northline Care. You only pay for services that no provincial plan covers, and you'll always see the price before you confirm.</p></div></div>
+ <div class="grid g2">
+  <div class="card stack"><div class="row between"><h3>Your health card</h3><span class="pill ok">Verified</span></div><dl class="kv"><dt>Plan</dt><dd>Ontario Health Insurance Plan</dd><dt>Number</dt><dd class="mono">${esc(S.patient.ohip)}</dd><dt>Expires</dt><dd>Apr 12, 2029</dd></dl><button class="btn ghost sm" data-act="updateCard" style="align-self:flex-start">Update health card</button></div>
+  <div class="card stack"><h3>Workplace benefits</h3><p class="muted" style="font-size:.9rem">Add your group benefits to have eligible uninsured services billed to your plan instead of your card.</p><button class="btn ghost sm" data-act="addBenefits" style="align-self:flex-start">Add benefits plan</button></div>
+ </div>
+ <div class="card stack"><h3>What things cost</h3><div class="tablewrap"><table><thead><tr><th>Service</th><th>Who pays</th><th>Your cost</th></tr></thead><tbody>
+  <tr><td>Messages, phone and video care with your doctor (insured services)</td><td>OHIP</td><td><b>$0</b></td></tr>
+  <tr><td>In person visits and referrals</td><td>OHIP</td><td><b>$0</b></td></tr>
+  <tr><td>Sick note for work or school</td><td>You or your benefits</td><td class="tabnum">$25</td></tr>
+  <tr><td>Insurance or employment forms</td><td>You or your benefits</td><td class="tabnum">$40 to $90</td></tr>
+  <tr><td>Travel health consultation</td><td>You or your benefits</td><td class="tabnum">$60</td></tr>
+  <tr><td>Care while you're outside Ontario's plan (visitors, waiting period)</td><td>You</td><td class="tabnum">$65 per consult</td></tr>
+ </tbody></table></div><p class="muted" style="font-size:.84rem">Prices are illustrative for the pilot and subject to legal review. Northline Care never charges a membership fee for access to insured care.</p></div>
+ <div class="card stack"><div class="row between"><h3>Receipts</h3><span class="muted" style="font-size:.86rem">Card on file: Visa ending 4417</span></div><div class="list">${S.receipts.map(r=>`<div class="row between"><div><b>${esc(r.what)}</b><div class="muted" style="font-size:.85rem">${esc(r.date)} · ${esc(r.method)}</div></div><b class="tabnum">${esc(r.amt)}</b></div>`).join("")}</div></div>`;
+
+/* privacy */
+const consentLabels={share_ohp:["Share my record with clinicians I choose","Lets any clinician you message on Northline Care see your history, medications and results."],ai_intake:["Use the Care Navigator to prepare my request","An AI assistant asks follow up questions and drafts a summary. A clinician always reads your original words too."],research:["Use de‑identified data to improve care","Your data, with identifiers removed, may help measure quality. Off by default."],sms:["Text me when I have a new message","Alerts never include health details."],caregiver:["Let a caregiver view my account","Adds a person who can read messages and book visits for you."]};
+V.privacy=()=>`<div class="head"><div class="stack" style="gap:6px"><div class="eyebrow">Under Ontario's PHIPA</div><h1>Privacy and consent</h1><p class="muted">Your health information is stored in Canada, encrypted, and only seen by people involved in your care. You decide what's shared and can change it any time.</p></div></div>
+ <div class="card"><div class="list">${Object.keys(consentLabels).map(k=>`<div class="row between" style="flex-wrap:nowrap;align-items:flex-start"><div><b>${consentLabels[k][0]}</b><div class="muted" style="font-size:.86rem;max-width:62ch">${consentLabels[k][1]}</div></div><label class="toggle"><input type="checkbox" data-act="consent" data-k="${k}" ${S.consents[k]?"checked":""} aria-label="${esc(consentLabels[k][0])}"><span></span></label></div>`).join("")}</div></div>
+ <div class="card stack"><div class="row between"><h3>Who has seen your record</h3><span class="muted" style="font-size:.86rem">Last 30 days</span></div><div class="tablewrap"><table><thead><tr><th>Who</th><th>What</th><th>When</th></tr></thead><tbody>${S.audit.map(a=>`<tr><td>${esc(a.who)}</td><td>${esc(a.what)}</td><td class="muted">${esc(a.when)}</td></tr>`).join("")}</tbody></table></div></div>
+ <div class="grid g2"><div class="card stack"><h3>Get a copy of your record</h3><p class="muted" style="font-size:.9rem">Request your full record. We respond within 30 days as PHIPA requires, usually much sooner.</p><button class="btn ghost sm" data-act="exportRecord" style="align-self:flex-start">Request my record</button></div>
+ <div class="card stack"><h3>Close your account</h3><p class="muted" style="font-size:.9rem">Your clinicians must keep medical records for the period Ontario requires. Everything else is deleted.</p><button class="btn ghost sm" data-act="closeAcct" style="align-self:flex-start;color:var(--danger)">Close account</button></div></div>`;
+
+/* ---------------- clinician ---------------- */
+V.queue=()=>{
+  const c=S.queue.find(x=>x.id===S.activeCase)||S.queue[0];
+  return `<div class="head"><div class="stack" style="gap:6px"><div class="eyebrow">Dr. Amara Okafor · Tuesday</div><h1>Case queue</h1><p class="muted">Each request arrives prepared by the Care Navigator. Review the patient's own words, edit the plan, then sign. Nothing reaches the patient until you do.</p></div>
+  <div class="row"><span class="pill bad plain">${S.queue.filter(q=>q.pri==="urgent").length} urgent</span><span class="pill warn plain">${S.queue.filter(q=>q.pri==="soon").length} soon</span><span class="pill ok plain">${S.queue.filter(q=>q.pri==="routine").length} routine</span><span class="pill plain">${S.done.length} signed today</span></div></div>
+  ${S.queue.length?`<div class="split">
+   <div class="stack">${S.queue.map(q=>`<button class="case ${q.pri}" data-act="case" data-id="${q.id}" aria-current="${q.id===c.id}"><div class="row between"><b>${esc(q.pt)}, ${q.age}</b><span class="muted" style="font-size:.78rem">${esc(q.due)}</span></div><span style="font-size:.9rem">${esc(q.reason)}</span>${q.flags.length?`<div class="row" style="gap:6px">${q.flags.map(f=>`<span class="pill bad plain">${esc(f)}</span>`).join("")}</div>`:""}</button>`).join("")}
+   <div class="card stack" style="padding:14px"><span class="eyebrow">Signed today</span>${S.done.map(d=>`<div class="row between" style="font-size:.88rem"><span>${esc(d.pt)}: ${esc(d.reason)}</span><span class="muted">${esc(d.at)}</span></div>`).join("")}</div></div>
+   ${chart(c)}</div>`:`<div class="card empty"><h3>Queue clear</h3><p>Every request has been answered. New cases will appear here.</p></div>`}`;
+};
+const templates={
+ c2:"Renewed amlodipine 5 mg once daily, 90 days with 3 refills. Continue home BP checks twice weekly. Message me if readings stay above 135/85. Annual bloodwork due in March.",
+ c3:"This looks like a skin infection (cellulitis) after the cat scratch. Start cephalexin 500 mg four times daily for 7 days. I've drawn a line plan: mark the edge of the redness with a pen tonight. Go to an emergency department if redness spreads past the line quickly, you develop a high fever, or the arm becomes very painful. Send me a photo in 48 hours.",
+ c4:"Thank you for telling me how you're feeling. Your score suggests moderate depression. Let's book a 30 minute video visit this week to talk through options, including therapy through OHIP‑funded programs and whether medication makes sense. If you ever have thoughts of harming yourself, call or text 988 any time.",
+ c5:"Your symptoms fit an uncomplicated bladder infection. Start nitrofurantoin 100 mg twice daily for 5 days and drink plenty of fluids. If you develop fever, back pain or vomiting, or you're not improving in 48 hours, message me or visit urgent care.",
+ c1:"Thanks for the detail. Based on what you've described, here is the plan we'll follow. Message me if anything changes."
+};
+function chart(c){
+  const plan=S.plans[c.id]!=null?S.plans[c.id]:"";
+  return `<div class="card stack" style="gap:16px">
+   <div class="row between"><div class="row">${avatar(c.pt,2)}<div><h2>${esc(c.pt)}</h2><div class="muted" style="font-size:.86rem">${c.age} · Ontario · health card verified</div></div></div><div class="row"><button class="btn ghost sm" data-act="cVideo">Book video</button><button class="btn ghost sm" data-act="cRefer">Refer</button></div></div>
+   <div class="stack" style="gap:6px"><span class="eyebrow">Reason for request</span><b>${esc(c.reason)}</b></div>
+   <div class="ai stack" style="gap:8px"><div class="row between"><span class="eyebrow" style="color:var(--accent)">Care Navigator draft · needs your review</span>${c.photos?`<button class="btn ghost sm" data-act="photos">View ${c.photos} photos</button>`:""}</div><p>${esc(c.summary)}</p><p class="muted" style="font-size:.82rem">Drafted by AI from the patient's answers. Verify against the original intake before acting.</p></div>
+   ${c.flags.length?`<div class="notice warn"><span>⚑</span><div><b>Flags for you:</b> ${esc(c.flags.join(", "))}</div></div>`:""}
+   <dl class="kv"><dt>History</dt><dd>${esc(c.hx)}</dd><dt>Medications</dt><dd>${esc(c.meds)}</dd><dt>Allergies</dt><dd>${esc(c.all)}</dd></dl>
+   <div class="stack" style="gap:8px"><div class="row between"><label for="planTxt" class="eyebrow">Plan and message to patient</label><button class="btn ghost sm" data-act="tpl" data-id="${c.id}">Insert suggested plan</button></div>
+   <textarea id="planTxt" style="min-height:150px" placeholder="Write the plan the patient will receive">${esc(plan)}</textarea></div>
+   <div class="row" id="orders"></div>
+   <div class="row"><button class="btn ghost sm" data-act="cRx">＋ Prescription</button><button class="btn ghost sm" data-act="cLab">＋ Lab requisition</button><button class="btn ghost sm" data-act="cNote">＋ Note or form</button></div>
+   <label class="check"><input type="checkbox" id="attest"> I reviewed the patient's own words and attachments, and this plan reflects my clinical judgment.</label>
+   <div class="row"><button class="btn primary" data-act="sign" data-id="${c.id}">Sign and send to patient</button><span class="muted" style="font-size:.84rem">Billing: virtual care, existing patient (OHIP)</span></div>
+  </div>`;
+}
+let orders=[];
+after.queue=()=>{const t=$("#planTxt");if(t)t.addEventListener("input",e=>{S.plans[S.activeCase]=e.target.value});renderOrders()};
+function renderOrders(){const o=$("#orders");if(o)o.innerHTML=orders.map(x=>`<span class="pill hi plain">${esc(x)}</span>`).join("")}
+
+V.panel=()=>{const pts=[["Maya Chen",38,"Hypertension, eczema","Oct 20"],["Daniel Osei",58,"Hypertension","Sep 3"],["Grace Liu",45,"Travel health","Today"],["Omar Farouk",33,"Asthma","Today"],["Rita Gomez",29,"Annual physical due","Jul 14"],["Liam Gauthier",27,"Anxiety","Today"],["Leo Chen",6,"Shared with Dr. Ruiz","Oct 2"]];
+ return `<div class="head"><div class="stack" style="gap:6px"><div class="eyebrow">Continuity panel</div><h1>My patients</h1><p class="muted">The people you follow over time. Northline Care routes their requests to you first, so they rarely start over with someone new.</p></div><input type="search" id="pq" placeholder="Search patients" style="max-width:260px" aria-label="Search patients"></div>
+ <div class="card tablewrap"><table><thead><tr><th>Patient</th><th>Age</th><th>Active problems</th><th>Last contact</th><th></th></tr></thead><tbody id="ptb">${pts.map(p=>`<tr data-n="${esc(p[0].toLowerCase())}"><td><b>${esc(p[0])}</b></td><td class="tabnum">${p[1]}</td><td>${esc(p[2])}</td><td class="muted">${esc(p[3])}</td><td><button class="btn ghost sm" data-act="ptMsg" data-n="${esc(p[0])}">Message</button></td></tr>`).join("")}</tbody></table></div>`};
+after.panel=()=>{$("#pq").addEventListener("input",e=>{const q=e.target.value.toLowerCase();document.querySelectorAll("#ptb tr").forEach(r=>r.hidden=!r.dataset.n.includes(q))})};
+
+V.schedule=()=>{const s=[["9:00 a.m.","Message queue block","",""],["9:30 a.m.","Maya Chen","Video","BP review"],["10:15 a.m.","Liam Gauthier","Video","Mood follow up"],["11:00 a.m.","Message queue block","",""],["1:30 p.m.","Rita Gomez","In person","Annual physical, Queen West Health"],["2:30 p.m.","Open slot","",""],["3:30 p.m.","Message queue block","",""]];
+ return `<div class="head"><div class="stack" style="gap:6px"><div class="eyebrow">Tuesday, October 27</div><h1>Today's schedule</h1><p class="muted">Protected blocks for messages sit between visits so replies stay same day.</p></div><button class="btn ghost" data-act="availability">Edit availability</button></div>
+ <div class="card"><div class="list">${s.map(x=>`<div class="row between"><div class="row"><span class="mono muted" style="width:80px">${x[0]}</span><div><b>${esc(x[1])}</b>${x[3]?`<div class="muted" style="font-size:.86rem">${esc(x[3])}</div>`:""}</div></div>${x[2]?`<div class="row"><span class="pill plain">${x[2]}</span>${x[2]==="Video"?`<button class="btn primary sm" data-act="joinVideo">Start</button>`:""}</div>`:x[1]==="Open slot"?`<span class="pill ok plain">Available</span>`:`<span class="pill hi plain">Messages</span>`}</div>`).join("")}</div></div>`};
+
+V.billing=()=>`<div class="head"><div class="stack" style="gap:6px"><div class="eyebrow">This week</div><h1>Billing</h1><p class="muted">Insured services are billed to OHIP through the partner clinic's EMR. Uninsured services are paid by the patient or their benefits plan before the service.</p></div></div>
+ <div class="grid g3"><div class="card stat"><span class="eyebrow">OHIP encounters</span><div class="v">42</div><span class="muted">submitted via clinic EMR</span></div><div class="card stat"><span class="eyebrow">Uninsured services</span><div class="v">$1,240</div><span class="muted">collected this week</span></div><div class="card stat"><span class="eyebrow">Rejected claims</span><div class="v">1</div><span class="muted">needs a diagnosis code</span></div></div>
+ <div class="card tablewrap"><table><thead><tr><th>Patient</th><th>Service</th><th>Payer</th><th>Amount</th><th>Status</th></tr></thead><tbody>${S.billing.map(b=>`<tr><td>${esc(b.pt)}</td><td>${esc(b.svc)}</td><td>${esc(b.payer)}</td><td class="tabnum">${esc(b.amt)}</td><td><span class="pill ${pillFor(b.status)}">${esc(b.status)}</span></td></tr>`).join("")}</tbody></table></div>
+ <p class="muted" style="font-size:.84rem">Prototype figures. Fee codes and eligibility follow the current OHIP Schedule of Benefits and will be validated with the clinic partner before launch.</p>`;
+
+/* ---------------- admin ---------------- */
+V.overview=()=>{const wk=[["Wk 1",120],["Wk 2",168],["Wk 3",214],["Wk 4",260],["Wk 5",301],["Wk 6",356],["Wk 7",389],["Wk 8",442]];const mx=500,W=640,H=220,pl=40,pb=28,bw=(W-pl-10)/wk.length;
+ return `<div class="head"><div class="stack" style="gap:6px"><div class="eyebrow">Ontario pilot · sample data</div><h1>Operations overview</h1></div><span class="pill warn">Prototype: illustrative numbers</span></div>
+ <div class="grid g4">
+  <div class="card stat"><span class="eyebrow">Median first reply</span><div class="v">3.4 h</div><span class="pill ok">Target under 6 h</span></div>
+  <div class="card stat"><span class="eyebrow">Open cases</span><div class="v">27</div><span class="pill warn">3 near deadline</span></div>
+  <div class="card stat"><span class="eyebrow">Seen by own doctor</span><div class="v">91%</div><span class="pill ok">Continuity</span></div>
+  <div class="card stat"><span class="eyebrow">Escalated to visit</span><div class="v">14%</div><span class="muted">video, phone or in person</span></div>
+ </div>
+ <div class="card stack"><div class="row between"><h3>Requests per week</h3><span class="muted" style="font-size:.86rem">Pilot weeks 1 to 8</span></div><div class="tablewrap"><svg viewBox="0 0 ${W} ${H}" width="100%" style="min-width:420px" role="img" aria-label="Weekly requests rising from 120 to 442">
+  ${[0,100,200,300,400,500].map(v=>{const y=H-pb-(v/mx)*(H-pb-10);return `<line x1="${pl}" x2="${W}" y1="${y}" y2="${y}" stroke="var(--line)"/><text x="${pl-6}" y="${y+4}" text-anchor="end" font-size="11" fill="var(--muted)">${v}</text>`}).join("")}
+  ${wk.map((w,i)=>{const h=(w[1]/mx)*(H-pb-10),x=pl+i*bw+bw*.2,y=H-pb-h;return `<rect x="${x}" y="${y}" width="${bw*.6}" height="${h}" rx="4" fill="${i===wk.length-1?"var(--accent)":"var(--hi)"}" stroke="var(--accent)" stroke-opacity=".35"/><text x="${x+bw*.3}" y="${H-10}" text-anchor="middle" font-size="11" fill="var(--muted)">${w[0]}</text>${i===wk.length-1?`<text x="${x+bw*.3}" y="${y-6}" text-anchor="middle" font-size="12" font-weight="700" fill="var(--fg)">${w[1]}</text>`:""}`}).join("")}
+ </svg></div></div>
+ <div class="grid g2">
+  <div class="card stack"><h3>Top reasons for care</h3>${[["Prescription renewals",24],["Skin concerns",17],["Mental health",14],["Infections",13],["Chronic disease follow up",12],["Forms and notes",9]].map(r=>`<div class="stack" style="gap:4px"><div class="row between" style="font-size:.9rem"><span>${r[0]}</span><span class="tabnum">${r[1]}%</span></div><div class="bar"><span style="width:${r[1]*4}%"></span></div></div>`).join("")}</div>
+  <div class="card stack"><h3>Safety signals</h3><div class="list"><div class="row between"><span>Navigator red flags sent to 911 or 988 screen</span><b class="tabnum">11</b></div><div class="row between"><span>Cases past reply deadline</span><b class="tabnum">0</b></div><div class="row between"><span>AI summaries edited by clinician</span><b class="tabnum">38%</b></div><div class="row between"><span>Patient complaints</span><b class="tabnum">2</b></div></div></div>
+ </div>`};
+
+V.team=()=>`<div class="head"><div class="stack" style="gap:6px"><div class="eyebrow">Credentialing and capacity</div><h1>Clinicians</h1><p class="muted">Licence status is checked against the public register at onboarding and every renewal cycle.</p></div><button class="btn primary" data-act="invite">Invite clinician</button></div>
+ <div class="card tablewrap"><table><thead><tr><th>Clinician</th><th>College</th><th>Licence</th><th>Panel load</th><th>Median reply</th><th>Accepting</th></tr></thead><tbody>${S.team.map(t=>{const d=docById(t.id);return `<tr><td><div class="row" style="flex-wrap:nowrap">${avatar(d.name,docIdx(d.id),"sm")}<div><b>${esc(d.name)}</b><div class="muted" style="font-size:.8rem">${esc(d.spec)}</div></div></div></td><td>${t.college}</td><td><span class="pill ${t.licence==="Verified"?"ok":"warn"}">${esc(t.licence)}</span></td><td style="min-width:120px"><div class="bar"><span style="width:${t.load}%;${t.load>=90?"background:var(--danger)":""}"></span></div><span class="muted tabnum" style="font-size:.8rem">${t.load}%</span></td><td class="tabnum">${t.median}</td><td><label class="toggle"><input type="checkbox" data-act="accepting" data-id="${t.id}" ${t.accepting?"checked":""} aria-label="Accepting new patients"><span></span></label></td></tr>`}).join("")}</tbody></table></div>`;
+
+V.integrations=()=>`<div class="head"><div class="stack" style="gap:6px"><div class="eyebrow">Connections</div><h1>Integrations</h1><p class="muted">What the platform connects to. Nothing in this prototype is connected to a live clinical system.</p></div></div>
+ <div class="grid g2">${S.integrations.map((x,i)=>`<div class="card stack"><div class="row between"><h3>${esc(x.n)}</h3><span class="pill ${pillFor(x.st)}">${esc(x.st)}</span></div><p class="muted" style="font-size:.9rem">${esc(x.d)}</p><button class="btn ghost sm" data-act="integ" data-i="${i}" style="align-self:flex-start">${x.st==="Not connected"?"Start setup":"View setup"}</button></div>`).join("")}</div>`;
+
+V.compliance=()=>{const items=[["Privacy officer named and published","Done"],["Privacy impact assessment","In progress"],["Data stored in Canadian regions only","Done"],["Encryption at rest and in transit","Done"],["Role based access with audit logging","In progress"],["Breach notification process (IPC Ontario)","Not started"],["Agreements with service providers handling health data","In progress"],["Patient access and correction requests within 30 days","Done"],["AI intake: human review before any clinical action","Done"],["Records retention policy aligned with CPSO","Not started"]];const done=items.filter(i=>i[1]==="Done").length;
+ return `<div class="head"><div class="stack" style="gap:6px"><div class="eyebrow">PHIPA, CPSO and clinic obligations</div><h1>Privacy and compliance</h1></div><span class="pill ${done===items.length?"ok":"warn"}">${done} of ${items.length} complete</span></div>
+ <div class="card"><div class="list">${items.map(i=>`<div class="row between"><span>${esc(i[0])}</span><span class="pill ${pillFor(i[1])}">${esc(i[1])}</span></div>`).join("")}</div></div>
+ <div class="card stack"><h3>Access log</h3><div class="tablewrap"><table><thead><tr><th>User</th><th>Action</th><th>Record</th><th>When</th></tr></thead><tbody>
+  <tr><td>Dr. Amara Okafor</td><td>Signed plan</td><td>Grace Liu</td><td class="muted">8:42 a.m.</td></tr>
+  <tr><td>NP Kiran Patel</td><td>Viewed chart</td><td>Omar Farouk</td><td class="muted">8:05 a.m.</td></tr>
+  <tr><td>Care Navigator (AI)</td><td>Drafted summary</td><td>Sofia Marino</td><td class="muted">7:31 a.m.</td></tr>
+  <tr><td>Support: J. Martin</td><td>Break glass access, reason logged</td><td>Account recovery</td><td class="muted">Yesterday</td></tr>
+ </tbody></table></div></div>`};
+
+V.launch=()=>{const areas=[...new Set(S.launch.map(l=>l.area))];const done=S.launch.filter(l=>l.st==="Done").length;
+ return `<div class="head"><div class="stack" style="gap:6px"><div class="eyebrow">Before the first real patient</div><h1>Launch tracker</h1><p class="muted">Every item here must be done before Northline Care provides live care. Click a status to move it forward.</p></div><div class="stack" style="gap:6px;min-width:200px"><span class="tabnum" style="font-weight:700">${done} of ${S.launch.length} done</span><div class="bar"><span style="width:${done/S.launch.length*100}%"></span></div></div></div>
+ ${areas.map(a=>`<div class="card stack"><h3>${a}</h3><div class="list">${S.launch.map((l,i)=>l.area!==a?"":`<div class="row between"><div><b style="font-weight:600">${esc(l.t)}</b><div class="muted" style="font-size:.84rem">Owner: ${esc(l.owner)}</div></div><button class="pill ${pillFor(l.st)}" style="border:0;cursor:pointer" data-act="launchSt" data-i="${i}">${esc(l.st)}</button></div>`).join("")}</div></div>`).join("")}`};
+
+/* ---------------- navigator (AI intake) ---------------- */
+const RED=/chest pain|can'?t breathe|cannot breathe|trouble breathing|stroke|face droop|unconscious|suicid|kill myself|end my life|overdose|severe bleeding|seizure/i;
+const redFlag=t=>RED.test(t||"");
+function emergency(selfHarm){
+  modal(`${mhead("Please get help now","This needs urgent care")}
+   <div class="notice bad"><div>${selfHarm?"If you are thinking about harming yourself, call or text <b>988</b> now, any time, day or night. If you are in immediate danger, call <b>911</b>.":"What you've described may be an emergency. Call <b>911</b> or go to the nearest emergency department now. Do not wait for a message reply."}</div></div>
+   <p class="muted" style="font-size:.88rem">Northline Care is for non‑urgent care and cannot respond in real time.</p>
+   <div class="row"><button class="btn primary" data-act="close">I understand</button></div>`);
+}
+let nav=null;
+function openNavigator(docId){
+  if(!S.onboarded){openOnboarding(()=>openNavigator(docId));return}
+  nav={step:0,doc:docId||S.myDoctor,reason:"",cat:"",onset:"",sev:4,flags:[],meds:S.patient.meds+"; allergic to "+S.patient.allergies,files:[]};
+  navRender();
+}
+const NSTEPS=6;
+function navRender(){
+  const n=nav,d=docById(n.doc);
+  const prog=`<div class="progress"><span style="width:${(n.step+1)/(NSTEPS+1)*100}%"></span></div>`;
+  const q=t=>`<div class="qa"><span class="bot">✳</span><div style="padding-top:4px">${t}</div></div>`;
+  let body="",next="Continue",ok=true;
+  if(n.step===0){body=q("Hi Maya. What would you like help with today? Use your own words; there's no wrong way to describe it.")+`<div class="chips" id="cats">${["New symptom","Follow up","Prescription renewal","Skin concern","Mental health","Note or form"].map(c=>`<button class="chip" aria-pressed="${n.cat===c}" data-cat="${c}">${c}</button>`).join("")}</div><textarea id="nReason" placeholder="For example: a sore throat and fever since Sunday">${esc(n.reason)}</textarea>`;ok=!!(n.reason.trim()||n.cat)}
+  if(n.step===1){body=q("When did this start?")+`<div class="chips" id="onset">${["Today","In the last week","1 to 4 weeks ago","More than a month ago","Ongoing condition"].map(c=>`<button class="chip" aria-pressed="${n.onset===c}" data-on="${c}">${c}</button>`).join("")}</div>`;ok=!!n.onset}
+  if(n.step===2){body=q("How much is it affecting your day right now?")+`<div class="stack" style="gap:6px"><input type="range" id="nSev" min="0" max="10" value="${n.sev}" aria-label="Severity 0 to 10"><div class="row between muted" style="font-size:.84rem"><span>0, barely</span><b class="tabnum" id="sevV" style="color:var(--fg)">${n.sev} of 10</b><span>10, the worst</span></div></div>`}
+  if(n.step===3){body=q("Do you have any of these right now?")+`<div class="stack">${["Chest pain or pressure","Trouble breathing","Sudden weakness, numbness or face drooping","Heavy bleeding","Thoughts of harming yourself"].map(f=>`<label class="check"><input type="checkbox" class="rf" value="${f}" ${n.flags.includes(f)?"checked":""}>${f}</label>`).join("")}</div>`;next=n.flags.length?"Get urgent help":"None of these, continue"}
+  if(n.step===4){body=q("Here's what we have on file. Is this still right? Add anything else your doctor should know.")+`<textarea id="nMeds">${esc(n.meds)}</textarea><div class="drop"><label style="cursor:pointer"><b style="color:var(--fg)">Add photos or files</b> (rashes, readings, letters)<input type="file" id="nFiles" multiple hidden></label><div id="nFileList" style="margin-top:6px">${n.files.map(esc).join(", ")}</div></div>`}
+  if(n.step===5){body=q("Who should review this?")+`<div class="stack">${doctors.filter(x=>x.accepting).map(x=>`<label class="check" style="align-items:center;padding:8px;border:1px solid var(--line);border-radius:10px"><input type="radio" name="ndoc" value="${x.id}" ${n.doc===x.id?"checked":""}>${avatar(x.name,docIdx(x.id),"sm")}<span style="flex:1"><b>${esc(x.name)}</b>${x.id===S.myDoctor?` <span class="pill hi plain">Your doctor</span>`:""}<br><span class="muted" style="font-size:.84rem">${esc(x.spec)} · ${esc(x.resp.toLowerCase())}</span></span></label>`).join("")}</div>`}
+  if(n.step===6){const sum=`${n.cat?n.cat+": ":""}${n.reason||"(no description)"}. Started ${n.onset.toLowerCase()}. Impact ${n.sev}/10. No red flag symptoms reported. Medications and allergies: ${n.meds}.${n.files.length?" "+n.files.length+" file(s) attached.":""}`;
+    body=q(`Here's the summary ${esc(d.name)} will see, along with everything you wrote. Edit anything that isn't right.`)+`<textarea id="nSum" style="min-height:140px">${esc(sum)}</textarea><div class="notice info" style="font-size:.84rem">${esc(d.name)} reviews your request and replies with a plan, ${esc(d.resp.toLowerCase())}. If they need to see you, they'll offer a video or in person visit. Insured care is covered by OHIP.</div>`;next="Send to "+d.name}
+  modal(`${mhead("Care Navigator","Tell us what's going on")}${prog}<div class="nav-chat">${body}</div>
+   <div class="row between">${n.step>0?`<button class="btn ghost" data-act="navBack">Back</button>`:`<span class="muted" style="font-size:.82rem">Emergency? Call 911.</span>`}<button class="btn ${n.step===3&&n.flags.length?"danger":"primary"}" data-act="navNext" ${ok?"":"disabled"} id="navNext">${esc(next)}</button></div>`);
+  const nb=$("#navNext");
+  if(n.step===0){$("#cats").addEventListener("click",e=>{const b=e.target.closest("[data-cat]");if(!b)return;n.cat=n.cat===b.dataset.cat?"":b.dataset.cat;$("#cats").querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",String(c.dataset.cat===n.cat)));nb.disabled=!(n.reason.trim()||n.cat)});
+    $("#nReason").addEventListener("input",e=>{n.reason=e.target.value;nb.disabled=!(n.reason.trim()||n.cat)})}
+  if(n.step===1)$("#onset").addEventListener("click",e=>{const b=e.target.closest("[data-on]");if(!b)return;n.onset=b.dataset.on;navRender()});
+  if(n.step===2)$("#nSev").addEventListener("input",e=>{n.sev=+e.target.value;$("#sevV").textContent=n.sev+" of 10"});
+  if(n.step===3)document.querySelectorAll(".rf").forEach(c=>c.addEventListener("change",()=>{n.flags=[...document.querySelectorAll(".rf:checked")].map(x=>x.value);nb.textContent=n.flags.length?"Get urgent help":"None of these, continue";nb.className="btn "+(n.flags.length?"danger":"primary")}));
+  if(n.step===4){$("#nMeds").addEventListener("input",e=>n.meds=e.target.value);$("#nFiles").addEventListener("change",e=>{n.files=[...e.target.files].map(f=>f.name);$("#nFileList").textContent=n.files.join(", ")})}
+  if(n.step===5)document.querySelectorAll("[name=ndoc]").forEach(r=>r.addEventListener("change",()=>n.doc=r.value));
+}
+function navNext(){
+  const n=nav;
+  if(n.step===0&&redFlag(n.reason)){emergency(/suicid|kill myself|end my life/i.test(n.reason));return}
+  if(n.step===3&&n.flags.length){emergency(n.flags.includes("Thoughts of harming yourself"));return}
+  if(n.step<6){n.step++;navRender();return}
+  const sum=$("#nSum").value;
+  const id="t"+Date.now();const d=docById(n.doc);
+  const subject=(n.cat||"New request")+(n.reason?": "+n.reason.slice(0,40)+(n.reason.length>40?"…":""):"");
+  S.threads.unshift({id,doc:n.doc,subject,status:"With your doctor",msgs:[{from:"me",text:n.reason||n.cat,when:now(),att:n.files},{from:"sys",text:"Care Navigator summary shared with "+d.name+". Waiting for clinician review."}]});
+  S.activeThread=id;
+  S.queue.unshift({id:"c1",pt:"Maya Chen",age:38,pri:n.sev>=7?"soon":"routine",due:n.sev>=7?"Due in 2 h":"Due in 6 h",reason:subject,summary:sum,hx:"Hypertension (2024), hand eczema",meds:S.patient.meds,all:S.patient.allergies,flags:n.sev>=7?["High impact score"]:[],photos:n.files.length,thread:id});
+  S.queue=S.queue.filter((q,i,a)=>a.findIndex(x=>x.id===q.id)===i);
+  closeModal();go("messages");toast("Sent. "+d.name+" will review it.");
+  simulateReply(id,"Hi Maya, I've read your note and the summary. Here's what I'd suggest for now. I've added it to your care plan; message me if things change or you're not improving in 3 days.","Care plan updated: new guidance from "+d.name+", check in by message in 3 days.");
+}
+
+/* ---------------- onboarding ---------------- */
+let ob=null;
+function openOnboarding(cb){ob={step:0,prov:"Ontario",cb:cb||null,doc:S.myDoctor};obRender()}
+function obRender(){
+  const s=ob.step;const bar=`<div class="steps">${[0,1,2,3].map(i=>`<span class="${i<=s?"on":""}"></span>`).join("")}</div>`;
+  let b="";
+  if(s===0)b=`${mhead("Step 1 of 4","Where do you live?")}${bar}<p class="muted">Northline Care is launching first in Ontario. Your province decides which doctors can care for you and what's covered.</p><label class="f">Province or territory<select id="obProv">${["Ontario","British Columbia","Alberta","Quebec","Manitoba","Nova Scotia","Other province or territory","Outside Canada"].map(p=>`<option ${ob.prov===p?"selected":""}>${p}</option>`).join("")}</select></label><div id="obProvMsg"></div><div class="row"><button class="btn primary" data-act="obNext" id="obGo">Continue</button></div>`;
+  if(s===1)b=`${mhead("Step 2 of 4","Create your account")}${bar}<div class="grid g2"><label class="f">Legal first name<input type="text" id="obFn" value="Maya"></label><label class="f">Last name<input type="text" id="obLn" value="Chen"></label><label class="f">Email<input type="email" id="obEm" value="maya.chen@example.ca"></label><label class="f">Mobile<input type="tel" id="obPh" value="416 555 0142"></label><label class="f">Date of birth<input type="date" id="obDob" value="1988-04-12"></label></div><p class="muted" style="font-size:.84rem">You'll confirm with a one time code and set up two step sign in. Prototype: no account is created.</p><div class="row between"><button class="btn ghost" data-act="obBack">Back</button><button class="btn primary" data-act="obNext">Continue</button></div>`;
+  if(s===2)b=`${mhead("Step 3 of 4","Health card and consent")}${bar}<label class="f">Ontario health card number<input type="text" id="obCard" value="1234 567 890 KT" class="mono"></label><div class="stack"><label class="check"><input type="checkbox" class="obc" checked>I consent to Northline Care clinicians collecting and using my health information to provide care, as described in the privacy notice.</label><label class="check"><input type="checkbox" class="obc" checked>I understand Northline Care is not for emergencies. I'll call 911 or 988 when I need urgent help.</label><label class="check"><input type="checkbox" id="obAi" checked>Use the Care Navigator (AI) to help prepare my requests. A clinician always reviews.</label></div><div class="row between"><button class="btn ghost" data-act="obBack">Back</button><button class="btn primary" data-act="obNext" id="obGo">Verify and continue</button></div>`;
+  if(s===3)b=`${mhead("Step 4 of 4","Choose your doctor")}${bar}<p class="muted">Your doctor reviews your requests and gets to know you over time. You can add specialists later.</p><div class="stack">${doctors.filter(d=>d.accepting&&d.spec==="Family medicine").map(d=>`<label class="check" style="align-items:center;padding:10px;border:1px solid var(--line);border-radius:12px"><input type="radio" name="obd" value="${d.id}" ${ob.doc===d.id?"checked":""}>${avatar(d.name,docIdx(d.id))}<span style="flex:1"><b>${esc(d.name)}</b><br><span class="muted" style="font-size:.84rem">${esc(d.role)} · ${esc(d.city)} · speaks ${esc(d.langs.join(", "))}</span></span></label>`).join("")}</div><div class="row between"><button class="btn ghost" data-act="obBack">Back</button><button class="btn primary" data-act="obNext">Finish setup</button></div>`;
+  modal(b);
+  if(s===0){const upd=()=>{ob.prov=$("#obProv").value;const ok=ob.prov==="Ontario";$("#obProvMsg").innerHTML=ok?`<div class="notice info">Great, you're in the Ontario pilot. Care covered by OHIP is free to you.</div>`:`<div class="notice warn">Northline Care isn't available in ${esc(ob.prov)} yet. Join the waitlist and we'll email you when we launch there. Out of province visitors to Ontario can still use paid consults.</div>`;$("#obGo").textContent=ok?"Continue":"Join the waitlist"};$("#obProv").addEventListener("change",upd);upd()}
+  if(s===2)document.querySelectorAll(".obc").forEach(c=>c.addEventListener("change",()=>{$("#obGo").disabled=[...document.querySelectorAll(".obc")].some(x=>!x.checked)}));
+  if(s===3)document.querySelectorAll("[name=obd]").forEach(r=>r.addEventListener("change",()=>ob.doc=r.value));
+}
+function obNext(){
+  if(ob.step===0&&ob.prov!=="Ontario"){closeModal();toast("You're on the "+ob.prov+" waitlist");return}
+  if(ob.step===2){if(!/^\d{4}\s?\d{3}\s?\d{3}/.test($("#obCard").value)){toast("Enter the 10 digit number from the front of your card");return}S.consents.ai_intake=$("#obAi").checked}
+  if(ob.step<3){ob.step++;obRender();return}
+  S.myDoctor=ob.doc;S.onboarded=true;closeModal();toast("Welcome to Northline Care. "+docById(ob.doc).name+" is now your doctor.");
+  const cb=ob.cb;ob=null;render();if(cb)cb();
+}
+
+/* ---------------- actions ---------------- */
+document.addEventListener("click",e=>{
+  const r=e.target.closest("[data-role]");if(r){go({patient:"home",clinician:"queue",admin:"overview"}[r.dataset.role]);return}
+  if(e.target.closest("#bell")){modal(`${mhead("","Notifications")}<div class="list">${S.notifications.map((n,i)=>`<button class="row between" data-act="notif" data-i="${i}" style="background:none;border:0;border-bottom:1px solid var(--line);text-align:left;cursor:pointer;width:100%"><span style="${n.unread?"font-weight:700":""}">${esc(n.t)}</span>${n.unread?`<span class="pill hi plain">New</span>`:""}</button>`).join("")||`<div class="empty">You're all caught up.</div>`}</div>`);return}
+  const a=e.target.closest("[data-act]");if(!a)return;
+  const act=a.dataset.act,id=a.dataset.id;
+  if(act==="scrim"){if(e.target===a)closeModal();return}
+  if(a.tagName==="INPUT")return; /* handled by change */
+  const fn={
+   close:closeModal,
+   go:()=>go(a.dataset.v),
+   onboard:()=>openOnboarding(),
+   navigator:()=>openNavigator(),
+   navNext,navBack:()=>{nav.step--;navRender()},
+   obNext,obBack:()=>{ob.step--;obRender()},
+   openThread:()=>{S.activeThread=id;go("messages");if(view==="messages")render()},
+   docView:()=>docProfile(id),
+   docMsg:()=>{const d=docById(id);if(!d.accepting){closeModal();toast("You're on "+d.name+"'s waitlist. We'll message you when a spot opens.");return}closeModal();S.role="patient";openNavigator(id)},
+   chooseDoc:()=>{S.myDoctor=id;closeModal();toast(docById(id).name+" is now your doctor");render()},
+   escalate:()=>bookModal(id),book:()=>bookModal(),
+   joinVideo:()=>modal(`${mhead("Video visit","Waiting room")}<div class="card stack" style="background:var(--ink);color:var(--cream);align-items:center;padding:40px"><div class="av lg" style="background:var(--lime)">AO</div><b>Your clinician will join shortly</b><span style="opacity:.75;font-size:.88rem">Camera and microphone check passed (prototype)</span></div><div class="row"><button class="btn ghost" data-act="close">Leave waiting room</button></div>`),
+   renew:()=>{const r=S.rx.find(x=>x.id===id);modal(`${mhead("Renewal request",esc(r.drug))}<label class="f">Anything your prescriber should know?<textarea id="rnNote" placeholder="For example: no side effects, readings are steady"></textarea></label><label class="f">Pharmacy<select><option>${esc(r.pharmacy)}</option><option>Bathurst Rexall Drug Store</option><option>Shoppers Drug Mart, College St</option></select></label><div class="row"><button class="btn primary" data-act="renewGo" data-id="${id}">Send request to ${esc(docById(r.doc).name)}</button></div>`)},
+   renewGo:()=>{const r=S.rx.find(x=>x.id===id);r.status="Renewal requested";closeModal();toast("Renewal sent to "+docById(r.doc).name);render()},
+   pharmacy:()=>modal(`${mhead("","Choose your pharmacy")}<input type="search" placeholder="Search by name or postal code" aria-label="Search pharmacies"><div class="list">${["Queen St. Community Pharmacy · 412 Queen St W","Bathurst Rexall Drug Store · 870 Bathurst St","Shoppers Drug Mart · 466 College St","Kensington Health Pharmacy · 230 Augusta Ave"].map(p=>`<button class="row between" data-act="setPharm" data-p="${esc(p.split(" · ")[0])}" style="background:none;border:0;border-bottom:1px solid var(--line);cursor:pointer;width:100%;text-align:left"><span>${esc(p)}</span><span class="btn ghost sm">Select</span></button>`).join("")}</div>`),
+   setPharm:()=>{S.rx.forEach(r=>r.pharmacy=a.dataset.p);closeModal();toast("Pharmacy updated");render()},
+   doc:()=>docPreview(id),
+   shareDoc:()=>{closeModal();toast("Secure link created. It expires in 7 days.")},
+   requestNote:()=>modal(`${mhead("Uninsured service","Request a note or form")}<label class="f">What do you need?<select id="rqT"><option value="25">Sick note for work or school, $25</option><option value="40">Insurance or employment form, $40</option><option value="60">Travel health letter, $60</option></select></label><label class="f">Details<textarea placeholder="Dates, employer or form name"></textarea></label><div class="notice info" style="font-size:.86rem">This service isn't covered by OHIP. Your Visa ending 4417 is charged only after the clinician completes it.</div><div class="row"><button class="btn primary" data-act="rqGo">Confirm request</button></div>`),
+   rqGo:()=>{const p=$("#rqT").value;S.receipts.unshift({what:$("#rqT").selectedOptions[0].text.split(",")[0]+" (pending)",amt:"$"+p+".00",date:"Today",method:"Charged on completion"});closeModal();toast("Request sent to NP Kiran Patel");},
+   addFamily:()=>modal(`${mhead("","Add a family member")}<div class="grid g2"><label class="f">Name<input type="text" id="fmN" placeholder="Full name"></label><label class="f">Relationship<select id="fmR"><option>Child</option><option>Partner</option><option>Parent</option></select></label><label class="f">Age<input type="text" id="fmA" inputmode="numeric"></label><label class="f">Health card<input type="text" placeholder="10 digits" class="mono"></label></div><p class="muted" style="font-size:.84rem">People 16 and older must accept your invitation before you can see their care.</p><div class="row"><button class="btn primary" data-act="fmGo">Add</button></div>`),
+   fmGo:()=>{const n=$("#fmN").value.trim();if(!n){toast("Enter a name");return}S.family.push({name:n,rel:$("#fmR").value,age:$("#fmA").value||"?",doc:+$("#fmA").value<18?"d9":S.myDoctor});closeModal();toast(n+" added");render()},
+   updateCard:()=>toast("Prototype: card update would re‑verify with the province"),
+   addBenefits:()=>modal(`${mhead("","Add a benefits plan")}<label class="f">Insurer<select><option>Sun Life</option><option>Manulife</option><option>Canada Life</option><option>Green Shield Canada</option><option>Other</option></select></label><div class="grid g2"><label class="f">Plan number<input type="text"></label><label class="f">Member ID<input type="text"></label></div><div class="row"><button class="btn primary" data-act="close" onclick="">Save plan</button></div>`),
+   exportRecord:()=>toast("Request logged. You'll get a secure link by email."),
+   closeAcct:()=>modal(`${mhead("","Close your account?")}<p>You'll lose access to messages and your care plan. Your clinicians keep the medical record for the period Ontario requires.</p><div class="row"><button class="btn danger" data-act="closeGo">Close my account</button><button class="btn ghost" data-act="close">Keep my account</button></div>`),
+   closeGo:()=>{closeModal();toast("Prototype: account closure would start here")},
+   notif:()=>{const n=S.notifications[+a.dataset.i];n.unread=false;closeModal();go(n.v)},
+   /* clinician */
+   case:()=>{S.activeCase=id;orders=[];render()},
+   tpl:()=>{const t=$("#planTxt");t.value=templates[id]||templates.c1;S.plans[id]=t.value},
+   cRx:()=>modal(`${mhead("New prescription","Prescribe")}<div class="grid g2"><label class="f">Medication<input type="text" id="rxD" placeholder="e.g. cephalexin 500 mg capsule"></label><label class="f">Directions<input type="text" id="rxS" placeholder="1 capsule 4 times daily"></label><label class="f">Quantity<input type="text" id="rxQ" placeholder="28"></label><label class="f">Refills<input type="text" id="rxR" value="0"></label></div><div class="notice warn" style="font-size:.86rem">Allergy check: compare against the patient's listed allergies before sending.</div><div class="row"><button class="btn primary" data-act="rxAdd">Add to plan</button></div>`),
+   rxAdd:()=>{const d=$("#rxD").value.trim();if(!d){toast("Enter a medication");return}orders.push("Rx: "+d);closeModal();renderOrders()},
+   cLab:()=>modal(`${mhead("Lab requisition","Order tests")}<div class="stack">${["CBC","HbA1c","Lipid panel","TSH","Creatinine and eGFR","Urinalysis and culture","STI panel"].map(t=>`<label class="check"><input type="checkbox" class="lab" value="${t}">${t}</label>`).join("")}</div><div class="row"><button class="btn primary" data-act="labAdd">Add requisition</button></div>`),
+   labAdd:()=>{const t=[...document.querySelectorAll(".lab:checked")].map(x=>x.value);if(!t.length){toast("Choose at least one test");return}orders.push("Labs: "+t.join(", "));closeModal();renderOrders()},
+   cNote:()=>{orders.push("Work note");renderOrders();toast("Work note added")},
+   cVideo:()=>{orders.push("Video visit offered");renderOrders();toast("Patient will be offered video times")},
+   cRefer:()=>modal(`${mhead("Referral","Refer to a specialist")}<label class="f">Specialty<select><option>Dermatology</option><option>Psychiatry</option><option>Physiotherapy</option><option>Cardiology</option></select></label><label class="f">Reason<textarea></textarea></label><div class="row"><button class="btn primary" data-act="refGo">Add referral</button></div>`),
+   refGo:()=>{orders.push("Referral");closeModal();renderOrders()},
+   photos:()=>modal(`${mhead("Patient photos","Attachments")}<div class="grid g2">${[1,2].map(i=>`<div class="card" style="aspect-ratio:4/3;max-width:100%;display:grid;place-items:center;background:var(--soft)"><span class="muted">Photo ${i}: sample placeholder</span></div>`).join("")}</div>`,"wide"),
+   sign:()=>{const t=$("#planTxt").value.trim();if(!t){toast("Write the plan before signing");return}if(!$("#attest").checked){toast("Confirm your review before signing");return}
+     const c=S.queue.find(q=>q.id===id);S.queue=S.queue.filter(q=>q.id!==id);S.done.unshift({pt:c.pt,reason:c.reason,at:now()});S.billing.unshift({pt:c.pt,svc:"Virtual care, existing patient",payer:"OHIP",status:"Submitted via EMR",amt:"Fee schedule"});
+     if(c.thread){const th=S.threads.find(x=>x.id===c.thread);if(th){th.msgs.push({from:"them",text:t,when:now()});if(orders.length)th.msgs.push({from:"plan",text:"Added to your care plan: "+orders.join("; "),when:now()});th.status="Answered";S.notifications.unshift({t:"Your doctor signed a plan: "+th.subject,v:"messages",unread:true})}}
+     S.activeCase=S.queue[0]&&S.queue[0].id;orders=[];toast("Signed and sent to "+c.pt);render()},
+   ptMsg:()=>toast("Prototype: opens a new thread with "+a.dataset.n),
+   availability:()=>toast("Prototype: availability editor"),
+   /* admin */
+   invite:()=>modal(`${mhead("","Invite a clinician")}<div class="grid g2"><label class="f">Name<input type="text"></label><label class="f">Email<input type="email"></label><label class="f">College<select><option>CPSO</option><option>CNO</option></select></label><label class="f">Registration number<input type="text" class="mono"></label></div><p class="muted" style="font-size:.84rem">We check the public register and ask for proof of liability protection before the clinician can see patients.</p><div class="row"><button class="btn primary" data-act="close">Send invitation</button></div>`),
+   integ:()=>{const x=S.integrations[+a.dataset.i];modal(`${mhead("Integration",esc(x.n))}<p>${esc(x.d)}</p><div class="notice warn">Not available in this prototype. Setup requires a signed agreement, credentials issued to Northline Care, and a privacy review.</div><div class="row"><button class="btn ghost" data-act="close">Close</button></div>`)},
+   launchSt:()=>{const l=S.launch[+a.dataset.i];l.st={"Not started":"In progress","In progress":"Done","Done":"Not started"}[l.st];render()}
+  }[act];
+  if(fn){e.preventDefault&&a.tagName==="A"&&e.preventDefault();fn()}
+});
+document.addEventListener("change",e=>{
+  const a=e.target.closest("[data-act]");if(!a)return;
+  if(a.dataset.act==="task"){const k=S.plan.tasks.find(t=>t.id===a.dataset.id);k.done=a.checked;toast(k.done?"Nice work. Your doctor can see this.":"Marked as not done");render()}
+  if(a.dataset.act==="consent"){S.consents[a.dataset.k]=a.checked;S.audit.unshift({who:"Maya Chen",what:(a.checked?"Turned on: ":"Turned off: ")+consentLabels[a.dataset.k][0],when:"Just now"});toast("Consent updated");render()}
+  if(a.dataset.act==="accepting"){const t=S.team.find(x=>x.id===a.dataset.id);t.accepting=a.checked;docById(a.dataset.id).accepting=a.checked;toast(docById(a.dataset.id).name+(a.checked?" is accepting new patients":" is now waitlisting"))}
+});
+
+route();
+})();
+
+</script>
+
+</body></html>

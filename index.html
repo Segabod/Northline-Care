@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Northline Care: message your own Ontario doctor. Interactive prototype of a Canadian virtual care platform.">
+<meta name="description" content="Northline Care: message your own Ontario doctor from your phone, browser or AI app. Interactive prototype of a Canadian virtual care platform.">
 <style>[hidden]{display:none!important}img{max-width:100%}body{margin:0}</style>
 <title>Northline Care</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -391,6 +391,93 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .skin button i{width:12px;height:12px;border-radius:50%;border:1px solid #9fb3a8;display:block}
 .skin button[aria-pressed="true"]{background:var(--surface);color:var(--fg);box-shadow:0 1px 3px rgba(24,61,53,.12)}
 @media (max-width:520px){.skin button span{display:none}.skin button{padding:5px 7px}}
+
+/* ===== motion and connect your AI ===== */
+#landing .rot{display:inline-grid;vertical-align:bottom}
+#landing .rot>em{grid-area:1/1;transition:opacity .5s ease,transform .5s ease}
+#landing .rot>em:not(.on){opacity:0;transform:translateY(.35em)}
+#landing .rot>em.out{opacity:0;transform:translateY(-.35em)}
+#landing .hero .eyebrow,#landing .hero h1,#landing .hero .lede,#landing .hero .ctas,#landing .hero .proof{animation:nlrise .7s cubic-bezier(.2,.7,.2,1) both}
+#landing .hero h1{animation-delay:.06s}#landing .hero .lede{animation-delay:.14s}#landing .hero .ctas{animation-delay:.22s}#landing .hero .proof{animation-delay:.3s}
+@keyframes nlrise{from{opacity:.001;transform:translateY(18px)}to{opacity:1;transform:none}}
+#landing .phone{position:relative;min-height:470px}
+#landing .phone .bub,#landing .phone .typing{transition:opacity .35s ease,transform .35s ease}
+#landing .phone.play .seq:not(.shown){opacity:0;transform:translateY(10px);position:absolute;pointer-events:none}
+#landing .phone .typing{display:none}
+#landing .phone.play .typing.on{display:flex}
+#landing .orbit{position:absolute;top:-22px;right:-14px;width:64px;height:64px;border-radius:50%;background:var(--lime);color:#183d35;display:grid;place-items:center;font-size:2rem;font-weight:800;animation:nlspin 14s linear infinite;box-shadow:0 10px 30px -10px rgba(24,61,53,.5)}
+@keyframes nlspin{to{transform:rotate(360deg)}}
+#landing .wall{overflow:hidden;border-block:1px solid var(--line);padding-block:16px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+#landing .wall .track{display:flex;gap:14px;width:max-content;animation:nlslide 48s linear infinite}
+#landing .wall:hover .track{animation-play-state:paused}
+#landing .face{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 16px 6px 6px;white-space:nowrap;font-size:.9rem}
+#landing .face .av{width:34px;height:34px;font-size:.78rem}
+#landing .face small{color:var(--muted);display:block;font-size:.76rem;line-height:1.2}
+@keyframes nlslide{to{transform:translateX(-50%)}}
+@supports (animation-timeline: view()){
+  #landing .rv{animation:nlrv linear both;animation-timeline:view();animation-range:entry 0% cover 22%}
+}
+@keyframes nlrv{from{opacity:.2;transform:translateY(34px) scale(.985)}to{opacity:1;transform:none}}
+#landing .step{transition:transform .25s ease,box-shadow .25s ease}
+#landing .step:hover,#landing .door:hover{transform:translateY(-4px);box-shadow:0 18px 40px -24px rgba(24,61,53,.45)}
+#landing .door{transition:transform .25s ease,box-shadow .25s ease}
+#landing .tl{transition:transform .25s ease}
+#landing .tl:hover{transform:translateX(6px)}
+
+#landing .connect{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(20px,4vw,48px);align-items:start}
+@media (max-width:900px){#landing .connect{grid-template-columns:minmax(0,1fr)}}
+#landing .connect>*{min-width:0}
+#landing .links a{white-space:nowrap}
+@media (max-width:1240px){#landing .links{gap:14px;font-size:.88rem}}
+@media (max-width:1140px){#landing .links a[href="#clinicians"],#landing .links a[href="#faq"]{display:none}}
+#landing .aiwin .bar{flex-wrap:wrap}
+@media (max-width:440px){#landing nav.top .in{flex-wrap:wrap;row-gap:8px}#landing nav .sp{display:none}#landing nav .skin{order:3}}
+#landing .apps{display:flex;gap:8px;flex-wrap:wrap}
+#landing .app{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;padding:8px 14px;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+#landing .app[aria-pressed="true"]{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+:root[data-theme="dark"]:not([data-skin="white"]) #landing .app[aria-pressed="true"]{background:var(--lime);color:var(--ink);border-color:var(--lime)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) #landing .app[aria-pressed="true"]{background:var(--lime);color:var(--ink);border-color:var(--lime)}}
+#landing .app .soon{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:.7}
+#landing .aiwin{background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 30px 60px -36px rgba(24,61,53,.45)}
+#landing .aiwin .bar{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line);font-weight:600;font-size:.9rem}
+#landing .aiwin .bar .dots{display:flex;gap:6px}
+#landing .aiwin .bar .dots i{width:10px;height:10px;border-radius:50%;background:var(--line);display:block}
+#landing .aiwin .tool{margin-left:auto;font-size:.76rem;font-weight:600;background:var(--soft);border-radius:999px;padding:3px 10px;color:var(--muted)}
+#landing .aiwin .tool.live{background:var(--lime);color:#183d35}
+#landing .aibody{padding:18px;display:flex;flex-direction:column;gap:12px;min-height:360px;max-height:420px;overflow-y:auto}
+#landing .am{padding:10px 14px;border-radius:16px;font-size:.92rem;max-width:88%;animation:nlrise .35s ease both}
+#landing .am.u{align-self:flex-end;background:var(--soft);border-bottom-right-radius:4px}
+#landing .am.a{align-self:flex-start}
+#landing .am.t{align-self:flex-start;font-size:.8rem;color:var(--muted);border:1px dashed var(--line);border-radius:10px;padding:6px 10px;font-family:ui-monospace,Menlo,monospace}
+#landing .am.d{align-self:flex-start;border:1.5px solid var(--accent);background:var(--surface)}
+#landing .am.d b{display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+#landing .aifoot{display:flex;gap:8px;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--line)}
+#landing .aifoot button{border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:999px;padding:7px 12px;font:inherit;font-size:.85rem;cursor:pointer}
+#landing .aifoot button:hover{border-color:var(--accent)}
+#landing .aifoot button:disabled{opacity:.45;cursor:default}
+#landing .cbox{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:12px}
+#landing .copyline{display:flex;gap:8px;align-items:stretch}
+#landing .copyline code{flex:1;min-width:0;background:var(--soft);border-radius:10px;padding:10px 12px;font-size:.84rem;overflow-wrap:anywhere;font-family:ui-monospace,Menlo,monospace}
+#landing .copyline button{border:0;background:var(--accent);color:var(--accent-fg);border-radius:10px;padding:0 14px;font:inherit;font-weight:600;cursor:pointer;flex:none}
+#landing .tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);overflow-x:auto}
+#landing .tabs button{border:0;background:none;font:inherit;font-size:.9rem;font-weight:600;color:var(--muted);padding:8px 12px;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
+#landing .tabs button[aria-selected="true"]{color:var(--fg);border-color:var(--accent)}
+#landing .cbox ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:.94rem}
+#landing .cbox pre{margin:0;background:var(--soft);border-radius:10px;padding:10px 12px;font-size:.8rem;overflow-x:auto}
+#landing .perm{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;padding-block:10px;border-bottom:1px solid var(--line)}
+#landing .perm:last-child{border-bottom:0}
+#landing .perm small{display:block;color:var(--muted);font-size:.84rem}
+#landing .sw{position:relative;width:42px;height:24px;flex:none}
+#landing .sw input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer;z-index:1}
+#landing .sw span{position:absolute;inset:0;background:var(--line);border-radius:12px;transition:.2s}
+#landing .sw span::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.2s}
+#landing .sw input:checked+span{background:var(--green)}
+#landing .sw input:checked+span::after{left:21px}
+#landing .sw input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+#landing .safety{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:14px;margin-top:28px}
+#landing .safety div{border-top:2px solid var(--accent);padding-top:12px;font-size:.92rem;color:var(--muted)}
+#landing .safety b{display:block;color:var(--fg);margin-bottom:4px}
+@media (prefers-reduced-motion:reduce){#landing .wall .track{animation:none;flex-wrap:wrap;width:auto}#landing .rot>em:not(.on){display:none}}
 </style>
 </head>
 <body>
@@ -401,7 +488,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 <nav class="top"><div class="in">
   <a class="logo" href="#top">northline<span>✳</span>care</a>
-  <div class="links"><a href="#how">How it works</a><a href="#find">Doctors</a><a href="#cost">What it costs</a><a href="#clinicians">For clinicians</a><a href="#faq">FAQ</a></div>
+  <div class="links"><a href="#how">How it works</a><a href="#find">Doctors</a><a href="#connect">Connect your AI</a><a href="#cost">What it costs</a><a href="#clinicians">For clinicians</a><a href="#faq">FAQ</a></div>
   <div class="sp"></div>
   <div class="skin" role="group" aria-label="Colour theme"><button type="button" data-skin-set="cream" aria-pressed="true"><i style="background:#f6f5ed"></i><span>Cream</span></button><button type="button" data-skin-set="white" aria-pressed="false"><i style="background:#ffffff"></i><span>White</span></button></div>
   <a class="btn ghost sm hide-sm" href="#clinician">I'm a clinician</a>
@@ -411,24 +498,27 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 <header class="hero" id="top"><div class="in">
   <div>
     <div class="eyebrow">Ontario first · launching with partner clinics</div>
-    <h1 style="margin-top:14px">Your own doctor, <em>a message away.</em></h1>
-    <p class="lede">Message licensed Ontario doctors from your phone or browser. The same doctor reads every message, replies with a plan usually the same day, and care covered by OHIP costs you nothing.</p>
+    <h1 style="margin-top:14px">Your own doctor, <span class="rot" aria-live="off"><em class="on">a message away.</em><em aria-hidden="true">in your pocket.</em><em aria-hidden="true">inside your AI.</em></span></h1>
+    <p class="lede">Message licensed Ontario doctors from your phone, your browser or the AI app you already use. The same doctor reads every message, replies with a plan usually the same day, and care covered by OHIP costs you nothing.</p>
     <div class="ctas">
       <a class="btn primary" href="#start">Enter Northline Care →</a>
-      <a class="btn ghost" href="#home">I already have an account</a>
+      <a class="btn ghost" href="#connect">Connect your AI</a>
     </div>
     <div class="proof"><span>One doctor who knows you</span><span>Replies in hours, not weeks</span><span>No membership for insured care</span></div>
   </div>
-  <div class="phone" aria-label="Example conversation">
+  <div class="phone" id="heroPhone" aria-label="Example conversation">
+    <span class="orbit" aria-hidden="true">✳</span>
     <div class="ph"><span class="av" style="background:#d7ef9e">AO</span><div><b>Dr. Amara Okafor</b><div style="font-size:.8rem;color:var(--muted)">Your family doctor · usually within 3 hours</div></div></div>
-    <div class="bub me">My blood pressure readings at home averaged 136/86 this week. Should I change anything?</div>
-    <div class="bub ai"><b>Care Navigator</b>Thanks Maya. Any headaches, chest pain or vision changes? And are you still taking ramipril 5 mg?</div>
-    <div class="bub me">No symptoms. Yes, every morning.</div>
-    <div class="bub ai" style="background:var(--soft)"><b>Dr. Okafor</b>That's a little above target. Keep the same dose, cut back on salty takeout, and send me another week of readings.</div>
-    <div class="bub plan"><div class="eyebrow" style="color:var(--accent)">Care plan updated</div>7 more days of readings · review Nov 3</div>
+    <div class="bub me seq">My blood pressure readings at home averaged 136/86 this week. Should I change anything?</div>
+    <div class="bub ai seq"><b>Care Navigator</b>Thanks Maya. Any headaches, chest pain or vision changes? And are you still taking ramipril 5 mg?</div>
+    <div class="bub me seq">No symptoms. Yes, every morning.</div>
+    <div class="bub ai seq" style="background:var(--soft)"><b>Dr. Okafor</b>That's a little above target. Keep the same dose, cut back on salty takeout, and send me another week of readings.</div>
+    <div class="bub plan seq"><div class="eyebrow" style="color:var(--accent)">Care plan updated</div>7 more days of readings · review Nov 3</div>
     <div class="typing" aria-hidden="true"><i></i><i></i><i></i></div>
   </div>
 </div></header>
+<div class="wall" aria-label="Clinicians on Northline Care"><div class="track" id="wallTrack"></div></div>
+
 
 <section class="band why"><div class="in">
   <div><div class="eyebrow">Why we exist</div><h2 style="margin-top:14px">Some people have always had a doctor on speed dial. Every Canadian should.</h2></div>
@@ -436,25 +526,25 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 </div></section>
 
 <section id="how"><div class="in">
-  <div class="sec-head"><div><div class="eyebrow">All through messages</div><h2 style="margin-top:12px">How does it work?</h2></div><p style="max-width:40ch;color:var(--muted)">Two steps. No waiting room, no phone tag, no booking unless your doctor needs to see you.</p></div>
+  <div class="rv sec-head"><div><div class="eyebrow">All through messages</div><h2 style="margin-top:12px">How does it work?</h2></div><p style="max-width:40ch;color:var(--muted)">Two steps. No waiting room, no phone tag, no booking unless your doctor needs to see you.</p></div>
   <div class="steps">
-    <article class="step"><span class="n">1</span><h3>Our Care Navigator takes your history</h3><p>Describe what's going on in your own words. An AI assistant asks the follow up questions a resident would: when it started, what you've tried, your medications, any warning signs. Add photos or test results if they help.</p><p class="note">If you report an emergency symptom, it tells you to call 911 or 988 right away instead of waiting for a reply.</p></article>
-    <article class="step"><span class="n">2</span><h3>Your doctor reviews it and replies</h3><p>Your chosen doctor reads your original words and the summary, then writes your plan: advice, a prescription sent to your pharmacy, a lab requisition, or a video or in person visit. Most replies arrive the same day.</p><p class="note">The AI never diagnoses or prescribes. A licensed clinician signs every plan.</p></article>
+    <article class="rv step"><span class="n">1</span><h3>Our Care Navigator takes your history</h3><p>Describe what's going on in your own words. An AI assistant asks the follow up questions a resident would: when it started, what you've tried, your medications, any warning signs. Add photos or test results if they help.</p><p class="note">If you report an emergency symptom, it tells you to call 911 or 988 right away instead of waiting for a reply.</p></article>
+    <article class="rv step"><span class="n">2</span><h3>Your doctor reviews it and replies</h3><p>Your chosen doctor reads your original words and the summary, then writes your plan: advice, a prescription sent to your pharmacy, a lab requisition, or a video or in person visit. Most replies arrive the same day.</p><p class="note">The AI never diagnoses or prescribes. A licensed clinician signs every plan.</p></article>
   </div>
   <div style="margin-top:28px"><a class="btn primary" href="#ask">Try the Care Navigator →</a></div>
 </div></section>
 
 <section class="band" id="find"><div class="in">
-  <div class="sec-head"><div><div class="eyebrow">Find your doctor</div><h2 style="margin-top:12px;color:var(--band-fg)">Choose a doctor who stays with you</h2></div><a class="btn lime" href="#doctors">Browse all doctors →</a></div>
+  <div class="rv sec-head"><div><div class="eyebrow">Find your doctor</div><h2 style="margin-top:12px;color:var(--band-fg)">Choose a doctor who stays with you</h2></div><a class="btn lime" href="#doctors">Browse all doctors →</a></div>
   <div class="filters" id="filters" role="group" aria-label="Filter by specialty"></div>
   <div class="rowscroll"><div class="docs" id="docs"></div></div>
 </div></section>
 
 <section><div class="in">
-  <div class="sec-head"><div><div class="eyebrow">Why the same doctor matters</div><h2 style="margin-top:12px">A personal doctor beats a virtual queue</h2></div></div>
+  <div class="rv sec-head"><div><div class="eyebrow">Why the same doctor matters</div><h2 style="margin-top:12px">A personal doctor beats a virtual queue</h2></div></div>
   <div class="compare">
-    <div class="col us"><h3>With your Northline doctor</h3><ul><li>The same doctor reads every message and remembers what you tried last time</li><li>Your plan is adjusted as results and progress come in</li><li>Prescriptions, labs and referrals continue without starting over</li><li>Video or in person visits with the same doctor when needed</li><li>One record shared with the specialists you add</li></ul></div>
-    <div class="col them"><h3>With a walk‑in virtual queue</h3><ul><li>Whoever is next on shift, a different person each time</li><li>Your history starts from zero on every call</li><li>Follow up is up to you, often at another clinic</li><li>Short, scheduled calls that interrupt your day</li><li>Notes scattered across services that don't talk to each other</li></ul></div>
+    <div class="rv col us"><h3>With your Northline doctor</h3><ul><li>The same doctor reads every message and remembers what you tried last time</li><li>Your plan is adjusted as results and progress come in</li><li>Prescriptions, labs and referrals continue without starting over</li><li>Video or in person visits with the same doctor when needed</li><li>One record shared with the specialists you add</li></ul></div>
+    <div class="rv col them"><h3>With a walk‑in virtual queue</h3><ul><li>Whoever is next on shift, a different person each time</li><li>Your history starts from zero on every call</li><li>Follow up is up to you, often at another clinic</li><li>Short, scheduled calls that interrupt your day</li><li>Notes scattered across services that don't talk to each other</li></ul></div>
   </div>
 </div></section>
 
@@ -465,30 +555,30 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 <section><div class="in split">
   <div class="timeline">
-    <div class="tl"><b>8:05 a.m.</b><span>You send a photo of a rash before work</span></div>
-    <div class="tl"><b>8:07 a.m.</b><span>The Care Navigator asks three follow up questions</span></div>
-    <div class="tl"><b>11:20 a.m.</b><span>Dr. Sandhu replies with a plan and sends a cream to your pharmacy</span></div>
-    <div class="tl"><b>Day 10</b><span>You send a progress photo; the plan is adjusted</span></div>
+    <div class="rv tl"><b>8:05 a.m.</b><span>You send a photo of a rash before work</span></div>
+    <div class="rv tl"><b>8:07 a.m.</b><span>The Care Navigator asks three follow up questions</span></div>
+    <div class="rv tl"><b>11:20 a.m.</b><span>Dr. Sandhu replies with a plan and sends a cream to your pharmacy</span></div>
+    <div class="rv tl"><b>Day 10</b><span>You send a progress photo; the plan is adjusted</span></div>
   </div>
   <div><div class="eyebrow">You pay for unbiased advice, or nothing at all</div><h2 style="margin-top:12px">The doctor is the care. We don't sell medication.</h2><div class="body" style="margin-top:18px"><p>Many online health services earn their money on the prescriptions they push. Northline Care doesn't own a pharmacy or sell drugs, so your doctor has no reason to recommend anything except what's right for you.</p><p>Care that OHIP covers is billed to OHIP by our partner clinics. You never pay a membership fee to reach your doctor.</p></div></div>
 </div></section>
 
 <section class="band"><div class="in">
-  <div class="sec-head"><div><div class="eyebrow">When something's wrong</div><h2 style="margin-top:12px;color:var(--band-fg)">You've had three options. Now you have four.</h2></div><p style="max-width:42ch">Three were designed around the system's schedule. One was designed around you.</p></div>
+  <div class="rv sec-head"><div><div class="eyebrow">When something's wrong</div><h2 style="margin-top:12px;color:var(--band-fg)">You've had three options. Now you have four.</h2></div><p style="max-width:42ch">Three were designed around the system's schedule. One was designed around you.</p></div>
   <div class="doors">
-    <div class="door"><span class="k">Door 1</span><h3>The clinic visit</h3><p>Weeks for an appointment, time off work, a waiting room, and a short visit that ends before your questions do.</p></div>
-    <div class="door"><span class="k">Door 2</span><h3>The virtual queue</h3><p>A call with whoever is on shift. Quick, but they don't know you, and follow up is your problem.</p></div>
-    <div class="door"><span class="k">Door 3</span><h3>The chatbot</h3><p>Instant answers, but it can't examine you, prescribe, order tests, or take responsibility for your care.</p></div>
-    <div class="door us"><span class="k">Door 4</span><h3>Northline Care</h3><p>Your own licensed doctor by message, with a plan they sign, follow up they own, and visits when needed.</p><a class="btn lime sm" style="margin-top:6px;align-self:flex-start" href="#start">Open door 4 →</a></div>
+    <div class="rv door"><span class="k">Door 1</span><h3>The clinic visit</h3><p>Weeks for an appointment, time off work, a waiting room, and a short visit that ends before your questions do.</p></div>
+    <div class="rv door"><span class="k">Door 2</span><h3>The virtual queue</h3><p>A call with whoever is on shift. Quick, but they don't know you, and follow up is your problem.</p></div>
+    <div class="rv door"><span class="k">Door 3</span><h3>The chatbot</h3><p>Instant answers, but it can't examine you, prescribe, order tests, or take responsibility for your care.</p></div>
+    <div class="rv door us"><span class="k">Door 4</span><h3>Northline Care</h3><p>Your own licensed doctor by message, with a plan they sign, follow up they own, and visits when needed.</p><a class="btn lime sm" style="margin-top:6px;align-self:flex-start" href="#start">Open door 4 →</a></div>
   </div>
 </div></section>
 
 <section class="band" id="cost" style="padding-top:0"><div class="in">
-  <div class="sec-head"><div><div class="eyebrow">What it costs</div><h2 style="margin-top:12px;color:var(--band-fg)">Free for insured care. Clear prices for the rest.</h2></div></div>
+  <div class="rv sec-head"><div><div class="eyebrow">What it costs</div><h2 style="margin-top:12px;color:var(--band-fg)">Free for insured care. Clear prices for the rest.</h2></div></div>
   <div class="price">
-    <div class="pcard feat"><h3>Ontario residents</h3><div class="amt">$0</div><p>Messages, calls, video and in person care with your doctor, billed to OHIP by our partner clinics.</p><ul><li>No membership or access fee</li><li>Prescriptions, labs and referrals included</li><li>Add family members to one account</li></ul><a class="btn primary" href="#start" style="background:#183d35;color:#f6f5ed">Get started</a></div>
-    <div class="pcard"><h3>Services OHIP doesn't cover</h3><div class="amt" style="color:var(--band-fg)">From $25</div><ul><li>Sick notes for work or school: $25</li><li>Insurance and employment forms: $40 to $90</li><li>Travel health consultations: $60</li><li>Often claimable through workplace benefits</li></ul><a class="btn ghost" href="#coverage">See all prices</a></div>
-    <div class="pcard"><h3>Visitors and people between plans</h3><div class="amt" style="color:var(--band-fg)">$65</div><ul><li>Per consult for people without Ontario coverage</li><li>Includes a written plan and prescriptions</li><li>Receipts for travel or private insurance</li></ul><a class="btn ghost" href="#start">Check eligibility</a></div>
+    <div class="rv pcard feat"><h3>Ontario residents</h3><div class="amt">$0</div><p>Messages, calls, video and in person care with your doctor, billed to OHIP by our partner clinics.</p><ul><li>No membership or access fee</li><li>Prescriptions, labs and referrals included</li><li>Add family members to one account</li></ul><a class="btn primary" href="#start" style="background:#183d35;color:#f6f5ed">Get started</a></div>
+    <div class="rv pcard"><h3>Services OHIP doesn't cover</h3><div class="amt" style="color:var(--band-fg)">From $25</div><ul><li>Sick notes for work or school: $25</li><li>Insurance and employment forms: $40 to $90</li><li>Travel health consultations: $60</li><li>Often claimable through workplace benefits</li></ul><a class="btn ghost" href="#coverage">See all prices</a></div>
+    <div class="rv pcard"><h3>Visitors and people between plans</h3><div class="amt" style="color:var(--band-fg)">$65</div><ul><li>Per consult for people without Ontario coverage</li><li>Includes a written plan and prescriptions</li><li>Receipts for travel or private insurance</li></ul><a class="btn ghost" href="#start">Check eligibility</a></div>
   </div>
   <p style="margin-top:18px;font-size:.84rem">Pilot prices are illustrative and subject to legal review of Ontario's rules on uninsured services.</p>
 </div></section>
@@ -497,15 +587,61 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   <div><div class="eyebrow">For doctors and nurse practitioners</div><h2 style="margin-top:12px">Practise the way you wish medicine worked</h2><div class="body" style="margin-top:18px"><p>Build a panel of patients you follow over time, answer from anywhere, and let the Care Navigator collect the history before you open the chart. You review, edit and sign; nothing reaches a patient without you.</p><p>Insured work is billed to OHIP through your partner clinic's EMR. You set your hours, your panel size and when you're accepting new patients.</p></div>
   <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:26px"><a class="btn primary" href="#clinician">See the clinician workspace →</a><a class="btn ghost" href="#admin">For clinic partners</a></div></div>
   <div class="timeline">
-    <div class="tl"><b>Queue</b><span>Requests arrive triaged, with the patient's own words and an AI summary to verify</span></div>
-    <div class="tl"><b>Chart</b><span>History, medications, allergies, photos and results in one view</span></div>
-    <div class="tl"><b>Act</b><span>Prescribe, order labs, refer, or offer a video visit from the same screen</span></div>
-    <div class="tl"><b>Sign</b><span>One signature sends the plan to the patient and the encounter to billing</span></div>
+    <div class="rv tl"><b>Queue</b><span>Requests arrive triaged, with the patient's own words and an AI summary to verify</span></div>
+    <div class="rv tl"><b>Chart</b><span>History, medications, allergies, photos and results in one view</span></div>
+    <div class="rv tl"><b>Act</b><span>Prescribe, order labs, refer, or offer a video visit from the same screen</span></div>
+    <div class="rv tl"><b>Sign</b><span>One signature sends the plan to the patient and the encounter to billing</span></div>
+  </div>
+</div></section>
+
+<section id="connect"><div class="in">
+  <div class="sec-head rv"><div><div class="eyebrow">Connect your AI</div><h2 style="margin-top:12px">See your doctor from the AI app you already use</h2></div><p style="max-width:44ch;color:var(--muted)">Tell your assistant what's going on. It asks what your doctor needs to know, sends your request to Northline Care, and lets you know when your doctor replies. Your doctor, not the AI, decides your care.</p></div>
+  <div class="connect">
+    <div class="stack" style="display:flex;flex-direction:column;gap:14px">
+      <div class="apps" role="group" aria-label="Choose your AI app">
+        <button class="app" data-app="claude" aria-pressed="true">Claude</button>
+        <button class="app" data-app="chatgpt" aria-pressed="false">ChatGPT <span class="soon">soon</span></button>
+        <button class="app" data-app="code" aria-pressed="false">Claude Code</button>
+        <button class="app" data-app="other" aria-pressed="false">Other assistants</button>
+      </div>
+      <div class="aiwin rv">
+        <div class="bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span id="aiName">Claude</span><span class="tool live" id="aiTool">Northline Care connected</span></div>
+        <div class="aibody" id="aiBody" aria-live="polite"></div>
+        <div class="aifoot"><button id="aiPlay">▶ Play the demo</button><button id="aiAsk" disabled>Did my doctor reply?</button><button id="aiReset">Reset</button></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div class="cbox rv">
+        <div class="eyebrow">The quickest way</div>
+        <p style="font-size:.94rem">Paste this into your AI app. It reads our setup notes and walks you through connecting.</p>
+        <div class="copyline"><code id="copyText">Read northline-care.vercel.app/llms.txt and help me connect to Northline Care.</code><button id="copyBtn">Copy</button></div>
+      </div>
+      <div class="cbox rv">
+        <div class="tabs" role="tablist" aria-label="Setup by app"><button role="tab" aria-selected="true" data-tab="claude">Claude</button><button role="tab" aria-selected="false" data-tab="code">Claude Code</button><button role="tab" aria-selected="false" data-tab="chatgpt">ChatGPT</button><button role="tab" aria-selected="false" data-tab="other">Others</button></div>
+        <div data-pane="claude"><ol><li>In Claude on the web, desktop or mobile, open Settings, then Connectors.</li><li>Add a custom connector with this address:<pre>https://northline-care.vercel.app/mcp</pre></li><li>Sign in to Northline Care when the browser opens, then choose what Claude can do.</li><li>Start a chat: “I'd like to ask my Northline doctor about…”</li></ol></div>
+        <div data-pane="code" hidden><ol><li>In your terminal, add Northline Care as a remote server:<pre>claude mcp add --transport http northline https://northline-care.vercel.app/mcp</pre></li><li>Run <code>/mcp</code> in Claude Code and sign in when your browser opens.</li><li>Ask: “Send my sore throat question to my Northline doctor.”</li></ol></div>
+        <div data-pane="chatgpt" hidden><ol><li>A ChatGPT app for Northline Care is planned.</li><li>For now, ask ChatGPT to write a short summary of what you told it.</li><li>Paste that summary into the <a href="#ask">Care Navigator</a>, and your doctor sees it with your answers.</li></ol></div>
+        <div data-pane="other" hidden><ol><li>Any assistant that supports remote MCP connectors can use the same address.</li><li>Use your personal account on your own device, not one from work or school.</li><li>Tell us how it went; untested apps may behave differently.</li></ol></div>
+      </div>
+      <div class="cbox rv">
+        <div class="eyebrow">You decide what your AI can do</div>
+        <div class="perm"><div><b>Start requests and send answers and photos</b><small>Your AI can open a new request with your doctor.</small></div><label class="sw"><input type="checkbox" checked aria-label="Start requests"><span></span></label></div>
+        <div class="perm"><div><b>Read your doctor's replies</b><small>So you can ask “did my doctor reply?”</small></div><label class="sw"><input type="checkbox" checked aria-label="Read replies"><span></span></label></div>
+        <div class="perm"><div><b>Read your health record</b><small>Medications, results and care plan. Off unless you turn it on.</small></div><label class="sw"><input type="checkbox" aria-label="Read health record"><span></span></label></div>
+        <p style="font-size:.84rem;color:var(--muted)">Disconnect any app instantly in <a href="#privacy">Privacy and consent</a>.</p>
+      </div>
+    </div>
+  </div>
+  <div class="safety rv">
+    <div><b>Not for emergencies</b>Call 911, or call or text 988 in a mental health crisis. Your AI can't reach a doctor in real time.</div>
+    <div><b>Use a personal account</b>An employer or school that manages your AI account may be able to see what passes through it.</div>
+    <div><b>Your AI's maker sees your chat</b>What you type in an AI app also goes to the company behind that app, under its own privacy terms.</div>
+    <div><b>Prototype</b>The connector address is reserved for launch and doesn't accept connections yet.</div>
   </div>
 </div></section>
 
 <section id="faq" style="padding-top:0"><div class="in">
-  <div class="sec-head"><div><div class="eyebrow">FAQ</div><h2 style="margin-top:12px">Questions, answered</h2></div></div>
+  <div class="rv sec-head"><div><div class="eyebrow">FAQ</div><h2 style="margin-top:12px">Questions, answered</h2></div></div>
   <div class="faq">
     <details><summary>Is this real healthcare?</summary><p>Northline Care is designed so that every plan comes from a licensed Ontario clinician working with a partner clinic, under the same standards as an office visit. It is currently a prototype: no clinical services are offered yet, and the doctors shown are fictional.</p></details>
     <details><summary>Which doctors will be on Northline Care?</summary><p>Family physicians and nurse practitioners first, with specialists such as dermatology, endocrinology, mental health and pediatrics added as the pilot grows. Every clinician's registration is checked with their regulatory college before they can see patients.</p></details>
@@ -524,7 +660,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 </div></section>
 
 <footer><div class="in">
-  <div class="fr"><a class="logo" href="#top">northline<span>✳</span>care</a><div class="fl"><a href="#how">How it works</a><a href="#find">Doctors</a><a href="#cost">Pricing</a><a href="#clinicians">Clinicians</a><a href="#faq">FAQ</a></div></div>
+  <div class="fr"><a class="logo" href="#top">northline<span>✳</span>care</a><div class="fl"><a href="#how">How it works</a><a href="#find">Doctors</a><a href="#connect">Connect your AI</a><a href="#cost">Pricing</a><a href="#clinicians">Clinicians</a><a href="#faq">FAQ</a></div></div>
   <p>Northline Care is a business concept and interactive prototype. It does not provide medical advice or services. In an emergency call 911. For a mental health crisis call or text 988.</p>
   <p>© 2026 Northline Care · Toronto, Ontario</p>
 </div></footer>
@@ -588,6 +724,57 @@ document.getElementById("filters").addEventListener("click",e=>{const b=e.target
 draw();
 })();
 
+
+(function(){
+const reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+/* rotating headline */
+const rot=document.querySelectorAll("#landing .rot>em");let ri=0;
+if(!reduce&&rot.length)setInterval(()=>{if(document.getElementById("landing").hidden)return;const cur=rot[ri];cur.classList.remove("on");cur.classList.add("out");ri=(ri+1)%rot.length;setTimeout(()=>cur.classList.remove("out"),500);rot[ri].classList.add("on")},2800);
+/* hero chat sequence */
+const ph=document.getElementById("heroPhone");
+if(ph&&!reduce){
+  const seq=[...ph.querySelectorAll(".seq")],typ=ph.querySelector(".typing");
+  let t=[];const clear=()=>{t.forEach(clearTimeout);t=[]};
+  function run(){clear();ph.classList.add("play");seq.forEach(x=>x.classList.remove("shown"));let at=400;
+    seq.forEach((el,i)=>{const fromThem=!el.classList.contains("me");
+      if(fromThem){t.push(setTimeout(()=>{ph.insertBefore(typ,el);typ.classList.add("on")},at));at+=1300}
+      t.push(setTimeout(()=>{typ.classList.remove("on");el.classList.add("shown")},at));at+=fromThem?1500:1100});
+    t.push(setTimeout(run,at+5200))}
+  run();
+}
+/* clinician wall */
+const W=[["Dr. Amara Okafor","Family medicine"],["Dr. Luc Tremblay","Family medicine"],["Dr. Priya Sandhu","Dermatology"],["Dr. Wei Zhang","Endocrinology"],["Dr. Hannah Cohen","Mental health"],["Dr. Joseph Reyes","Sexual health"],["Dr. Nadia Haddad","Women's health"],["Dr. Marcus Bell","Sports medicine"],["Dr. Elena Ruiz","Pediatrics"],["NP Kiran Patel","Family medicine"]];
+const H=["#d7ef9e","#f2d6a2","#c9e2ef","#f1c7bd","#dcd3f0","#cfe8d4","#f3e3a6","#e6cfe6","#bfe0d6","#f0d9c4"];
+const tr=document.getElementById("wallTrack");
+if(tr){const one=W.map((w,i)=>`<span class="face"><span class="av" style="background:${H[i]}">${w[0].replace(/^(Dr\.|NP)\s+/,"").split(" ").map(x=>x[0]).join("")}</span><span><b>${w[0]}</b><small>${w[1]} · accepting patients</small></span></span>`).join("");tr.innerHTML=one+(reduce?"":`<span style="display:contents" aria-hidden="true">${one}</span>`)}
+/* connect your AI demo */
+const apps={claude:{name:"Claude",tool:"Northline Care connected",live:true},chatgpt:{name:"ChatGPT",tool:"App coming soon",live:false},code:{name:"Claude Code",tool:"northline · MCP",live:true},other:{name:"Your assistant",tool:"Remote MCP",live:true}};
+let app="claude",timers=[],stage=0;
+const body=document.getElementById("aiBody"),play=document.getElementById("aiPlay"),ask=document.getElementById("aiAsk");
+const add=(cls,html)=>{const d=document.createElement("div");d.className="am "+cls;d.innerHTML=html;body.appendChild(d);body.scrollTop=body.scrollHeight};
+function reset(){timers.forEach(clearTimeout);timers=[];stage=0;body.innerHTML="";ask.disabled=true;play.disabled=false;
+  const a=apps[app];document.getElementById("aiName").textContent=a.name;const tl=document.getElementById("aiTool");tl.textContent=a.tool;tl.classList.toggle("live",a.live);
+  if(!a.live){add("a","ChatGPT can't send requests to Northline Care yet. I can write a short summary of what you've told me, and you can paste it into the Care Navigator at northline-care.vercel.app.");add("u","OK, summarise it for me.");add("a","<b>Summary for your doctor:</b> sore throat for 3 days, fever 38.2°C last night, no trouble breathing or swallowing, no known allergies.");play.disabled=true;return}
+  add("a","Hi! I'm connected to Northline Care. Tell me what's going on and I'll prepare a request for your doctor.")}
+function sched(fn,ms){timers.push(setTimeout(fn,ms))}
+function demo(){if(stage)return;stage=1;play.disabled=true;let at=0;
+  const steps=[["u","My throat has been sore for 3 days and I had a fever last night."],["a","Sorry you're feeling rough. A few questions your doctor will want answered: how high was the fever? Any trouble breathing, swallowing or drooling?"],["u","38.2. Swallowing hurts but I can drink. Breathing is fine."],["t","northline.create_request(reason: 'sore throat 3 days', doctor: 'Dr. Okafor')"],["a","I've sent your request to <b>Dr. Amara Okafor</b> with your answers. She usually replies within 3 hours. Ask me any time if she has replied."]];
+  steps.forEach(([c,h])=>{at+=c==="u"?700:1400;sched(()=>add(c,h),at)});
+  sched(()=>{ask.disabled=false;stage=2},at+300)}
+function reply(){if(stage!==2)return;stage=3;ask.disabled=true;add("u","Did my doctor reply?");
+  sched(()=>add("t","northline.get_replies()"),700);
+  sched(()=>add("d","<b>Dr. Okafor replied</b>This sounds most like a viral sore throat. I've sent a lab requisition for a strep swab at your nearest collection site, just to be sure. Use ibuprofen and warm fluids. If you can't swallow liquids or your breathing changes, go to an emergency department."),1700);
+  sched(()=>add("a","Dr. Okafor added a strep swab requisition and a care plan to your Northline account. Want me to set a reminder to get the swab tomorrow?"),2900)}
+document.querySelectorAll("#landing .app").forEach(b=>b.addEventListener("click",()=>{app=b.dataset.app;document.querySelectorAll("#landing .app").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));
+  const tab=document.querySelector(`#landing .tabs [data-tab="${app}"]`);if(tab)tab.click();reset()}));
+play.addEventListener("click",demo);ask.addEventListener("click",reply);document.getElementById("aiReset").addEventListener("click",reset);
+document.querySelectorAll("#landing .tabs [data-tab]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll("#landing .tabs [data-tab]").forEach(x=>x.setAttribute("aria-selected",String(x===b)));document.querySelectorAll("#landing [data-pane]").forEach(p=>p.hidden=p.dataset.pane!==b.dataset.tab)}));
+const cb=document.getElementById("copyBtn");
+cb.addEventListener("click",()=>{const txt=document.getElementById("copyText").textContent;const done=()=>{cb.textContent="Copied";setTimeout(()=>cb.textContent="Copy",1800)};
+  try{navigator.clipboard.writeText(txt).then(done,()=>{selectIt()})}catch(e){selectIt()}
+  function selectIt(){const r=document.createRange();r.selectNodeContents(document.getElementById("copyText"));const sel=getSelection();sel.removeAllRanges();sel.addRange(r);cb.textContent="Press Ctrl+C"}});
+reset();
+})();
 </script>
 <script>
 
@@ -668,6 +855,7 @@ const S={
   {id:"v2",what:"Annual physical",doc:"d1",when:"Jan 2027 (to be scheduled)",mode:"In person",status:"Requested"}
  ],
  family:[{name:"Leo Chen",rel:"Son",age:"6",doc:"d9"}],
+ aiApps:[{n:"Claude",since:"Oct 21",scopes:"Start requests, read replies"},{n:"Claude Code",since:"Oct 25",scopes:"Start requests"}],
  consents:{share_ohp:true,ai_intake:true,research:false,sms:true,caregiver:false},
  audit:[
   {who:"Dr. Amara Okafor",what:"Viewed chart and sent message",when:"Oct 20, 11:40 a.m."},
@@ -739,7 +927,7 @@ const NAV={
 };
 const roleOf=v=>Object.keys(NAV).find(r=>NAV[r].some(x=>x.v===v));
 let view="home";
-const LANDING=["","top","how","find","cost","clinicians","faq"];
+const LANDING=["","top","how","find","connect","cost","clinicians","faq"];
 function showLanding(h){document.getElementById("landing").hidden=false;document.getElementById("app").hidden=true;document.title="Northline Care";
   const el=h&&h!=="top"?document.getElementById(h):null;requestAnimationFrame(()=>{if(el)el.scrollIntoView({behavior:"smooth",block:"start"});else window.scrollTo({top:0})})}
 function route(){
@@ -975,6 +1163,7 @@ const consentLabels={share_ohp:["Share my record with clinicians I choose","Lets
 V.privacy=()=>`<div class="head"><div class="stack" style="gap:6px"><div class="eyebrow">Under Ontario's PHIPA</div><h1>Privacy and consent</h1><p class="muted">Your health information is stored in Canada, encrypted, and only seen by people involved in your care. You decide what's shared and can change it any time.</p></div></div>
  <div class="card"><div class="list">${Object.keys(consentLabels).map(k=>`<div class="row between" style="flex-wrap:nowrap;align-items:flex-start"><div><b>${consentLabels[k][0]}</b><div class="muted" style="font-size:.86rem;max-width:62ch">${consentLabels[k][1]}</div></div><label class="toggle"><input type="checkbox" data-act="consent" data-k="${k}" ${S.consents[k]?"checked":""} aria-label="${esc(consentLabels[k][0])}"><span></span></label></div>`).join("")}</div></div>
  <div class="card stack"><div class="row between"><h3>Who has seen your record</h3><span class="muted" style="font-size:.86rem">Last 30 days</span></div><div class="tablewrap"><table><thead><tr><th>Who</th><th>What</th><th>When</th></tr></thead><tbody>${S.audit.map(a=>`<tr><td>${esc(a.who)}</td><td>${esc(a.what)}</td><td class="muted">${esc(a.when)}</td></tr>`).join("")}</tbody></table></div></div>
+ <div class="card stack"><div class="row between"><h3>Connected AI apps</h3><a class="btn ghost sm" href="#connect">Connect another app</a></div><p class="muted" style="font-size:.9rem">Apps you've allowed to send requests to your doctor or read replies. Disconnecting takes effect immediately.</p><div class="list">${S.aiApps.length?S.aiApps.map((x,i)=>`<div class="row between"><div><b>${esc(x.n)}</b><div class="muted" style="font-size:.86rem">Connected ${esc(x.since)} · ${esc(x.scopes)}</div></div><button class="btn ghost sm" data-act="aiOff" data-i="${i}" style="color:var(--danger)">Disconnect</button></div>`).join(""):`<div class="muted">No AI apps connected.</div>`}</div></div>
  <div class="grid g2"><div class="card stack"><h3>Get a copy of your record</h3><p class="muted" style="font-size:.9rem">Request your full record. We respond within 30 days as PHIPA requires, usually much sooner.</p><button class="btn ghost sm" data-act="exportRecord" style="align-self:flex-start">Request my record</button></div>
  <div class="card stack"><h3>Close your account</h3><p class="muted" style="font-size:.9rem">Your clinicians must keep medical records for the period Ontario requires. Everything else is deleted.</p><button class="btn ghost sm" data-act="closeAcct" style="align-self:flex-start;color:var(--danger)">Close account</button></div></div>`;
 
@@ -1181,6 +1370,7 @@ document.addEventListener("click",e=>{
    addBenefits:()=>modal(`${mhead("","Add a benefits plan")}<label class="f">Insurer<select><option>Sun Life</option><option>Manulife</option><option>Canada Life</option><option>Green Shield Canada</option><option>Other</option></select></label><div class="grid g2"><label class="f">Plan number<input type="text"></label><label class="f">Member ID<input type="text"></label></div><div class="row"><button class="btn primary" data-act="close" onclick="">Save plan</button></div>`),
    exportRecord:()=>toast("Request logged. You'll get a secure link by email."),
    closeAcct:()=>modal(`${mhead("","Close your account?")}<p>You'll lose access to messages and your care plan. Your clinicians keep the medical record for the period Ontario requires.</p><div class="row"><button class="btn danger" data-act="closeGo">Close my account</button><button class="btn ghost" data-act="close">Keep my account</button></div>`),
+   aiOff:()=>{const x=S.aiApps.splice(+a.dataset.i,1)[0];S.audit.unshift({who:"Maya Chen",what:"Disconnected "+x.n,when:"Just now"});toast(x.n+" disconnected");render()},
    closeGo:()=>{closeModal();toast("Prototype: account closure would start here")},
    notif:()=>{const n=S.notifications[+a.dataset.i];n.unread=false;closeModal();go(n.v)},
    /* clinician */

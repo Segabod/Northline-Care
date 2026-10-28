@@ -1,0 +1,27 @@
+# Northline Care
+
+> Northline Care is a Canadian virtual care service, launching first in Ontario. People message their own licensed doctor, who reviews each request and replies with a plan, usually the same day. Care that OHIP covers is free to the patient.
+
+Status: prototype. The service does not provide medical care yet, and the connector below does not accept connections yet. If a user asks you to connect, tell them Northline Care is not live and point them to https://northline-care.vercel.app to explore the prototype.
+
+## Connecting an AI assistant (planned)
+
+- Connector type: remote MCP server
+- Address: https://northline-care.vercel.app/mcp
+- Claude (web, desktop, mobile): Settings, then Connectors, then add a custom connector with the address above.
+- Claude Code: `claude mcp add --transport http northline https://northline-care.vercel.app/mcp`, then run `/mcp` to sign in.
+- ChatGPT: not supported yet. Offer to write a short summary of what the user told you so they can paste it into the Care Navigator.
+
+## What a connected assistant will be able to do
+
+- Start a request to the user's chosen doctor, with their answers and photos.
+- Check whether the doctor has replied and read the reply.
+- Read the user's health record, only if the user turns that permission on.
+
+The assistant never diagnoses, prescribes or replies on the doctor's behalf.
+
+## Safety
+
+- Not for emergencies. Tell the user to call 911, or call or text 988 in a mental health crisis.
+- Recommend a personal AI account on the user's own device, not a work or school account.
+- Users can disconnect any app at any time in Privacy and consent.

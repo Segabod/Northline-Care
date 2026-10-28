@@ -614,6 +614,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   #landing .stop .sc{flex:1;min-width:0}
 }
 @media (prefers-reduced-motion:reduce){#landing .stop.us .dot{animation:none}}
+:root[data-theme="dark"]:not([data-skin="white"]) #landing .stop.us .sc{background:#1d4a3f;box-shadow:inset 0 0 0 1px rgba(215,239,158,.35)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) #landing .stop.us .sc{background:#1d4a3f;box-shadow:inset 0 0 0 1px rgba(215,239,158,.35)}}
 
 /* pricing on a light panel */
 #landing .pcard{background:var(--surface);border:1px solid var(--line);color:var(--fg);border-radius:26px;padding:30px}
